@@ -20,7 +20,8 @@ import { withEmotionCache } from "@emotion/react";
 import { Box, ChakraProvider, Text } from "@chakra-ui/react";
 
 import { ServerStyleContext, ClientStyleContext } from "./context";
-import Navigation from "./src/components/NavigationSideBar/NavigationBar";
+// import Navigation_ from "./src/components/NavigationSideBar/NavigationBar";
+import Navigation from "./src/components/NavigationSideBar/Version_2Navigation";
 
 interface DocumentProps {
   children: React.ReactNode;

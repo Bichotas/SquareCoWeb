@@ -79,7 +79,7 @@ export default function Swibc(props: any) {
     >
       <Flex px="4" py="5" align="center">
         <Text fontSize="2xl" ml="2" color="white" fontWeight="semibold">
-          Choc UI
+          SquareCo
         </Text>
       </Flex>
       <Flex
