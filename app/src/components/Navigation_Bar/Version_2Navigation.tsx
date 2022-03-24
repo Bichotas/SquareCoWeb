@@ -91,7 +91,7 @@ export default function Swibc({ children }) {
       > &
       ChakraProps & { as?: "div" | undefined }
   ) => (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Box
         as="nav"
         pos="fixed"
