@@ -102,7 +102,7 @@ export default function Swibc({ children }) {
         pb="10"
         overflowX="hidden"
         overflowY="auto"
-        bg={"white"}
+        bg={useColorModeValue("brand.primary_dark", "white")}
         borderColor={useColorModeValue("inherit", "gray.700")}
         borderRightWidth="1px"
         w="60"
@@ -113,8 +113,8 @@ export default function Swibc({ children }) {
           <Text
             fontSize="2xl"
             ml="2"
-            color={useColorModeValue("brand.500", "white")}
-            fontWeight="semibold"
+            color={useColorModeValue("brand.shadow", "white")}
+            fontWeight="bold"
           >
             SquareCo
           </Text>
