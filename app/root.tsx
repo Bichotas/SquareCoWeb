@@ -21,7 +21,7 @@ import { Box, ChakraProvider, Text } from "@chakra-ui/react";
 
 import { ServerStyleContext, ClientStyleContext } from "./context";
 // import Navigation_ from "./src/components/NavigationSideBar/NavigationBar";
-import Navigation from "./src/components/NavigationSideBar/Version_2Navigation";
+import Navigation from "../src/components/Navigation_Bar/Version_2Navigation";
 
 interface DocumentProps {
   children: React.ReactNode;

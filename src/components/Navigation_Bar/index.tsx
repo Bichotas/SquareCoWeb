@@ -1,9 +1,2 @@
-// Poner el export default para los archivos de esta carpeta
-
-import React from "react";
-
-function index(props) {
-  return <div></div>;
-}
-
-export default index;
+export { default as Navigation } from "./NavigationBar";
+export { default as Navigation_2 } from "./Version_2Navigation";
