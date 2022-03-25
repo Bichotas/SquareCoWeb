@@ -105,28 +105,28 @@ export default function Swibc({ children }) {
         overflowX="hidden"
         overflowY="auto"
         bg={useColorModeValue("brand.primary_dark", "white")}
-        borderColor={useColorModeValue("inherit", "gray.700")}
-        borderRightWidth="1px"
+        // borderColor={useColorModeValue("inherit", "gray.700")}
+        // borderRightWidth="1px"
         w="60"
         {...props}
       >
         <Flex px="4" py="5" align="center">
           {/* <FiMenu size={"4vh"} color={"white"} /> */}
           <Image
-            boxSize={"50px"}
+            width={"50px"}
+            height={"50px"}
             borderRadius={"20%"}
             src={require("../../img/squareco.jpg")}
             ml="2"
             mr={"2"}
-            // Poner borde de color blanco
-            borderColor={useColorModeValue("white", "brand.shadow")}
-            border={"4px"}
+            borderColor={"whatsapp.100"}
+            borderWidth={"7px"}
           />
           <Text
             fontSize="xl"
             ml="2"
             color={useColorModeValue("brand.shadow", "white")}
-            fontWeight="bold"
+            fontWeight="black"
             letterSpacing={"1px"}
             alignSelf={"center"}
           >
@@ -227,9 +227,9 @@ export default function Swibc({ children }) {
             />
             <InputGroup w="96" display={{ base: "none", md: "flex" }}>
               <InputLeftElement color="gray.500">
-                <FiSearch />
+                <FiSearch color="white" />
               </InputLeftElement>
-              <Input placeholder="Buscar Articulos" />
+              <Input placeholder="Buscar Articulos" color={"white"} />
             </InputGroup>
             {/* Otro tipo de vista para la imagen */}
             {/* <Flex align="center">
@@ -245,6 +245,7 @@ export default function Swibc({ children }) {
             <HStack spacing={{ base: "0", md: "6" }}>
               <IconButton
                 size="lg"
+                color={useColorModeValue("white", "baclk")}
                 variant="ghost"
                 aria-label="open menu"
                 icon={<FaBell />}
@@ -278,9 +279,9 @@ export default function Swibc({ children }) {
                       </VStack> */}
 
                       {/* Quitar el chevron si no es necesario */}
-                      <Box display={{ base: "none", md: "flex" }}>
-                        <FiChevronDown />
-                      </Box>
+                      {/* <Box display={{ base: "none", md: "flex" }}>
+                        <FiChevronDown color="white" />
+                      </Box> */}
                     </HStack>
                   </MenuButton>
                   <MenuList
