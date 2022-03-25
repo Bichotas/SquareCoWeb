@@ -11,6 +11,7 @@ import {
   IconButton,
   Input,
   InputGroup,
+  Image,
   InputLeftElement,
   OmitCommonProps,
   Text,
@@ -34,6 +35,7 @@ import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 import React from "react";
 import theme from "~/src/theme";
 import { ChakraProvider } from "@chakra-ui/provider";
+
 // Marca error por que no esta explicito el tipo de dato el cual se esta destructurando los parametros
 export default function Swibc({ children }) {
   const sidebar = useDisclosure();
@@ -109,12 +111,19 @@ export default function Swibc({ children }) {
         {...props}
       >
         <Flex px="4" py="5" align="center">
-          <FiMenu size={"4vh"} color={"white"} />
+          {/* <FiMenu size={"4vh"} color={"white"} /> */}
+          <Image
+            boxSize={"50px"}
+            borderRadius={"20%"}
+            src={require("../../img/squareco.jpg")}
+            ml="2"
+          />
           <Text
             fontSize="xl"
             ml="2"
             color={useColorModeValue("brand.shadow", "white")}
             fontWeight="bold"
+            letterSpacing={"1px"}
             alignSelf={"center"}
           >
             SquareCo
@@ -127,11 +136,23 @@ export default function Swibc({ children }) {
           color="gray.600"
           aria-label="Main Navigation"
         >
-          <NavItem icon={MdHome}>Home</NavItem>
-          <NavItem icon={FaRss}>Articles</NavItem>
-          <NavItem icon={HiCollection}>Collections</NavItem>
-          <NavItem icon={FaClipboardCheck}>Checklists</NavItem>
-          <NavItem icon={HiCode} onClick={integrations.onToggle}>
+          <NavItem icon={MdHome} color={"white"}>
+            Home
+          </NavItem>
+          <NavItem icon={FaRss} color={"white"}>
+            Articles
+          </NavItem>
+          <NavItem icon={HiCollection} color={"white"}>
+            Collections
+          </NavItem>
+          <NavItem icon={FaClipboardCheck} color={"white"}>
+            Checklists
+          </NavItem>
+          <NavItem
+            icon={HiCode}
+            onClick={integrations.onToggle}
+            color={"white"}
+          >
             Integrations
             <Icon
               as={MdKeyboardArrowRight}
@@ -140,18 +161,25 @@ export default function Swibc({ children }) {
             />
           </NavItem>
           <Collapse in={integrations.isOpen}>
-            <NavItem pl="12" py="2" icon={null}>
+            <NavItem pl="12" py="2" icon={null} color={"white"}>
               Shopify
             </NavItem>
-            <NavItem pl="12" py="2" icon={null}>
+            <NavItem pl="12" py="2" icon={null} color={"white"}>
               Slack
             </NavItem>
-            <NavItem pl="12" py="2" icon={null}>
+            <NavItem pl="12" py="2" icon={null} color={"white"}>
               Zapier
             </NavItem>
           </Collapse>
-          <NavItem icon={AiFillGift}>Changelog</NavItem>
-          <NavItem icon={BsGearFill}>Settings</NavItem>
+          <NavItem icon={AiFillGift} color={"white"}>
+            Changelog
+          </NavItem>
+          <NavItem icon={BsGearFill} color={"white"}>
+            Settings
+          </NavItem>
+          <NavItem icon={BsGearFill} color={"white"}>
+            Log Out
+          </NavItem>
         </Flex>
       </Box>
     </ChakraProvider>
