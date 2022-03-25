@@ -109,12 +109,13 @@ export default function Swibc({ children }) {
         {...props}
       >
         <Flex px="4" py="5" align="center">
-          {/* <PlusSquareIcon w={"4vh"} h={"4vh"} /> */}
+          <FiMenu size={"4vh"} color={"white"} />
           <Text
-            fontSize="2xl"
+            fontSize="xl"
             ml="2"
             color={useColorModeValue("brand.shadow", "white")}
             fontWeight="bold"
+            alignSelf={"center"}
           >
             SquareCo
           </Text>

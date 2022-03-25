@@ -18,9 +18,9 @@ const theme = extendTheme({
       900: "#482891",
     },
   },
+
   fonts: {
-    heading: "inter",
-    body: "inter",
+    body: "Inter, sans-serif",
   },
 });
 
