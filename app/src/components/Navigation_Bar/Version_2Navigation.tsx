@@ -117,6 +117,10 @@ export default function Swibc({ children }) {
             borderRadius={"20%"}
             src={require("../../img/squareco.jpg")}
             ml="2"
+            mr={"2"}
+            // Poner borde de color blanco
+            borderColor={useColorModeValue("white", "brand.shadow")}
+            border={"4px"}
           />
           <Text
             fontSize="xl"
@@ -185,7 +189,7 @@ export default function Swibc({ children }) {
     </ChakraProvider>
   );
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Box
         as="section"
         bg={useColorModeValue("gray.50", "gray.700")}
@@ -209,7 +213,7 @@ export default function Swibc({ children }) {
             justify="space-between"
             w="full"
             px="4"
-            bg={useColorModeValue("white", "gray.800")}
+            bg={useColorModeValue("brand.primary", "gray.800")}
             borderBottomWidth="1px"
             borderColor={useColorModeValue("inherit", "gray.700")}
             h="14"
