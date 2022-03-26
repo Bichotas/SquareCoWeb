@@ -14,6 +14,7 @@ import React from "react";
 import NavItem from "./NavItem";
 import { FaClipboardCheck, FaRss } from "react-icons/fa";
 import theme from "~/src/theme";
+import { useColorModeValue } from "@chakra-ui/react";
 function SideBarContent(
   props: JSX.IntrinsicAttributes &
     OmitCommonProps<
@@ -29,6 +30,7 @@ function SideBarContent(
     <ChakraProvider theme={theme}>
       <Box
         as="nav"
+        borderRightWidth={"1px"}
         pos="fixed"
         top="0"
         left="0"
@@ -37,8 +39,7 @@ function SideBarContent(
         pb="10"
         overflowX="hidden"
         overflowY="auto"
-        // borderColor={useColorModeValue("inherit", "gray.700")}
-        // borderRightWidth="1px"
+        bg={"brand.primary_dark"}
         w="60"
         {...props}
       >
