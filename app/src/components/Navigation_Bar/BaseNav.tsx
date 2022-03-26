@@ -54,7 +54,9 @@ export default function Base(props: any) {
 
   return (
     <ChakraProvider theme={theme}>
+      {/* Contenedor principañ */}
       <Box>
+        {/* Parte lateral de la página */}
         <SideBarContent />
         <Drawer>
           <DrawerOverlay />
@@ -70,7 +72,7 @@ export default function Base(props: any) {
                 <FiSearch />
               </InputLeftElement>
             </InputGroup>
-
+            {/* Fotografía e Icono de Notificación */}
             <HStack>
               <IconButton />
               <Flex>
@@ -90,6 +92,8 @@ export default function Base(props: any) {
                 </Menu>
               </Flex>
             </HStack>
+
+            {/* Fin de Fotografía e Icon de notificación */}
           </Flex>
 
           <Box>{children}</Box>
