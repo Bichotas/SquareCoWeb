@@ -57,7 +57,7 @@ export default function Base(props: any) {
       {/* Contenedor principañ */}
       <Box
         as="section"
-        bg={useColorModeValue("gray.500", "gray.700")}
+        bg={useColorModeValue("gray.50", "gray.700")}
         minH={"100vh"}
       >
         {/* Parte lateral de la página */}
@@ -80,7 +80,7 @@ export default function Base(props: any) {
             bg={"brand.primary"}
             borderBottomWidth={"2px"}
             borderColor={"inherit"}
-            h={"14"}
+            h={"16"}
             justify={"space-between"}
             px={"4"}
             w={"full"}
@@ -92,7 +92,11 @@ export default function Base(props: any) {
               icon={<FiMenu />}
               size={"sm"}
             />
-            <InputGroup w={"96"} display={{ base: "none", md: "flex" }}>
+            <InputGroup
+              w={"96"}
+              display={{ base: "none", md: "flex" }}
+              ml={"5"}
+            >
               <InputLeftElement color={"white"}>
                 <FiSearch color={"white"} />
               </InputLeftElement>

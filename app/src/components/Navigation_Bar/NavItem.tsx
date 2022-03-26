@@ -14,8 +14,9 @@ function NavItem(props: { [x: string]: any; icon: any; children: any }) {
           align="center"
           p="3"
           mx="4"
-          my={"5"}
+          my={"3"}
           borderRadius="lg"
+          fontSize={"md"}
           role="group"
           fontWeight={"semibold"}
           cursor="pointer"
