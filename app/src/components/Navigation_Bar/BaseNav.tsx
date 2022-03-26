@@ -36,8 +36,15 @@ import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 import theme from "~/src/theme";
 import { ChakraProvider } from "@chakra-ui/provider";
 
-function BaseNav(props: any) {
-  return <div></div>;
-}
+export default function Base(props: any) {
+  // useDisclosure es usado para los siguientes escenarios:
+  // - open - close - toggle
+  const sideBar = useDisclosure();
+  const integrations = useDisclosure();
 
-export default BaseNav;
+  // useColorModeValue
+  // https://chakra-ui.com/docs/styled-system/features/color-mode#usecolormodevalue
+
+  // Se definen los dos colores, el primero para light mode, y el otro para el dark mode
+  const color = useColorModeValue("gray.600", "gray.300");
+}

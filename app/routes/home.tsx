@@ -8,6 +8,8 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Outlet } from "remix";
+import NavItem from "~/src/components/Navigation_Bar/NavItem";
+import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 
 function home(props: any) {
   const { colorMode, toggleColorMode } = useColorMode();
