@@ -18,7 +18,6 @@ function NavItem(props: { [x: string]: any; icon: any; children: any }) {
           borderRadius="lg"
           role="group"
           fontWeight={"semibold"}
-          letterSpacing={"0.5px"}
           cursor="pointer"
           _hover={{
             bg: "brand.primary_light",
