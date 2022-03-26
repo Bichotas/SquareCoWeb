@@ -36,15 +36,65 @@ import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 import theme from "~/src/theme";
 import { ChakraProvider } from "@chakra-ui/provider";
 
+// Componentes
+import SideBarContent from "./SideBarContent";
+import NavItem from "./NavItem";
 export default function Base(props: any) {
   // useDisclosure es usado para los siguientes escenarios:
   // - open - close - toggle
   const sideBar = useDisclosure();
   const integrations = useDisclosure();
 
+  const { children } = props;
   // useColorModeValue
   // https://chakra-ui.com/docs/styled-system/features/color-mode#usecolormodevalue
 
   // Se definen los dos colores, el primero para light mode, y el otro para el dark mode
   const color = useColorModeValue("gray.600", "gray.300");
+
+  return (
+    <ChakraProvider theme={theme}>
+      <Box>
+        <SideBarContent />
+        <Drawer>
+          <DrawerOverlay />
+          <DrawerContent>
+            <SideBarContent />
+          </DrawerContent>
+        </Drawer>
+        <Box>
+          <Flex>
+            <IconButton />
+            <InputGroup>
+              <InputLeftElement>
+                <FiSearch />
+              </InputLeftElement>
+            </InputGroup>
+
+            <HStack>
+              <IconButton />
+              <Flex>
+                <Menu>
+                  <MenuButton>
+                    <HStack>
+                      <Avatar />
+                    </HStack>
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem></MenuItem>
+                    <MenuItem></MenuItem>
+                    <MenuItem></MenuItem>
+                    <MenuDivider />
+                    <MenuItem></MenuItem>
+                  </MenuList>
+                </Menu>
+              </Flex>
+            </HStack>
+          </Flex>
+
+          <Box>{children}</Box>
+        </Box>
+      </Box>
+    </ChakraProvider>
+  );
 }
