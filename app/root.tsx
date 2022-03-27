@@ -21,7 +21,7 @@ import { Box, ChakraProvider, Text } from "@chakra-ui/react";
 
 import { ServerStyleContext, ClientStyleContext } from "./context";
 // import Navigation_ from "./src/components/NavigationSideBar/NavigationBar";
-import { BaseNavigationBar } from "./src/components/Navigation_Bar";
+import { VersionNav } from "./src/components/Navigation_Bar";
 
 // Theme
 import theme from "./src/theme/index";
@@ -85,11 +85,11 @@ export default function App() {
   return (
     <Document>
       <ChakraProvider theme={theme}>
-        <BaseNavigationBar>
+        <VersionNav>
           <>
             <Outlet />
           </>
-        </BaseNavigationBar>
+        </VersionNav>
       </ChakraProvider>
     </Document>
   );
