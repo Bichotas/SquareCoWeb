@@ -18,7 +18,7 @@ function home(props: any) {
 
   return (
     <ChakraProvider>
-      <Button onClick={toggleColorMode}>
+      <Button onClick={toggleColorMode} bg={"darkblue"} color={"white"}>
         Toggle {colorMode === "light" ? "Dark" : "Light"}
       </Button>
       <TitleSideBar />
