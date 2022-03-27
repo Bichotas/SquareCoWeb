@@ -103,6 +103,7 @@ export default function Base(props: any) {
               <Input
                 mr={{ base: "0", md: "5" }}
                 placeholder="Buscar productos"
+                color={"white"}
                 _placeholder={{ color: "gray.300" }}
               />
             </InputGroup>
