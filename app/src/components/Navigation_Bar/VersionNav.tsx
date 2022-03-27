@@ -29,8 +29,8 @@ import {
 } from "@chakra-ui/react";
 import { FaBell, FaClipboardCheck, FaRss } from "react-icons/fa";
 import { AiFillGift } from "react-icons/ai";
-import { BsGearFill } from "react-icons/bs";
-import { FiMenu, FiSearch, FiChevronDown } from "react-icons/fi";
+import { BsGearFill, BsFillBellFill } from "react-icons/bs";
+import { FiMenu, FiSearch, FiChevronDown, FiBell } from "react-icons/fi";
 import { HiCode, HiCollection } from "react-icons/hi";
 import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 import theme from "~/src/theme";
@@ -39,6 +39,7 @@ import { ChakraProvider } from "@chakra-ui/provider";
 // Componentes
 import SideBarContent from "./SideBarContent";
 import NavItem from "./NavItem";
+import TitleSideBar from "./TitleSideBar";
 export default function Version(props: any) {
   // useDisclosure es usado para los siguientes escenarios:
   // - open - close - toggle
@@ -74,35 +75,49 @@ export default function Version(props: any) {
             px={"4"}
             w={"full"}
           >
-            <IconButton
-              aria-label="Menu"
-              display={{ base: "inline-flex", md: "none" }}
-              onClick={sideBar.onOpen}
-              icon={<FiMenu />}
-              size={"sm"}
-            />
-            <InputGroup
-              w={"96"}
-              display={{ base: "none", md: "flex" }}
-              ml={"5"}
-            >
-              <InputLeftElement color={"white"}>
-                <FiSearch color={"white"} />
-              </InputLeftElement>
-              <Input
-                mr={{ base: "0", md: "5" }}
-                placeholder="Buscar productos"
-                color={"white"}
-                _placeholder={{ color: "gray.300" }}
+            <HStack gap={"5"}>
+              <IconButton
+                ml={"4"}
+                aria-label="Menu"
+                display={{ base: "inline-flex", md: "inline-flex" }}
+                onClick={sideBar.onOpen}
+                icon={<FiMenu />}
+                size={"sm"}
               />
-            </InputGroup>
+              <InputGroup
+                w={"96"}
+                display={{ base: "none", md: "flex" }}
+                ml={"5"}
+              >
+                <InputLeftElement color={"white"}>
+                  <FiSearch color={"white"} />
+                </InputLeftElement>
+                <Input
+                  mr={{ base: "0", md: "5" }}
+                  placeholder="Buscar productos"
+                  color={"white"}
+                  _placeholder={{ color: "gray.300" }}
+                />
+              </InputGroup>
+            </HStack>
+            <HStack>
+              <Text
+                fontWeight={"bold"}
+                fontFamily={"Inter"}
+                display={{ base: "inline", md: "none" }}
+                fontSize={"1.5rem"}
+                color={"white"}
+              >
+                SquareCo
+              </Text>
+            </HStack>
             {/* Fotografía e Icono de Notificación */}
             <HStack spacing={{ base: "2", md: "5" }}>
               <IconButton
-                size={"lg"}
+                size={"sm"}
                 color={"dark"}
                 aria-label={"open menu"}
-                // variant={"ghost"}
+                icon={<BsFillBellFill />}
               />
               <Flex alignItems={"center"}>
                 <Menu>
@@ -116,7 +131,7 @@ export default function Version(props: any) {
                         borderColor={"white"}
                         borderWidth={"3px"}
                         // Cambiar el valor de esta parte de sm
-                        // size={"sm"}
+                        //size={"md"}
                         src={
                           "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
                         }
