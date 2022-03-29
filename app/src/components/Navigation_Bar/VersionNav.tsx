@@ -43,6 +43,7 @@ import SideBarContent from "./SideBarContent";
 import NavItem from "./NavItem";
 import TitleSideBar from "./TitleSideBar";
 import { ChangeColor } from "../ColorMode";
+import { Footer } from "../Footer";
 export default function Version(props: any) {
   // useDisclosure es usado para los siguientes escenarios:
   // - open - close - toggle
@@ -181,12 +182,13 @@ export default function Version(props: any) {
               lg: "8rem",
               md: "7rem",
               sm: "4rem",
-              base: "2rem",
+              base: "1.5rem",
             }}
           >
             {children}
           </Box>
         </Box>
+        <Footer />
       </Box>
     </ChakraProvider>
   );
