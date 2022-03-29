@@ -42,6 +42,7 @@ import { ChakraProvider } from "@chakra-ui/provider";
 import SideBarContent from "./SideBarContent";
 import NavItem from "./NavItem";
 import TitleSideBar from "./TitleSideBar";
+import { ChangeColor } from "../ColorMode";
 export default function Version(props: any) {
   // useDisclosure es usado para los siguientes escenarios:
   // - open - close - toggle
@@ -172,6 +173,7 @@ export default function Version(props: any) {
           </Flex>
           {/* Contenedor main */}
           <Box
+            bg={useColorModeValue("gray.100", "gray.900")}
             py={"2.5rem"}
             as="main"
             px={{

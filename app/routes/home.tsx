@@ -16,25 +16,6 @@ function home(props: any) {
 
   return (
     <ChakraProvider>
-      {/* <Button onClick={toggleColorMode} bg={"darkblue"} color={"white"}>
-        Toggle {colorMode === "light" ? "Dark" : "Light"}
-      </Button> */}
-      {/* <Box
-        width={"100%"}
-        height={"10rem"}
-        bg={"dodgerblue"}
-        borderRadius={"25px"}
-      >
-        <Text
-          fontSize={{ xl: "4em", lg: "3em", md: "2.5em" }}
-          textAlign={"center"}
-          fontWeight={"semibold"}
-          letterSpacing={"2px"}
-          color={"whiteAlpha.800"}
-        >
-          MetaFisica
-        </Text>
-      </Box> */}
       <Box p={4} display={{ md: "flex" }}>
         <Box flexShrink={0}>
           <Image
