@@ -170,15 +170,15 @@ export default function Version(props: any) {
 
             {/* Fin de Fotografía e Icon de notificación */}
           </Flex>
-
+          {/* Contenedor main */}
           <Box
-            py={"1.5rem"}
+            py={"2.5rem"}
             as="main"
             px={{
               xl: "12rem",
               lg: "8rem",
               md: "7rem",
-              sm: "5rem",
+              sm: "4rem",
               base: "2rem",
             }}
           >
