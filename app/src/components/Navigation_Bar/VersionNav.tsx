@@ -61,7 +61,7 @@ export default function Version(props: any) {
       {/* Contenedor principañ */}
       <Box
         as="section"
-        bg={useColorModeValue("gray.50", "gray.700")}
+        bg={useColorModeValue("gray.100", "gray.700")}
         minH={"100vh"}
       >
         {/* Parte lateral de la página */}
