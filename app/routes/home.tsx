@@ -21,7 +21,9 @@ function home(props: any) {
       <Button onClick={toggleColorMode} bg={"darkblue"} color={"white"}>
         Toggle {colorMode === "light" ? "Dark" : "Light"}
       </Button>
-      <TitleSideBar />
+      <Box width={"100%"} height={"40rem"} bg={"dodgerblue"}>
+        <Text>MetaFisica</Text>
+      </Box>
     </ChakraProvider>
   );
 }
