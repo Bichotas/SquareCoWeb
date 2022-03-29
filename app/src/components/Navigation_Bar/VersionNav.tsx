@@ -171,7 +171,17 @@ export default function Version(props: any) {
             {/* Fin de Fotografía e Icon de notificación */}
           </Flex>
 
-          <Box as="main" p="3rem">
+          <Box
+            py={"1.5rem"}
+            as="main"
+            px={{
+              xl: "12rem",
+              lg: "8rem",
+              md: "7rem",
+              sm: "5rem",
+              base: "2rem",
+            }}
+          >
             {children}
           </Box>
         </Box>
