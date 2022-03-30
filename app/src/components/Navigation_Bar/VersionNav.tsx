@@ -182,7 +182,7 @@ export default function Version(props: any) {
               lg: "8rem",
               md: "7rem",
               sm: "4rem",
-              base: "1.5rem",
+              base: "0.5rem",
             }}
           >
             {children}

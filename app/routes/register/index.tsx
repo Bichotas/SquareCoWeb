@@ -26,8 +26,12 @@ export default function SignupCard() {
           <Heading fontSize={"4xl"} textAlign={"center"}>
             Registrate
           </Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            para disfrutar de todas nuestras funciones geniales ✌️
+          <Text
+            fontSize={"lg"}
+            color={"gray.600"}
+            textAlign={{ sm: "center", base: "center" }}
+          >
+            para disfrutar de todas nuestras funciones geniales✌️
           </Text>
         </Stack>
         <Box
