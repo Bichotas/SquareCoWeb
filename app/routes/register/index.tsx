@@ -1,99 +1,72 @@
 import {
   Flex,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
-  HStack,
-  InputRightElement,
-  Stack,
-  Button,
+  Container,
   Heading,
+  Stack,
   Text,
-  useColorModeValue,
-  Link,
+  Button,
+  Icon,
+  IconProps,
+  ChakraProvider,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import theme from "~/src/theme";
 
-export default function SignupCard() {
-  const [showPassword, setShowPassword] = useState(false);
-
+import Illustration from "~/src/svg/IlustrationChoose";
+export default function CallToActionWithIllustration() {
   return (
-    <Flex minH={"100vh"} align={"center"} justify={"center"} mt={"-16"}>
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign={"center"}>
-            Registrate
-          </Heading>
-          <Text
-            fontSize={"lg"}
-            color={"gray.600"}
-            textAlign={{ sm: "center", base: "center" }}
-          >
-            para disfrutar de todas nuestras funciones geniales✌️
-          </Text>
-        </Stack>
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
-          p={8}
+    <ChakraProvider theme={theme}>
+      <Container maxW={"5xl"} mt={"-20"}>
+        <Stack
+          textAlign={"center"}
+          align={"center"}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 20, md: 28 }}
         >
-          <Stack spacing={4}>
-            <HStack>
-              <Box>
-                <FormControl id="firstName" isRequired>
-                  <FormLabel>Nombres</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Apellidos</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-            </HStack>
-            <FormControl id="email" isRequired>
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" />
-            </FormControl>
-            <FormControl id="password" isRequired>
-              <FormLabel>Password</FormLabel>
-              <InputGroup>
-                <Input type={showPassword ? "text" : "password"} />
-                <InputRightElement h={"full"}>
-                  <Button
-                    variant={"ghost"}
-                    onClick={() =>
-                      setShowPassword((showPassword) => !showPassword)
-                    }
-                  ></Button>
-                </InputRightElement>
-              </InputGroup>
-            </FormControl>
-            <Stack spacing={10} pt={2}>
-              <Button
-                loadingText="Submitting"
-                size="lg"
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
-              >
-                Sign up
-              </Button>
-            </Stack>
-            <Stack pt={6}>
-              <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
-              </Text>
-            </Stack>
+          <Heading
+            fontWeight={600}
+            fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
+            lineHeight={"110%"}
+          >
+            Meeting scheduling{" "}
+            <Text as={"span"} color={"orange.400"}>
+              made easy
+            </Text>
+          </Heading>
+          <Text color={"gray.500"} maxW={"3xl"}>
+            Never miss a meeting. Never be late for one too. Keep track of your
+            meetings and receive smart reminders in appropriate times. Read your
+            smart “Daily Agenda” every morning.
+          </Text>
+          <Stack spacing={6} direction={"row"}>
+            <Button
+              rounded={"full"}
+              px={6}
+              colorScheme={"orange"}
+              bg={"orange.400"}
+              _hover={{ bg: "orange.500" }}
+            >
+              Comprar
+            </Button>
+            <Button
+              rounded={"full"}
+              px={6}
+              // Probando para que se vean mejor
+              // p={["3", "5", "10"]}
+              bg={"brand.secondary"}
+              color={"white"}
+              _hover={{ bg: "blue.500" }}
+            >
+              Vender
+            </Button>
           </Stack>
-        </Box>
-      </Stack>
-    </Flex>
+          <Flex w={"full"}>
+            <Illustration
+              height={{ sm: "24rem", lg: "28rem" }}
+              mt={{ base: 12, sm: 16 }}
+            />
+          </Flex>
+        </Stack>
+      </Container>
+    </ChakraProvider>
   );
 }
