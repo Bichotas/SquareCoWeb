@@ -44,13 +44,7 @@ export default function SignupCard() {
             <HStack>
               <Box>
                 <FormControl id="firstName" isRequired>
-                  <FormLabel>Nombre(s)</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Apellidos</FormLabel>
+                  <FormLabel>Nombre de la cuenta</FormLabel>
                   <Input type="text" />
                 </FormControl>
               </Box>
