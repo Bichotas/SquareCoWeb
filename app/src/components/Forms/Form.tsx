@@ -12,3 +12,5 @@ function FormFormik(props: any) {
     </Formik>
   );
 }
+
+export default FormFormik;
