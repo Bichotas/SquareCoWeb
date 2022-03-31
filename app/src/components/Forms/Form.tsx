@@ -1,7 +1,7 @@
 import { Formik, Field } from "formik";
 
-function FormFormik(props: any) {
-  const { initialValues, onSubmit, validationSchema, children } = props;
+// Poner los tipos de los parametrso
+function FormFormik({ initialValues, onSubmit, validationSchema, children }) {
   return (
     <Formik
       initialValues={initialValues}
