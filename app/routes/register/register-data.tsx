@@ -13,10 +13,12 @@ import {
   Text,
   useColorModeValue,
   Link,
+  VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Formik, Field } from "formik";
 import FormFormik from "~/src/components/Forms/Form";
+import { Form } from "remix";
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -42,63 +44,75 @@ export default function SignupCard() {
           p={8}
         >
           {/* Inicio de formik */}
+          <Formik
+            initialValues={{ name: "", email: "", password: "" }}
+            onSubmit={(values) => {
+              alert(JSON.stringify(values, null, 2));
+            }}
+          >
+            {({ handleSubmit, errors, touched }) => (
+              <Form onSubmit={handleSubmit}>
+                <VStack spacing={4} align="flex-start">
+                  <FormControl id={"firstName"} isRequired>
+                    <FormLabel>Nombre de la cuenta </FormLabel>
+                    <Field
+                      as={Input}
+                      id={"email"}
+                      name={"name"}
+                      type={"text"}
+                      variant={"outline"}
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor="email">Email Address</FormLabel>
+                    <Field
+                      as={Input}
+                      id="email"
+                      name="email"
+                      type="email"
+                      variant="outline"
+                    />
+                  </FormControl>
+                  <FormControl
+                    isInvalid={!!errors.password && touched.password}
+                    isRequired
+                  >
+                    <FormLabel>Contraseña</FormLabel>
+                    <Field
+                      as={Input}
+                      id="password"
+                      name="password"
+                      type="password"
+                      variant="outline"
+                      validate={(value: any) => {
+                        let error;
 
-          <FormFormik initialValues={{ name: "", email: "", password: "" }}>
-            <Stack spacing={4}>
-              <FormControl id="firstName" isRequired>
-                <FormLabel>Nombre de la cuenta</FormLabel>
-                <Field
-                  as={Input}
-                  id="name"
-                  name="name"
-                  type="text"
-                  variant="outline"
-                />
-              </FormControl>
-              <FormControl id="email" isRequired>
-                <FormLabel>Email address</FormLabel>
-                <Field
-                  as={Input}
-                  id="email"
-                  name="email"
-                  type="email"
-                  variant="outline"
-                />
-              </FormControl>
-              <FormControl id="password" isRequired>
-                <FormLabel>Password</FormLabel>
-                <InputGroup>
-                  <Input type={showPassword ? "text" : "password"} />
-                  <InputRightElement h={"full"}>
-                    <Button
-                      variant={"ghost"}
-                      onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }
-                    ></Button>
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
-              <Stack spacing={10} pt={2}>
-                <Button
-                  loadingText="Submitting"
-                  size="lg"
-                  bg={"blue.400"}
-                  color={"white"}
-                  _hover={{
-                    bg: "blue.500",
-                  }}
-                >
-                  Sign up
-                </Button>
-              </Stack>
-              <Stack pt={6}>
-                <Text align={"center"}>
-                  Already a user? <Link color={"blue.400"}>Login</Link>
-                </Text>
-              </Stack>
-            </Stack>
-          </FormFormik>
+                        if (value.length < 5) {
+                          error = "Password must contain at least 6 characters";
+                        }
+
+                        return error;
+                      }}
+                    />
+                  </FormControl>
+                  <Button
+                    type="submit"
+                    color={"white"}
+                    bg={"purple.400"}
+                    isFullWidth
+                    loadingText="Submitting"
+                    size={"lg"}
+                    _hover={{ bg: "purple.500" }}
+                  >
+                    Registrarse
+                  </Button>
+                  <Text textAlign={"center"}>
+                    Already a user? <Link color={"blue.400"}>Login</Link>
+                  </Text>
+                </VStack>
+              </Form>
+            )}
+          </Formik>
         </Box>
       </Stack>
     </Flex>
