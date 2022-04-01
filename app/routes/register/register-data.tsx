@@ -11,6 +11,7 @@ import {
   Button,
   Heading,
   Text,
+  FormErrorMessage,
   useColorModeValue,
   Link,
   VStack,
@@ -94,6 +95,7 @@ export default function SignupCard() {
                         return error;
                       }}
                     />
+                    <FormErrorMessage>{errors.password}</FormErrorMessage>
                   </FormControl>
                   <Button
                     type="submit"
