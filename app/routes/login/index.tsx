@@ -11,7 +11,10 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  FormErrorMessage,
 } from "@chakra-ui/react";
+import { Field, Formik } from "formik";
+import { Form } from "remix";
 
 export default function SimpleCard() {
   return (
@@ -31,35 +34,78 @@ export default function SimpleCard() {
           boxShadow={"lg"}
           p={8}
         >
-          <Stack spacing={4}>
-            <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Password</FormLabel>
-              <Input type="password" />
-            </FormControl>
-            <Stack spacing={10}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align={"start"}
-                justify={"space-between"}
-              >
-                <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.400"}>Forgot password?</Link>
-              </Stack>
-              <Button
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
-              >
-                Sign in
-              </Button>
-            </Stack>
-          </Stack>
+          {/* Inicio de formik */}
+          <Formik
+            initialValues={{ email: "", password: "", rememberMe: false }}
+            onSubmit={(values) => {
+              alert(JSON.stringify(values, null, 2));
+            }}
+          >
+            {({ handleSubmit, errors, touched }) => (
+              <Form onSubmit={handleSubmit}>
+                <Stack spacing={4}>
+                  <FormControl id="email" isRequired>
+                    <FormLabel htmlFor="email">Email address</FormLabel>
+                    <Field
+                      as={Input}
+                      id="email"
+                      name="email"
+                      type="email"
+                      variant="outline"
+                    />
+                  </FormControl>
+                  <FormControl
+                    id="password"
+                    isInvalid={!!errors.password && touched.password}
+                    isRequired
+                  >
+                    <FormLabel>Password</FormLabel>
+                    <Field
+                      type="password"
+                      as={Input}
+                      id="password"
+                      name="password"
+                      variant="outline"
+                      validate={(value: any) => {
+                        let error;
+
+                        if (value.length < 5) {
+                          error = "Password must contain at least 6 characters";
+                        }
+
+                        return error;
+                      }}
+                    />
+                    <FormErrorMessage>{errors.password}</FormErrorMessage>
+                  </FormControl>
+
+                  <Stack spacing={10}>
+                    <Stack
+                      direction={{ base: "column", sm: "row" }}
+                      align={"start"}
+                      justify={"space-between"}
+                    >
+                      <Field as={Checkbox} id="rememberMe" name="rememberMe">
+                        Remember me?
+                      </Field>
+                      <Link color={"blue.400"}>Forgot password?</Link>
+                    </Stack>
+                    <Button
+                      bg={"blue.400"}
+                      color={"white"}
+                      _hover={{
+                        bg: "blue.500",
+                      }}
+                      loadingText="Submitting"
+                      type="submit"
+                    >
+                      Sign in
+                    </Button>
+                  </Stack>
+                </Stack>
+              </Form>
+            )}
+          </Formik>
         </Box>
       </Stack>
     </Flex>
