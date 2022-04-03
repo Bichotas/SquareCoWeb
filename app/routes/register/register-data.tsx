@@ -65,7 +65,7 @@ export default function SignupCard() {
                     />
                   </FormControl>
                   <FormControl isRequired>
-                    <FormLabel htmlFor="email">Email Address</FormLabel>
+                    <FormLabel htmlFor="email">Correo Electronico</FormLabel>
                     <Field
                       as={Input}
                       id="email"
