@@ -42,6 +42,8 @@ import { ChakraProvider } from "@chakra-ui/provider";
 import SideBarContent from "./SideBarContent";
 import NavItem from "./NavItem";
 import TitleSideBar from "./TitleSideBar";
+import { ChangeColor } from "../ColorMode";
+import { Footer } from "../Footer";
 export default function Version(props: any) {
   // useDisclosure es usado para los siguientes escenarios:
   // - open - close - toggle
@@ -60,7 +62,7 @@ export default function Version(props: any) {
       {/* Contenedor principañ */}
       <Box
         as="section"
-        bg={useColorModeValue("gray.50", "gray.700")}
+        bg={useColorModeValue("gray.100", "gray.700")}
         minH={"100vh"}
       >
         {/* Parte lateral de la página */}
@@ -170,11 +172,23 @@ export default function Version(props: any) {
 
             {/* Fin de Fotografía e Icon de notificación */}
           </Flex>
-
-          <Box as="main" p="3rem">
+          {/* Contenedor main */}
+          <Box
+            bg={useColorModeValue("gray.100", "gray.900")}
+            py={"2.5rem"}
+            as="main"
+            px={{
+              xl: "12rem",
+              lg: "8rem",
+              md: "7rem",
+              sm: "4rem",
+              base: "0.5rem",
+            }}
+          >
             {children}
           </Box>
         </Box>
+        <Footer />
       </Box>
     </ChakraProvider>
   );
