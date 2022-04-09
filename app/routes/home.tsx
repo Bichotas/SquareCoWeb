@@ -9,7 +9,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import React from "react";
-import { Outlet } from "remix";
+import { Outlet } from "@remix-run/react";
 
 function home(props: any) {
   const { colorMode, toggleColorMode } = useColorMode();
