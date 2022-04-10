@@ -1,3 +1,9 @@
+// root.tsx
+import React, { useContext, useEffect } from "react";
+import { withEmotionCache } from "@emotion/react";
+import { ChakraProvider } from "@chakra-ui/react";
+
+import { ServerStyleContext, ClientStyleContext } from "./context";
 import {
   Links,
   LiveReload,
@@ -5,34 +11,18 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "remix";
-import type { MetaFunction } from "remix";
+} from "@remix-run/react";
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "New Remix App",
-  viewport: "width=device-width,initial-scale=1",
-});
-
-// root.tsx
-import React, { useContext, useEffect } from "react";
-import { withEmotionCache } from "@emotion/react";
-import { Box, ChakraProvider, Text } from "@chakra-ui/react";
-
-import { ServerStyleContext, ClientStyleContext } from "./context";
-// import Navigation_ from "./src/components/NavigationSideBar/NavigationBar";
 import { VersionNav } from "./src/components/Navigation_Bar";
-
-// Theme
-import theme from "./src/theme/index";
-
+import theme from "./src/theme";
+//
 interface DocumentProps {
   children: React.ReactNode;
 }
 
 const Document = withEmotionCache(
   ({ children }: DocumentProps, emotionCache) => {
-    const serverSyleData = useContext(ServerStyleContext);
+    const serverStyleData = useContext(ServerStyleContext);
     const clientStyleData = useContext(ClientStyleContext);
 
     // Only executed on client
@@ -62,7 +52,7 @@ const Document = withEmotionCache(
           />
           <Meta />
           <Links />
-          {serverSyleData?.map(({ key, ids, css }) => (
+          {serverStyleData?.map(({ key, ids, css }) => (
             <style
               key={key}
               data-emotion={`${key} ${ids.join(" ")}`}

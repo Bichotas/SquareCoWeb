@@ -14,7 +14,7 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import { Field, Formik } from "formik";
-import { Form } from "remix";
+import { Form } from "@remix-run/react";
 
 export default function SimpleCard() {
   return (

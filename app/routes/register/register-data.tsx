@@ -19,7 +19,7 @@ import {
 import { useState } from "react";
 import { Formik, Field } from "formik";
 import FormFormik from "~/src/components/Forms/Form";
-import { Form } from "remix";
+import { Form } from "@remix-run/react";
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
 
