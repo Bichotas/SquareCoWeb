@@ -28,6 +28,7 @@ const serviceAccount = require("../../keyService.json");
 if (!admin.apps.length) {
   initializeAdminApp({
     credential: admin.credential.cert(serviceAccount),
+    databaseURL: "",
   });
 }
 
