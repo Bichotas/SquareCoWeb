@@ -133,8 +133,8 @@ export default function Version(props) {
                 SquareCo
               </Text>
             </HStack>
-            {/* <ButtonStack /> */}
-            <MenuStack />
+            <ButtonStack />
+            {/* <MenuStack /> */}
           </Flex>
           {/* Contenedor main */}
           <Box

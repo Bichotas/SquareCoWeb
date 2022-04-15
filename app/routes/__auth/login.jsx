@@ -1,23 +1,22 @@
 import {
-  Flex,
   Box,
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
   Link,
   Button,
   Heading,
   Text,
   useColorModeValue,
-  FormErrorMessage,
 } from "@chakra-ui/react";
 import { Form } from "@remix-run/react";
 
 import { signIn } from "../../utils/db.server";
 import { createUserSession } from "../../utils/session.server";
 
+// Remix things
+import { Link as LinkaD } from "@remix-run/react";
 export let action = async ({ request }) => {
   let formData = await request.formData();
 
@@ -79,7 +78,7 @@ export default function SimpleCard() {
               />
             </FormControl>
 
-            <Stack spacing={10}>
+            <Stack spacing={2}>
               <Stack
                 direction={{ base: "column", sm: "row" }}
                 align={"start"}
@@ -98,6 +97,12 @@ export default function SimpleCard() {
               >
                 Sign in
               </Button>
+              <Text textAlign={"right"}>
+                Eres nuevo?{" "}
+                <LinkaD to={"/register"}>
+                  <Link color={"blue.400"}>Crea tu cuenta</Link>
+                </LinkaD>
+              </Text>
             </Stack>
           </Stack>
         </Form>
