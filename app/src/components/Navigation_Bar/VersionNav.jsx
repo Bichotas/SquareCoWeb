@@ -37,6 +37,7 @@ import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
 import theme from "~/src/theme";
 import { ChakraProvider } from "@chakra-ui/provider";
 
+import { Link as LinkaD } from "@remix-run/react";
 // Componentes
 import SideBarContent from "./SideBarContent";
 import NavItem from "./NavItem";
@@ -138,8 +139,12 @@ export default function Version(props) {
               /> */}
 
               {/* Poner los botones */}
-              <Button>Login</Button>
-
+              <LinkaD to={"/login"}>
+                <Button>Login</Button>
+              </LinkaD>
+              <LinkaD to={"/register"}>
+                <Button>Register</Button>
+              </LinkaD>
               <Flex alignItems={"center"}>
                 {/* <Menu>
                   <MenuButton
