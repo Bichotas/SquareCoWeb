@@ -27,6 +27,8 @@ import {
   MenuItem,
   Link,
   Button,
+  Show,
+  Hide,
 } from "@chakra-ui/react";
 import { FaBell, FaClipboardCheck, FaRss } from "react-icons/fa";
 import { AiFillGift } from "react-icons/ai";
@@ -130,7 +132,7 @@ export default function Version(props) {
               </Text>
             </HStack>
             {/* Fotografía e Icono de Notificación */}
-            <HStack spacing={{ base: "2", md: "5" }}>
+            <HStack spacing={{ base: "2", md: "2" }}>
               {/* <IconButton
                 size={"sm"}
                 color={"dark"}
@@ -142,9 +144,12 @@ export default function Version(props) {
               <LinkaD to={"/login"}>
                 <Button>Login</Button>
               </LinkaD>
-              <LinkaD to={"/register"}>
-                <Button>Register</Button>
-              </LinkaD>
+              <Hide breakpoint="(max-width: 768px)">
+                <LinkaD to={"/register"}>
+                  <Button>Register</Button>
+                </LinkaD>
+              </Hide>
+
               <Flex alignItems={"center"}>
                 {/* <Menu>
                   <MenuButton
