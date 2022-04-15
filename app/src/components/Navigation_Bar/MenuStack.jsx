@@ -7,14 +7,21 @@ import {
   Menu,
   MenuButton,
   MenuItem,
+  IconButton,
   MenuList,
 } from "@chakra-ui/react";
 import React from "react";
-
+import { BsFillBellFill } from "react-icons/bs";
 function MenuStack(props) {
   return (
     <ChakraProvider>
-      <HStack spacing={{ base: "2", md: "2" }}>
+      <HStack spacing={{ base: "2", md: "5" }}>
+        <IconButton
+          size={"sm"}
+          color={"dark"}
+          aria-label={"open menu"}
+          icon={<BsFillBellFill />}
+        />
         <Flex alignItems={"center"}>
           <Menu>
             <MenuButton

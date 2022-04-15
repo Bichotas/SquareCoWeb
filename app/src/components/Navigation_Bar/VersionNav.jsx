@@ -135,8 +135,6 @@ export default function Version(props) {
             </HStack>
             {/* <ButtonStack /> */}
             <MenuStack />
-
-            {/* Fin de Fotografía e Icon de notificación */}
           </Flex>
           {/* Contenedor main */}
           <Box
