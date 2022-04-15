@@ -46,6 +46,8 @@ import NavItem from "./NavItem";
 import TitleSideBar from "./TitleSideBar";
 import { ChangeColor } from "../ColorMode";
 import { Footer } from "../Footer";
+import ButtonStack from "./ButtonStack";
+import MenuStack from "./MenuStack";
 
 export default function Version(props) {
   // useDisclosure es usado para los siguientes escenarios:
@@ -131,58 +133,8 @@ export default function Version(props) {
                 SquareCo
               </Text>
             </HStack>
-            {/* Fotografía e Icono de Notificación */}
-            <HStack spacing={{ base: "2", md: "2" }}>
-              {/* <IconButton
-                size={"sm"}
-                color={"dark"}
-                aria-label={"open menu"}
-                icon={<BsFillBellFill />}
-              /> */}
-
-              {/* Poner los botones */}
-              <LinkaD to={"/login"}>
-                <Button>Login</Button>
-              </LinkaD>
-              <Hide breakpoint="(max-width: 768px)">
-                <LinkaD to={"/register"}>
-                  <Button>Register</Button>
-                </LinkaD>
-              </Hide>
-
-              <Flex alignItems={"center"}>
-                {/* <Menu>
-                  <MenuButton
-                    py={2}
-                    transition={"all 0.3s"}
-                    _focus={{ boxShadow: "none" }}
-                  >
-                    <HStack>
-                      <Avatar
-                        borderColor={"white"}
-                        borderWidth={"3px"}
-                        // Cambiar el valor de esta parte de sm
-                        size={"sm"}
-                        src={
-                          "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                        }
-                      />
-                    </HStack>
-                  </MenuButton>
-                  <MenuList
-                    bg={"white"}
-                    borderColor={"gray.200"}
-                    borderWidth={"2px"}
-                  >
-                    <MenuItem>Profile</MenuItem>
-                    <MenuItem>Settings</MenuItem>
-                    <MenuItem>Billing</MenuItem>
-                    <MenuDivider />
-                    <MenuItem>Sign out</MenuItem>
-                  </MenuList>
-                </Menu> */}
-              </Flex>
-            </HStack>
+            {/* <ButtonStack /> */}
+            <MenuStack />
 
             {/* Fin de Fotografía e Icon de notificación */}
           </Flex>
