@@ -63,3 +63,15 @@ export async function getSessionToken(idToken) {
 export async function signOutFirebase() {
   await signOut(getAuth());
 }
+
+export async function getCurrentUser() {
+  const currentUser = getAuth().currentUser;
+
+  if (currentUser == null) {
+    return null;
+  } else {
+    return currentUser.uid;
+  }
+
+  return undefined;
+}
