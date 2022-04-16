@@ -2,9 +2,6 @@ import { Box, ChakraProvider, Button } from "@chakra-ui/react";
 import { Form } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
 import { signOut, getUserSession } from "../../utils/session.server";
-export let action = ({ request }) => {
-  return signOut(request);
-};
 
 export let loader = async ({ request }) => {
   const sessionUser = await getUserSession(request);

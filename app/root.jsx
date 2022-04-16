@@ -15,7 +15,7 @@ import {
 import { VersionNav } from "./src/components/Navigation_Bar";
 import { ServerStyleContext, ClientStyleContext } from "./context";
 import theme from "./src/theme";
-import { getSession, getUserSession } from "./utils/session.server";
+import { getSession, getUserSession, signOut } from "./utils/session.server";
 import { getCurrentUser } from "./utils/db.server";
 export const meta = () => ({
   charset: "utf-8",
@@ -35,6 +35,11 @@ export async function loader({ request }) {
 
   let lista = "ikari";
   return lista;
+}
+
+export async function action({ request }) {
+  signOut(request);
+  return null;
 }
 export let links = () => {
   return [
