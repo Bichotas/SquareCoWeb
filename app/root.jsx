@@ -20,6 +20,10 @@ export const meta = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+export let loader = ({ request }) => {
+  return null;
+};
+
 export let links = () => {
   return [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },

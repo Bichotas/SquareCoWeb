@@ -2,49 +2,29 @@
 
 import React from "react";
 import {
-  Avatar,
   Box,
-  Collapse,
   Drawer,
   DrawerContent,
   DrawerOverlay,
   Flex,
-  Icon,
   IconButton,
   Input,
   InputGroup,
-  Image,
   InputLeftElement,
   Text,
   useColorModeValue,
   useDisclosure,
   HStack,
-  VStack,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuDivider,
-  MenuItem,
-  Link,
-  Button,
-  Show,
-  Hide,
 } from "@chakra-ui/react";
-import { FaBell, FaClipboardCheck, FaRss } from "react-icons/fa";
-import { AiFillGift } from "react-icons/ai";
-import { BsGearFill, BsFillBellFill } from "react-icons/bs";
+
 import { FiMenu, FiSearch, FiChevronDown, FiBell } from "react-icons/fi";
-import { HiCode, HiCollection } from "react-icons/hi";
-import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
+
 import theme from "~/src/theme";
 import { ChakraProvider } from "@chakra-ui/provider";
 
-import { Link as LinkaD } from "@remix-run/react";
 // Componentes
 import SideBarContent from "./SideBarContent";
-import NavItem from "./NavItem";
-import TitleSideBar from "./TitleSideBar";
-import { ChangeColor } from "../ColorMode";
+
 import { Footer } from "../Footer";
 import ButtonStack from "./ButtonStack";
 import MenuStack from "./MenuStack";
