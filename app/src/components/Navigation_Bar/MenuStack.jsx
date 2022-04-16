@@ -9,7 +9,6 @@ import {
   MenuItem,
   IconButton,
   MenuList,
-  Button,
 } from "@chakra-ui/react";
 import React from "react";
 import { BsFillBellFill } from "react-icons/bs";
