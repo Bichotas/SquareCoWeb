@@ -100,7 +100,7 @@ export default function App() {
   return (
     <Document>
       <ChakraProvider theme={theme}>
-        <VersionNav contexto={people}>
+        <VersionNav contexto={true}>
           <>
             <Outlet />
           </>

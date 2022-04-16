@@ -2,7 +2,6 @@ import { Box, ChakraProvider, Button } from "@chakra-ui/react";
 import { Form } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
 import { signOut, getUserSession } from "../utils/session.server";
-import CompTest from "../src/components/CompTest";
 
 export let action = ({ request }) => {
   return signOut(request);
@@ -18,5 +17,5 @@ export let loader = async ({ request }) => {
 };
 
 export default function Index() {
-  return <CompTest />;
+  return <div>log</div>;
 }

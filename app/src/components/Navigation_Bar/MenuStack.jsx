@@ -13,8 +13,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { BsFillBellFill } from "react-icons/bs";
-import CompTest from "../CompTest";
-function MenuStack(props) {
+function MenuStack({ request }) {
   return (
     <ChakraProvider>
       <HStack spacing={{ base: "2", md: "5" }}>
@@ -44,7 +43,6 @@ function MenuStack(props) {
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <Divider />
-              <CompTest />
               <MenuItem>Sign out</MenuItem>
             </MenuList>
           </Menu>
