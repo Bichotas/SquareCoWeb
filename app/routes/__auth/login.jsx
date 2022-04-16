@@ -24,6 +24,7 @@ export let loader = async ({ request }) => {
   if (sessionUser) {
     return redirect("/home");
   }
+  return null;
 };
 
 export let action = async ({ request }) => {

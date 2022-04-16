@@ -55,3 +55,10 @@ export async function signOut(request) {
   await signOutFirebase();
   return await destroySession(request);
 }
+
+export async function getSession(request) {
+  const cookieSession = await storage.getSession(request.headers.get("Cookie"));
+  const token = cookieSession.get("token");
+  if (!token) return null;
+  return token;
+}

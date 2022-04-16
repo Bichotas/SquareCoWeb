@@ -15,7 +15,7 @@ import {
 import { VersionNav } from "./src/components/Navigation_Bar";
 import { ServerStyleContext, ClientStyleContext } from "./context";
 import theme from "./src/theme";
-import { getUserSession } from "./utils/session.server";
+import { getSession, getUserSession } from "./utils/session.server";
 import { getCurrentUser } from "./utils/db.server";
 export const meta = () => ({
   charset: "utf-8",
@@ -32,6 +32,7 @@ export async function loader({ request }) {
   console.log(user);
   console.log("====================================");
   console.log("Realidad");
+
   let lista = "ikari";
   return lista;
 }
