@@ -74,8 +74,6 @@ export async function getCurrentUser() {
   } else {
     return currentUser.uid;
   }
-
-  return undefined;
 }
 
 export async function secondSignOut() {

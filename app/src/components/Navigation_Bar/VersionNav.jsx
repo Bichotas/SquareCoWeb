@@ -115,8 +115,8 @@ export default function Version(props) {
               </Text>
             </HStack>
 
-            {contexto && <ButtonStack />}
-            {!contexto && <MenuStack />}
+            {!contexto && <ButtonStack />}
+            {contexto && <MenuStack />}
           </Flex>
           {/* Contenedor main */}
           <Box

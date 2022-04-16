@@ -20,7 +20,7 @@ import { getAuth } from "firebase/auth";
 
 export let action = ({ request }) => {
   getAuth().signOut();
-  return redirect("/login");
+  return redirect("/post");
 };
 
 function MenuStack(props) {
@@ -54,7 +54,7 @@ function MenuStack(props) {
               <MenuItem>Settings</MenuItem>
               <Divider />
               {/* Implementar bien el metodo signOut y direccionar a la página principal */}
-              <Form method="post">
+              <Form method="POST">
                 <Button
                   type="submit"
                   bg={"teal.200"}
