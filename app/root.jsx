@@ -1,5 +1,5 @@
 // root.tsx
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { withEmotionCache } from "@emotion/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import {
@@ -15,13 +15,22 @@ import {
 import { VersionNav } from "./src/components/Navigation_Bar";
 import { ServerStyleContext, ClientStyleContext } from "./context";
 import theme from "./src/theme";
+import { getUserSession } from "./utils/session.server";
+import { getCurrentUser } from "./utils/db.server";
 export const meta = () => ({
   charset: "utf-8",
   title: "New Remix App",
   viewport: "width=device-width,initial-scale=1",
 });
+export async function loader({ request }) {
+  // Hacer una funcion parecida pero que no use el adminAuth, practicamente que solo nos muestre el usuario que esta
 
-export async function loader() {
+  // const sessionUser = await getUserSession(request);
+  // console.log(sessionUser);
+  let user = getCurrentUser();
+  console.log("====================================");
+  console.log(user);
+  console.log("====================================");
   console.log("Realidad");
   let lista = "ikari";
   return lista;
@@ -78,14 +87,17 @@ const Document = withEmotionCache(({ children }, emotionCache) => {
   );
 });
 export default function App() {
-  let people = useLoaderData();
+  const [usuario, setUsuario] = useState(null);
 
+  let people = useLoaderData();
+  // Podemos hacer que si detecta que hay una sesión, podemos guardar el usuario con getUserSessionToken
   return (
     <Document>
       <ChakraProvider theme={theme}>
         <VersionNav contexto={false}>
           <>
             <p>{people}</p>
+            <Outlet />
           </>
         </VersionNav>
       </ChakraProvider>
