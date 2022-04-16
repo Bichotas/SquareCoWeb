@@ -1,20 +1,24 @@
 import { Box, ChakraProvider, Button } from "@chakra-ui/react";
 import { Form } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
-import { signOut, getUserSession } from "../utils/session.server";
-
+import { signOut, getUserSession } from "../../utils/session.server";
 export let action = ({ request }) => {
   return signOut(request);
 };
 
-export default function CompTest() {
+export let loader = async ({ request }) => {
+  const sessionUser = await getUserSession(request);
+  if (!sessionUser) {
+    return redirect("/login");
+  }
+
+  return null;
+};
+
+export default function Index() {
   return (
     <ChakraProvider>
       <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-        <Box padding={"5"} bg={"dodgerblue"}>
-          CAJA
-        </Box>
-
         <Form method="post">
           <Button
             type="submit"
