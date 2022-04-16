@@ -9,15 +9,19 @@ import {
   MenuItem,
   IconButton,
   MenuList,
+  Button,
 } from "@chakra-ui/react";
 import React from "react";
 import { BsFillBellFill } from "react-icons/bs";
-import { signOut } from "../../../utils/session.server";
 import { Form } from "@remix-run/react";
+import { secondSignOut } from "../../../utils/db.server";
+import { redirect } from "@remix-run/node";
+import { getAuth } from "firebase/auth";
 
-export async function action({ request }) {
-  await signOut();
-}
+export let action = ({ request }) => {
+  getAuth().signOut();
+  return redirect("/login");
+};
 
 function MenuStack(props) {
   return (
@@ -51,7 +55,14 @@ function MenuStack(props) {
               <Divider />
               {/* Implementar bien el metodo signOut y direccionar a la página principal */}
               <Form method="post">
-                <MenuItem>Sign Out</MenuItem>
+                <Button
+                  type="submit"
+                  bg={"teal.200"}
+                  m={"2"}
+                  _hover={{ bg: "teal.400", color: "whiteO" }}
+                >
+                  Sign Out
+                </Button>
               </Form>
             </MenuList>
           </Menu>

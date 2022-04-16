@@ -10,6 +10,7 @@ import {
   getAuth,
   signOut,
 } from "firebase/auth";
+import { destroySession } from "./session.server";
 
 require("dotenv").config();
 
@@ -74,4 +75,9 @@ export async function getCurrentUser() {
   }
 
   return undefined;
+}
+
+export async function secondSignOut() {
+  const currentUser = getAuth().signOut();
+  await destroySession();
 }
