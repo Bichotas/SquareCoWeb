@@ -35,7 +35,8 @@ export default function Version(props) {
   const sideBar = useDisclosure();
   const integrations = useDisclosure();
 
-  const { children } = props;
+  const { children, contexto } = props;
+
   // useColorModeValue
   // https://chakra-ui.com/docs/styled-system/features/color-mode#usecolormodevalue
 
@@ -113,8 +114,9 @@ export default function Version(props) {
                 SquareCo
               </Text>
             </HStack>
-            <ButtonStack />
-            {/* <MenuStack /> */}
+
+            {contexto && <ButtonStack />}
+            {!contexto && <MenuStack />}
           </Flex>
           {/* Contenedor main */}
           <Box

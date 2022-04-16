@@ -9,6 +9,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 
 import { VersionNav } from "./src/components/Navigation_Bar";
@@ -20,10 +21,11 @@ export const meta = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export let loader = ({ request }) => {
-  return null;
-};
-
+export async function loader() {
+  console.log("Realidad");
+  let lista = "ikari";
+  return lista;
+}
 export let links = () => {
   return [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -76,12 +78,14 @@ const Document = withEmotionCache(({ children }, emotionCache) => {
   );
 });
 export default function App() {
+  let people = useLoaderData();
+
   return (
     <Document>
       <ChakraProvider theme={theme}>
-        <VersionNav>
+        <VersionNav contexto={false}>
           <>
-            <Outlet />
+            <p>{people}</p>
           </>
         </VersionNav>
       </ChakraProvider>
