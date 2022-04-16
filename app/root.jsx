@@ -96,7 +96,6 @@ export default function App() {
       <ChakraProvider theme={theme}>
         <VersionNav contexto={false}>
           <>
-            <p>{people}</p>
             <Outlet />
           </>
         </VersionNav>

@@ -65,6 +65,7 @@ export async function signOutFirebase() {
   await signOut(getAuth());
 }
 
+// Nuevo
 export async function getCurrentUser() {
   const currentUser = getAuth().currentUser;
 

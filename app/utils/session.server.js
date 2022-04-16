@@ -50,6 +50,7 @@ export async function destroySession(request) {
   return redirect("/login", { headers: { "Set-Cookie": newCookie } });
 }
 
+// NUevo
 export async function signOut(request) {
   await signOutFirebase();
   return await destroySession(request);
