@@ -13,10 +13,19 @@ import {
 import { Form } from "@remix-run/react";
 
 import { signIn } from "../../utils/db.server";
-import { createUserSession } from "../../utils/session.server";
+import { createUserSession, getUserSession } from "../../utils/session.server";
 
 // Remix things
 import { Link as LinkaD } from "@remix-run/react";
+import { redirect } from "@remix-run/node";
+
+export let loader = async ({ request }) => {
+  const sessionUser = await getUserSession(request);
+  if (sessionUser) {
+    return redirect("/home");
+  }
+};
+
 export let action = async ({ request }) => {
   let formData = await request.formData();
 
