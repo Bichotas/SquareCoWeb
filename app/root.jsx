@@ -22,25 +22,7 @@ export const meta = () => ({
   title: "New Remix App",
   viewport: "width=device-width,initial-scale=1",
 });
-export async function loader({ request }) {
-  // Hacer una funcion parecida pero que no use el adminAuth, practicamente que solo nos muestre el usuario que esta
 
-  // const sessionUser = await getUserSession(request);
-  // console.log(sessionUser);
-  let user = getCurrentUser();
-  console.log("====================================");
-  console.log(user);
-  console.log("====================================");
-  console.log("Realidad");
-
-  let lista = "ikari";
-  return lista;
-}
-
-export async function action({ request }) {
-  signOut(request);
-  return null;
-}
 export let links = () => {
   return [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
