@@ -1,5 +1,5 @@
 import { Box, ChakraProvider, Button } from "@chakra-ui/react";
-import { Form } from "@remix-run/react";
+import { Form, Outlet } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
 import { signOut, getUserSession } from "../utils/session.server";
 
@@ -17,5 +17,14 @@ export let loader = async ({ request }) => {
 };
 
 export default function Index() {
-  return <div>log</div>;
+  return (
+    <>
+      <Outlet />
+      <ChakraProvider>
+        <Box width={"500px"} height={"500px"} bg={"dodgerblue"}>
+          Calle
+        </Box>
+      </ChakraProvider>
+    </>
+  );
 }
