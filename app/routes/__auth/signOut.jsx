@@ -6,7 +6,15 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
   useDisclosure,
+  Text,
+  ModalOverlay,
 } from "@chakra-ui/react";
 
 import { redirect } from "@remix-run/node";
@@ -49,7 +57,10 @@ export default function Add() {
       closeOnOverlayClick={false}
     >
       {transition.state === "submitting" ? <div>Saving...</div> : null}
-      <AlertDialogOverlay>
+      <AlertDialogOverlay
+        bg="blackAlpha.300"
+        backdropFilter="blur(10px) hue-rotate(90deg)"
+      >
         <AlertDialogContent>
           <AlertDialogHeader>Add Invoice</AlertDialogHeader>
           <AlertDialogBody>Date</AlertDialogBody>
@@ -66,3 +77,48 @@ export default function Add() {
     </AlertDialog>
   );
 }
+
+{
+  /* <AlertDialog
+isOpen={true}
+onClose={onDismiss}
+leastDestructiveRef={cancelRef}
+motionPreset="slideInBottom"
+closeOnOverlayClick={false}
+>
+{transition.state === "submitting" ? <div>Saving...</div> : null}
+<AlertDialogOverlay>
+  <AlertDialogContent>
+    <AlertDialogHeader>Add Invoice</AlertDialogHeader>
+    <AlertDialogBody>Date</AlertDialogBody>
+    <AlertDialogFooter>
+      <Button ref={cancelRef} onClick={onDismiss}>
+        Cancel
+      </Button>
+      <Button colorScheme={"red"} ml={3}>
+        Delete
+      </Button>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialogOverlay>
+</AlertDialog> */
+}
+
+// <Modal isCentered isOpen={true}>
+// <ModalOverlay
+//   bg="none"
+//   backdropFilter="auto"
+//   backdropInvert="80%"
+//   backdropBlur="2px"
+// />
+// <ModalContent>
+//   <ModalHeader>ModalTItle</ModalHeader>
+//   <ModalCloseButton />
+//   <ModalBody>
+//     <Text>TExto</Text>
+//   </ModalBody>
+//   <ModalFooter>
+//     <Button>Close</Button>
+//   </ModalFooter>
+// </ModalContent>
+// </Modal>
