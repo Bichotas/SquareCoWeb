@@ -15,6 +15,8 @@ import { useState } from "react";
 import { Form } from "@remix-run/react";
 import { signUp } from "../../utils/db.server";
 import { createUserSession } from "../../utils/session.server";
+import { Link as LinkaD } from "@remix-run/react";
+
 export let action = async ({ request }) => {
   let formData = await request.formData();
 
@@ -92,7 +94,10 @@ export default function SignupCard() {
               Registrarse
             </Button>
             <Text textAlign={"center"}>
-              Already a user? <Link color={"blue.400"}>Login</Link>
+              Already a user?{" "}
+              <LinkaD to={"/login"}>
+                <Link color={"blue.400"}>Login</Link>
+              </LinkaD>
             </Text>
           </VStack>
         </Form>
