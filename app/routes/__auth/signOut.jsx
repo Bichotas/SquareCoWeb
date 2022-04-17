@@ -6,15 +6,7 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
   useDisclosure,
-  Text,
-  ModalOverlay,
 } from "@chakra-ui/react";
 
 import { redirect } from "@remix-run/node";
@@ -24,15 +16,11 @@ import {
   useNavigate,
   useTransition,
 } from "@remix-run/react";
+import { signOut } from "../../utils/session.server";
 export const action = async ({ request }) => {
   // Here we can update our dabatase with the new invoice
-
   // This is just so we can see the transition
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      resolve(redirect(`/invoices/`));
-    }, 2000)
-  );
+  return signOut(request);
 };
 
 export default function Add() {
@@ -42,7 +30,7 @@ export default function Add() {
   const transition = useTransition();
   const cancelRef = React.useRef();
   function onDismiss() {
-    navigate("/invoices");
+    navigate("/");
   }
 
   const disabled =
@@ -68,57 +56,14 @@ export default function Add() {
             <Button ref={cancelRef} onClick={onDismiss}>
               Cancel
             </Button>
-            <Button colorScheme={"red"} ml={3}>
-              Delete
-            </Button>
+            <Form method="post">
+              <Button colorScheme={"red"} ml={3} type="submit">
+                SignOut
+              </Button>
+            </Form>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialogOverlay>
     </AlertDialog>
   );
 }
-
-{
-  /* <AlertDialog
-isOpen={true}
-onClose={onDismiss}
-leastDestructiveRef={cancelRef}
-motionPreset="slideInBottom"
-closeOnOverlayClick={false}
->
-{transition.state === "submitting" ? <div>Saving...</div> : null}
-<AlertDialogOverlay>
-  <AlertDialogContent>
-    <AlertDialogHeader>Add Invoice</AlertDialogHeader>
-    <AlertDialogBody>Date</AlertDialogBody>
-    <AlertDialogFooter>
-      <Button ref={cancelRef} onClick={onDismiss}>
-        Cancel
-      </Button>
-      <Button colorScheme={"red"} ml={3}>
-        Delete
-      </Button>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialogOverlay>
-</AlertDialog> */
-}
-
-// <Modal isCentered isOpen={true}>
-// <ModalOverlay
-//   bg="none"
-//   backdropFilter="auto"
-//   backdropInvert="80%"
-//   backdropBlur="2px"
-// />
-// <ModalContent>
-//   <ModalHeader>ModalTItle</ModalHeader>
-//   <ModalCloseButton />
-//   <ModalBody>
-//     <Text>TExto</Text>
-//   </ModalBody>
-//   <ModalFooter>
-//     <Button>Close</Button>
-//   </ModalFooter>
-// </ModalContent>
-// </Modal>
