@@ -46,7 +46,7 @@ export default function Add() {
       onClose={onDismiss}
       leastDestructiveRef={cancelRef}
       motionPreset="slideInBottom"
-      onEsc={onDismiss}
+      closeOnOverlayClick={false}
     >
       {transition.state === "submitting" ? <div>Saving...</div> : null}
       <AlertDialogOverlay>
