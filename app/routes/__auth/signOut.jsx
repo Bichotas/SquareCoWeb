@@ -16,7 +16,17 @@ import {
   useNavigate,
   useTransition,
 } from "@remix-run/react";
-import { signOut } from "../../utils/session.server";
+import { signOut, getUserSession } from "../../utils/session.server";
+
+export let loader = async ({ request }) => {
+  const sessionUser = await getUserSession(request);
+  if (!sessionUser) {
+    return redirect("/login");
+  }
+
+  return null;
+};
+
 export const action = async ({ request }) => {
   // Here we can update our dabatase with the new invoice
   // This is just so we can see the transition
