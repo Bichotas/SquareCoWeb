@@ -23,6 +23,14 @@ export const meta = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+export const loader = async ({ request }) => {
+  const userSession = await getUserSession(request);
+  if (userSession == null) {
+    return false;
+  }
+  return userSession;
+};
+
 export let links = () => {
   return [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -52,6 +60,7 @@ const Document = withEmotionCache(({ children }, emotionCache) => {
     clientStyleData?.reset();
   }, []);
 
+  const userSession = useLoaderData();
   return (
     <html lang="en">
       <head>
@@ -82,7 +91,7 @@ export default function App() {
   return (
     <Document>
       <ChakraProvider theme={theme}>
-        <VersionNav contexto={true}>
+        <VersionNav contexto={people}>
           <>
             <Outlet />
           </>
