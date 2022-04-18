@@ -19,11 +19,7 @@ export let loader = async ({ request }) => {
 export default function Index() {
   return (
     <>
-      <ChakraProvider>
-        <Box width={"500px"} height={"500px"} bg={"dodgerblue"}>
-          Calle
-        </Box>
-      </ChakraProvider>
+      <ChakraProvider></ChakraProvider>
     </>
   );
 }
