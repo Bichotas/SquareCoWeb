@@ -79,14 +79,16 @@ export default function Version(props) {
             w={"full"}
           >
             <HStack gap={"5"}>
-              <IconButton
-                ml={"4"}
-                aria-label="Menu"
-                display={{ base: "inline-flex", md: "inline-flex" }}
-                onClick={sideBar.onOpen}
-                icon={<FiMenu />}
-                size={"sm"}
-              />
+              {contexto && (
+                <IconButton
+                  ml={"4"}
+                  aria-label="Menu"
+                  display={{ base: "inline-flex", md: "inline-flex" }}
+                  onClick={sideBar.onOpen}
+                  icon={<FiMenu />}
+                  size={"sm"}
+                />
+              )}
               <InputGroup
                 w={"96"}
                 display={{ base: "none", md: "flex" }}

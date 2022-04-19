@@ -80,3 +80,134 @@ export async function secondSignOut() {
   const currentUser = getAuth().signOut();
   await destroySession();
 }
+
+// Custom claims
+
+//--Funcion para otorgar el rol de vendedor al usuario.--
+export async function grantSellRole(email) {
+  // Mandamos a llamar a la clase admin con sus metodos para así que nos devuelva el objeto usuaria segun el email
+  const user = await admin.auth().getUserByEmail(email);
+
+  // Condición para cuando se le otorgue el rol de vendedor
+  // -- Se checca si el usuario ya tiene las dos condiciones, que tenga customClaims y que tenga el rol de vendedor
+  //    __ Si tiene los dos, entonces se va a devolver un valor nulo, ya que ya tiene el rol de "Vendedor"
+
+  if (user.customClaims && user.customClaims.vendedor === true) {
+    return null;
+  }
+  // No tienen ni uno de los dos, este se le va a poner el siguuiente rol
+
+  //  -- Se modifica los CustomUserClaims, y se pone los siguiente roles
+  //      __ "vendedor: true" ya que es el proposito de esta funcion
+  //      __ "comprador: fasle" -- #Esta parte se puede omitir, ya que si detecta que el custom claim de vendedor esta en false, entonces podemos deducir que el tipo de cuenta es "Comprador"
+  return admin.auth().setCustomUserClaims(user.uid, {
+    vendedor: true,
+  });
+}
+
+// --Funcion para otorgar el role de comprador al usuario -- Refactorizar en una función
+
+export async function grantBuyerRole(email) {
+  // Mandamos a llamar a la clase admin con sus metodos para así que nos devuelva el objeto usuaria segun el email
+  const user = await admin.auth().getUserByEmail(email);
+  if (user.customClaims && user.customClaims.vendedor === false) {
+    return null;
+  }
+  return admin.auth().setCustomUserClaims(user.uid, {
+    vendedor: false,
+  });
+}
+
+// --Funcion para checar el rol que tiene el usuario actual--
+
+// Esta función es bastante sencilla, se busca devolver los custom claims en un objeto, aunque tambíen podemos devolver varias cosas
+// ## Definir que cosas va a devolver
+export async function checkRole(email) {
+  // Mandamos a llamar a la clase admin con sus metodos para así que nos devuelva el objeto usuaria segun el email
+  const user = await admin.auth().getUserByEmail(email);
+
+  // Extraemos la propiedades del objeto user.CustomClaims. Es aqui donde van a estar nuestra propiedades customizadas
+  const { vendedor, comprador } = user.customClaims;
+
+  // ## Debugging
+  const { displayName } = user;
+  console.log(
+    "Nombre de autenticacion admin " + vendedor,
+    comprador,
+    displayName
+  );
+
+  // Retorno de un objeto con las propiedades
+
+  // ## Definir que cosas se van a devolver
+  return {
+    vendedor,
+    comprador,
+    displayName,
+  };
+}
+
+// Funcion para retornar datos
+export async function userReturn(email) {
+  // Mandamos a llamar a la clase admin con sus metodos para así que nos devuelva el objeto usuaria segun el email
+  const user = await admin.auth().getUserByEmail(email);
+  // Extraemos el custom claim de vendedor
+  const { vendedor } = user.customClaims;
+
+  // Objeto con propiedades importantes
+
+  //  -- El objeto consta con dos propiedades importantes.
+  //     __ El primero sería la propiedad llamada objeto, este contiene el objeto que devuelve a la hora de ser llamada la funcion de getUserByMail()
+  //        ## Este puede ser irrelevante para la extracción de datos
+
+  //     __ El segundo seria la propiedad de propsImporantes (Encontrar un nombre mejor)
+  //        - Este tiene como valor un objeto anidado en su propiedad, adentro de este objeto anidado vienen las siguientes propiedades.
+  //          ## Quitar el objeto anidado y devolver el objeto solo si no es neceasario la propiedad "objeto"
+
+  //        -/- uid: Este es el identificador del usuario que se tiene en la parte de autenticación
+  //          # Este va a ser necesario para varias cosas en la cuestión de interacción de objetos y colecciones
+  //        -/- displayName: el nombre de la cuenta
+  //        -/- email
+  //        -/- photoURL: la url de la fotografía de la cuenta -- Este se va a poner en storage
+  //        ./. vendedor: este va a ser un valor booleano el cual va a indicar si el tipo de cuenta del usuario es del tipo de cuenta "vendedor"
+  const usuario = {
+    objeto: user,
+    propsImportantes: {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      vendedor: vendedor,
+    },
+  };
+  // Opcion de retorno para la funcion
+  const usuarioObjeto = {
+    uid: user.uid,
+    displayName: user.displayName,
+    email: user.email,
+    photoURL: user.photoURL,
+    vendedor: vendedor,
+  };
+
+  // Se devuelve el objeto usuario
+  return usuarioObjeto;
+}
+
+// Firestore -- creacion, lectura y actualizacion de documentos // Tambien de subcollecciones
+
+// Funcion para creacion del documento del usuario
+export async function createDocumentUser(objetoDatos) {
+  // Destructuración de propiedades
+  const { uid, displayName, email, photoURL, vendedor } = objetoDatos;
+
+  // Referencia del documento
+  const docRef = db.doc(`users/${uid}`);
+
+  // Creación del documento
+  docRef.set({
+    displayName: displayName,
+    email: email,
+    photoURL: photoURL == undefined ? null : photoURL,
+    vendedor: vendedor,
+  });
+}

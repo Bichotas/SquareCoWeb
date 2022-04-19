@@ -76,15 +76,6 @@ export default function SimpleCard() {
                 id="password"
                 name="password"
                 variant="outline"
-                validate={(value) => {
-                  let error;
-
-                  if (value.length < 5) {
-                    error = "Password must contain at least 6 characters";
-                  }
-
-                  return error;
-                }}
               />
             </FormControl>
 

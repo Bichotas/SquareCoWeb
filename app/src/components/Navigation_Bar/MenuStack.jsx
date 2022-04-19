@@ -10,9 +10,15 @@ import {
   IconButton,
   MenuList,
 } from "@chakra-ui/react";
+import { useNavigate } from "@remix-run/react";
 import React from "react";
 import { BsFillBellFill } from "react-icons/bs";
 function MenuStack({ request }) {
+  const navigate = useNavigate();
+
+  function onSignOut() {
+    navigate("/signOut");
+  }
   return (
     <ChakraProvider>
       <HStack spacing={{ base: "2", md: "5" }}>
@@ -42,7 +48,7 @@ function MenuStack({ request }) {
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <Divider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem onClick={onSignOut}>Sign out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>

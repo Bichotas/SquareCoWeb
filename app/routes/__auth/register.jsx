@@ -11,10 +11,11 @@ import {
   Link,
   VStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { Form } from "@remix-run/react";
 import { signUp } from "../../utils/db.server";
 import { createUserSession } from "../../utils/session.server";
+import { Link as LinkaD } from "@remix-run/react";
+
 export let action = async ({ request }) => {
   let formData = await request.formData();
 
@@ -24,7 +25,7 @@ export let action = async ({ request }) => {
   const { user } = await signUp(email, password);
   const token = await user.getIdToken();
 
-  return createUserSession(token, "/");
+  return createUserSession(token, "/register/choose");
 };
 
 export default function SignupCard() {
@@ -50,16 +51,7 @@ export default function SignupCard() {
       >
         <Form method="post">
           <VStack spacing={4} align="flex-start">
-            <FormControl id={"firstName"} isRequired>
-              <FormLabel>Nombre de la cuenta </FormLabel>
-              <Input
-                as={Input}
-                id={"email"}
-                name={"name"}
-                type={"text"}
-                variant={"outline"}
-              />
-            </FormControl>
+            <FormControl id={"firstName"} isRequired></FormControl>
             <FormControl isRequired>
               <FormLabel htmlFor="email">Correo Electronico</FormLabel>
               <Input
@@ -92,7 +84,10 @@ export default function SignupCard() {
               Registrarse
             </Button>
             <Text textAlign={"center"}>
-              Already a user? <Link color={"blue.400"}>Login</Link>
+              Already a user?{" "}
+              <LinkaD to={"/login"}>
+                <Link color={"blue.400"}>Login</Link>
+              </LinkaD>
             </Text>
           </VStack>
         </Form>
