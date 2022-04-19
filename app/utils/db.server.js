@@ -178,5 +178,23 @@ export async function userReturn(email) {
   };
 
   // Se devuelve el objeto usuario
-  return usuario;
+  return usuarioObjeto;
+}
+
+// Firestore
+
+export async function createDocumentUser(objetoDatos) {
+  // Destructuración de propiedades
+  const { uid, displayName, email, photoURL, vendedor } = objetoDatos;
+
+  // Referencia del documento
+  const docRef = db.doc(`users/${uid}`);
+
+  // Creación del documento
+  docRef.set({
+    displayName: displayName,
+    email: email,
+    photoURL: photoURL == undefined ? null : photoURL,
+    vendedor: vendedor,
+  });
 }
