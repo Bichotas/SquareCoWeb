@@ -17,7 +17,7 @@ import { Link as LinkaD } from "@remix-run/react";
 
 import { Form } from "@remix-run/react";
 import { getAuth, updateProfile } from "firebase/auth";
-import { adminAuth, userReturn } from "../utils/db.server";
+import { adminAuth, createDocumentUser, userReturn } from "../utils/db.server";
 import { grantSellRole } from "../utils/db.server";
 export let action = async ({ request }) => {
   // Checar la documentación de firebase para los customclaims
@@ -39,9 +39,9 @@ export let action = async ({ request }) => {
     await grantSellRole(auth.currentUser.email).then(() => {
       console.log("Success");
     });
-
     const userObject = await userReturn(auth.currentUser.email);
     console.log(userObject);
+    await createDocumentUser(userObject);
     return redirect("/register/create-store");
   } else {
     // Si no es vendedor, devolver a la página principal.
