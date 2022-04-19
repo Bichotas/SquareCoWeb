@@ -82,13 +82,53 @@ export async function secondSignOut() {
 }
 
 // Custom claims
+
+//--Funcion para otorgar el rol de vendedor al usuario.--
 export async function grantSellRole(email) {
+  // Mandamos a llamar a la clase admin con sus metodos para así que nos devuelva el objeto usuaria segun el email
   const user = await admin.auth().getUserByEmail(email);
+
+  // Condición para cuando se le otorgue el rol de vendedor
+  // -- Se checca si el usuario ya tiene las dos condiciones, que tenga customClaims y que tenga el rol de vendedor
+  //    __ Si tiene los dos, entonces se va a devolver un valor nulo, ya que ya tiene el rol de "Vendedor"
+
   if (user.customClaims && user.customClaims.vendedor === true) {
     return null;
   }
+  // No tienen ni uno de los dos, este se le va a poner el siguuiente rol
+
+  //  -- Se modifica los CustomUserClaims, y se pone los siguiente roles
+  //      __ "vendedor: true" ya que es el proposito de esta funcion
+  //      __ "comprador: fasle" -- #Esta parte se puede omitir, ya que si detecta que el custom claim de vendedor esta en false, entonces podemos deducir que el tipo de cuenta es "Comprador"
   return admin.auth().setCustomUserClaims(user.uid, {
     vendedor: true,
     comprador: false,
   });
+}
+
+// --Funcion para checar el rol que tiene el usuario actual--
+
+// Esta función es bastante sencilla, se busca devolver los custom claims en un objeto, aunque tambíen podemos devolver varias cosas
+// ## Definir que cosas va a devolver
+export async function checkRole(email) {
+  // Mandamos a llamar a la clase admin con sus metodos para así que nos devuelva el objeto usuaria segun el email
+  const user = await admin.auth().getUserByEmail(email);
+
+  // Extraemos la propiedades del objeto user.CustomClaims. Es aqui donde van a estar nuestra propiedades customizadas
+  const { vendedor, comprador } = user.customClaims;
+
+  // ## Debugging
+  console.log("Nombre de autenticacion admin " + vendedor, comprador);
+
+  // Retorno de un objeto con las propiedades
+
+  // ## Definir que cosas se van a devolver
+  return {
+    vendedor,
+    comprador,
+  };
+}
+
+export async function userReturn(email) {
+  const user = await admin.auth().getUserByEmail(email);
 }
