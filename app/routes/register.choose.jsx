@@ -16,7 +16,7 @@ import { redirect } from "@remix-run/node";
 import { Link as LinkaD } from "@remix-run/react";
 
 import { Form } from "@remix-run/react";
-
+import { getAuth, updateProfile } from "firebase/auth";
 export let action = async ({ request }) => {
   // Checar la documentación de firebase para los customclaims
   // Podemos poner como en la parte del rol, que sea tipoDeCuenta: "comprador" || "vendedor "
@@ -26,12 +26,16 @@ export let action = async ({ request }) => {
   let name = formData.get("name");
   let cuenta = formData.get("cuenta");
 
+  const auth = getAuth();
+  updateProfile(auth.currentUser, {
+    displayName: name,
+  });
   // new Response((time)=>{})
   if (cuenta == "comprador") {
     return redirect("/register/create-store");
   } else {
     // Si no es vendedor, devolver a la página principal.
-    return redirect("/");
+    return redirect("/register/create-store");
   }
   console.log(name, cuenta);
   return null;
