@@ -44,7 +44,6 @@ export let action = async ({ request }) => {
     // Si no es vendedor, devolver a la página principal.
     return redirect("/");
   }
-  console.log(name, cuenta);
   return null;
 };
 

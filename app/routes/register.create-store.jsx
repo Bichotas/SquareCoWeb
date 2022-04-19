@@ -1,12 +1,16 @@
 import React from "react";
 import { getAuth, updateProfile } from "firebase/auth";
 import { useLoaderData } from "@remix-run/react";
-import { adminAuth } from "../utils/db.server";
+import { adminAuth, checkRole } from "../utils/db.server";
 
 export const loader = async ({ request }) => {
   const auth = getAuth();
   const currentUser = auth.currentUser;
-  const user = adminAuth.getUser(currentUser.uid);
+  console.log("====================================");
+  console.log(currentUser.email);
+  console.log("====================================");
+  let role = await checkRole(currentUser.email);
+  console.log(role);
   let displayName = currentUser.displayName;
   return displayName;
 };
