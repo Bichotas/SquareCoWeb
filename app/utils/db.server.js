@@ -168,4 +168,15 @@ export async function userReturn(email) {
       vendedor: vendedor,
     },
   };
+  // Opcion de retorno para la funcion
+  const usuarioObjeto = {
+    uid: user.uid,
+    displayName: user.displayName,
+    email: user.email,
+    photoURL: user.photoURL,
+    vendedor: vendedor,
+  };
+
+  // Se devuelve el objeto usuario
+  return usuario;
 }
