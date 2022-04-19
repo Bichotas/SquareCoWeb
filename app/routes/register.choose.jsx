@@ -17,7 +17,12 @@ import { Link as LinkaD } from "@remix-run/react";
 
 import { Form } from "@remix-run/react";
 import { getAuth, updateProfile } from "firebase/auth";
-import { adminAuth, createDocumentUser, userReturn } from "../utils/db.server";
+import {
+  adminAuth,
+  createDocumentUser,
+  grantBuyerRole,
+  userReturn,
+} from "../utils/db.server";
 import { grantSellRole } from "../utils/db.server";
 export let action = async ({ request }) => {
   // Checar la documentación de firebase para los customclaims
@@ -36,14 +41,24 @@ export let action = async ({ request }) => {
   // new Response((time)=>{})
 
   if (cuenta == "vendedor") {
+    // Refactorizar la funcion grantSellRole para que sea nada más "grantRole"
     await grantSellRole(auth.currentUser.email).then(() => {
       console.log("Success");
     });
     const userObject = await userReturn(auth.currentUser.email);
     console.log(userObject);
     await createDocumentUser(userObject);
+
+    // La siguiente fase sería crear la tienda.
     return redirect("/register/create-store");
   } else {
+    await grantBuyerRole(auth.currentUser.email).then(() => {
+      console.log("Success, Buyer");
+    });
+
+    const userObject = await userReturn(auth.currentUser.email);
+    await createDocumentUser(userObject);
+
     // Si no es vendedor, devolver a la página principal.
     return redirect("/");
   }

@@ -102,7 +102,19 @@ export async function grantSellRole(email) {
   //      __ "comprador: fasle" -- #Esta parte se puede omitir, ya que si detecta que el custom claim de vendedor esta en false, entonces podemos deducir que el tipo de cuenta es "Comprador"
   return admin.auth().setCustomUserClaims(user.uid, {
     vendedor: true,
-    comprador: false,
+  });
+}
+
+// --Funcion para otorgar el role de comprador al usuario -- Refactorizar en una función
+
+export async function grantBuyerRole(email) {
+  // Mandamos a llamar a la clase admin con sus metodos para así que nos devuelva el objeto usuaria segun el email
+  const user = await admin.auth().getUserByEmail(email);
+  if (user.customClaims && user.customClaims.vendedor === false) {
+    return null;
+  }
+  return admin.auth().setCustomUserClaims(user.uid, {
+    vendedor: false,
   });
 }
 
@@ -181,7 +193,7 @@ export async function userReturn(email) {
   return usuarioObjeto;
 }
 
-// Firestore
+// Firestore -- creacion, lectura y actualizacion de documentos // Tambien de subcollecciones
 
 export async function createDocumentUser(objetoDatos) {
   // Destructuración de propiedades
