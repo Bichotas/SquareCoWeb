@@ -11,7 +11,6 @@ import {
   Link,
   VStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { Form } from "@remix-run/react";
 import { signUp } from "../../utils/db.server";
 import { createUserSession } from "../../utils/session.server";

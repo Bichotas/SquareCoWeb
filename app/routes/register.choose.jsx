@@ -17,6 +17,8 @@ import { Link as LinkaD } from "@remix-run/react";
 
 import { Form } from "@remix-run/react";
 import { getAuth, updateProfile } from "firebase/auth";
+import { adminAuth } from "../utils/db.server";
+import { grantSellRole } from "../utils/db.server";
 export let action = async ({ request }) => {
   // Checar la documentación de firebase para los customclaims
   // Podemos poner como en la parte del rol, que sea tipoDeCuenta: "comprador" || "vendedor "
@@ -30,12 +32,17 @@ export let action = async ({ request }) => {
   updateProfile(auth.currentUser, {
     displayName: name,
   });
+
   // new Response((time)=>{})
+
   if (cuenta == "comprador") {
+    await grantSellRole(auth.currentUser.email).then(() => {
+      console.log("Success");
+    });
     return redirect("/register/create-store");
   } else {
     // Si no es vendedor, devolver a la página principal.
-    return redirect("/register/create-store");
+    return redirect("/");
   }
   console.log(name, cuenta);
   return null;

@@ -80,3 +80,15 @@ export async function secondSignOut() {
   const currentUser = getAuth().signOut();
   await destroySession();
 }
+
+// Custom claims
+export async function grantSellRole(email) {
+  const user = await admin.auth().getUserByEmail(email);
+  if (user.customClaims && user.customClaims.vendedor === true) {
+    return null;
+  }
+  return admin.auth().setCustomUserClaims(user.uid, {
+    vendedor: true,
+    comprador: false,
+  });
+}
