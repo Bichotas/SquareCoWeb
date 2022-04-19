@@ -6,11 +6,13 @@ import { adminAuth, checkRole } from "../utils/db.server";
 export const loader = async ({ request }) => {
   const auth = getAuth();
   const currentUser = auth.currentUser;
-  console.log("====================================");
-  console.log(currentUser.email);
-  console.log("====================================");
-  let role = await checkRole(currentUser.email);
-  console.log(role);
+  // console.log("====================================");
+  // console.log(currentUser.email);
+  // console.log("====================================");
+
+  // Llamada para checar el rol
+  // let role = await checkRole(currentUser.email);
+  // console.log(role);
   let displayName = currentUser.displayName;
   return displayName;
 };
