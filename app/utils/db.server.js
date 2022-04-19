@@ -118,7 +118,12 @@ export async function checkRole(email) {
   const { vendedor, comprador } = user.customClaims;
 
   // ## Debugging
-  console.log("Nombre de autenticacion admin " + vendedor, comprador);
+  const { displayName } = user;
+  console.log(
+    "Nombre de autenticacion admin " + vendedor,
+    comprador,
+    displayName
+  );
 
   // Retorno de un objeto con las propiedades
 
@@ -126,9 +131,41 @@ export async function checkRole(email) {
   return {
     vendedor,
     comprador,
+    displayName,
   };
 }
 
+// Funcion para retornar datos
 export async function userReturn(email) {
+  // Mandamos a llamar a la clase admin con sus metodos para así que nos devuelva el objeto usuaria segun el email
   const user = await admin.auth().getUserByEmail(email);
+  // Extraemos el custom claim de vendedor
+  const { vendedor } = user.customClaims;
+
+  // Objeto con propiedades importantes
+
+  //  -- El objeto consta con dos propiedades importantes.
+  //     __ El primero sería la propiedad llamada objeto, este contiene el objeto que devuelve a la hora de ser llamada la funcion de getUserByMail()
+  //        ## Este puede ser irrelevante para la extracción de datos
+
+  //     __ El segundo seria la propiedad de propsImporantes (Encontrar un nombre mejor)
+  //        - Este tiene como valor un objeto anidado en su propiedad, adentro de este objeto anidado vienen las siguientes propiedades.
+  //          ## Quitar el objeto anidado y devolver el objeto solo si no es neceasario la propiedad "objeto"
+
+  //        -/- uid: Este es el identificador del usuario que se tiene en la parte de autenticación
+  //          # Este va a ser necesario para varias cosas en la cuestión de interacción de objetos y colecciones
+  //        -/- displayName: el nombre de la cuenta
+  //        -/- email
+  //        -/- photoURL: la url de la fotografía de la cuenta -- Este se va a poner en storage
+  //        ./. vendedor: este va a ser un valor booleano el cual va a indicar si el tipo de cuenta del usuario es del tipo de cuenta "vendedor"
+  const usuario = {
+    objeto: user,
+    propsImportantes: {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      vendedor: vendedor,
+    },
+  };
 }
