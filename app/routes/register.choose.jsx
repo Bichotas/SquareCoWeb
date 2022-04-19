@@ -35,7 +35,7 @@ export let action = async ({ request }) => {
 
   // new Response((time)=>{})
 
-  if (cuenta == "comprador") {
+  if (cuenta == "vendedor") {
     await grantSellRole(auth.currentUser.email).then(() => {
       console.log("Success");
     });
