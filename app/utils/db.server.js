@@ -195,6 +195,7 @@ export async function userReturn(email) {
 
 // Firestore -- creacion, lectura y actualizacion de documentos // Tambien de subcollecciones
 
+// Funcion para creacion del documento del usuario
 export async function createDocumentUser(objetoDatos) {
   // Destructuración de propiedades
   const { uid, displayName, email, photoURL, vendedor } = objetoDatos;
