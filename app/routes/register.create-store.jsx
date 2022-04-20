@@ -16,6 +16,12 @@ import {
 import { Form } from "@remix-run/react";
 
 import theme from "../src/theme";
+
+export let action = async ({ request }) => {
+  let formData = await request.formData();
+  let store = formData.get("store");
+};
+
 function register_create_store(props) {
   return (
     <ChakraProvider theme={theme}>
@@ -44,9 +50,13 @@ function register_create_store(props) {
               </FormControl>
               <FormControl>
                 <FormLabel>Descripción de la tienda</FormLabel>
-                <Textarea placeholder="Es recomendable poner una descripción a tu tienda" />
+                <Textarea
+                  placeholder="Es recomendable poner una descripción a tu tienda"
+                  id="description"
+                  name="description"
+                />
               </FormControl>
-              <FormControl isRequired>
+              <FormControl isRequired id={"categoryia"}>
                 <FormLabel>Categoría de la tienda</FormLabel>
                 <Select>
                   {/* En esta parte podemos hacer map a un array y así no tener varias cosas */}
