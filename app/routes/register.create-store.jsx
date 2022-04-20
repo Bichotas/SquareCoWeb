@@ -14,12 +14,20 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Form } from "@remix-run/react";
+
+import theme from "../src/theme";
 function register_create_store(props) {
   return (
-    <ChakraProvider>
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+    <ChakraProvider theme={theme}>
+      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={2} px={6}>
         <Stack align={"center"}>
-          <Text>[[Datos]]</Text>
+          <Text
+            fontSize={"lg"}
+            color={"gray.600"}
+            textAlign={{ sm: "center", base: "center" }}
+          >
+            Crea tu tienda
+          </Text>
         </Stack>
 
         <Box
@@ -30,29 +38,30 @@ function register_create_store(props) {
         >
           <Form method="post">
             <VStack gap={1}>
-              <FormControl>
-                <FormLabel></FormLabel>
-                <Input />
+              <FormControl isRequired>
+                <FormLabel>Nombre de la tienda</FormLabel>
+                <Input as={Input} id={"store"} name={"store"} type={"text"} />
               </FormControl>
               <FormControl>
-                <FormLabel></FormLabel>
-                <Textarea />
+                <FormLabel>Descripción de la tienda</FormLabel>
+                <Textarea placeholder="Es recomendable poner una descripción a tu tienda" />
               </FormControl>
-              <FormControl>
-                <FormLabel></FormLabel>
+              <FormControl isRequired>
+                <FormLabel>Categoría de la tienda</FormLabel>
                 <Select>
-                  <option value={"comprador"}>Comprador</option>
-                  <option value={"vendedor"}>Vendedor</option>
+                  {/* En esta parte podemos hacer map a un array y así no tener varias cosas */}
+                  <option value={"cremeria"}>Cremeria</option>
+                  <option value={"ropa"}>Ropa</option>
                 </Select>
               </FormControl>
               <Button
                 type="submit"
                 color={"white"}
-                bg={"purple.400"}
+                bg={"brand.ascend"}
                 isFullWidth
                 loadingText="Submitting"
                 size={"lg"}
-                _hover={{ bg: "purple.500" }}
+                _hover={{ bg: "orange.500" }}
               >
                 Finalizar
               </Button>
