@@ -20,6 +20,14 @@ import theme from "../src/theme";
 export let action = async ({ request }) => {
   let formData = await request.formData();
   let store = formData.get("store");
+  let description = formData.get("description");
+  let categoria = formData.get("category");
+
+  console.log("====================================");
+  console.log(store, description, categoria);
+  console.log("====================================");
+
+  return null;
 };
 
 function register_create_store(props) {
@@ -56,9 +64,9 @@ function register_create_store(props) {
                   name="description"
                 />
               </FormControl>
-              <FormControl isRequired id={"categoryia"}>
+              <FormControl isRequired id={"category"}>
                 <FormLabel>Categoría de la tienda</FormLabel>
-                <Select>
+                <Select id={"category"} name={"category"}>
                   {/* En esta parte podemos hacer map a un array y así no tener varias cosas */}
                   <option value={"cremeria"}>Cremeria</option>
                   <option value={"ropa"}>Ropa</option>
