@@ -17,7 +17,17 @@ import { Form } from "@remix-run/react";
 
 import theme from "../src/theme";
 
+export let loader = async ({ request }) => {
+  // Para que se pueda acceder a esta parte se tienen que cumplir las siguientes condiciones
+
+  //    -- EL objeto de autenticación del usuario, el custom claim de vendedor tiene que estar en "true"
+  //    -- No debe de haber ningún documento en la colección "stores" para así crear solo un documento.
+  //    -- El usuario debe de estar logeado o adentro de la session
+  return null;
+};
+
 export let action = async ({ request }) => {
+  // Se reciben los datos
   let formData = await request.formData();
   let store = formData.get("store");
   let description = formData.get("description");
