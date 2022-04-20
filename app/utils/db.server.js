@@ -211,3 +211,5 @@ export async function createDocumentUser(objetoDatos) {
     vendedor: vendedor,
   });
 }
+
+// Función para la creación de tienda

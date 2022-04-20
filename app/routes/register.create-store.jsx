@@ -15,8 +15,12 @@ import {
 } from "@chakra-ui/react";
 import { Form } from "@remix-run/react";
 
+// Tema para el chakra provider
 import theme from "../src/theme";
 
+// Importamos la interfaz para la base de datos
+import { db } from "../utils/db.server";
+import { getAuth } from "firebase/auth";
 export let loader = async ({ request }) => {
   // Para que se pueda acceder a esta parte se tienen que cumplir las siguientes condiciones
 
@@ -27,15 +31,16 @@ export let loader = async ({ request }) => {
 };
 
 export let action = async ({ request }) => {
+  // Checamos el usuario actual
+  const currentUser = getAuth().currentUser;
+
   // Se reciben los datos
   let formData = await request.formData();
   let store = formData.get("store");
   let description = formData.get("description");
   let categoria = formData.get("category");
 
-  console.log("====================================");
-  console.log(store, description, categoria);
-  console.log("====================================");
+  // Crear documento en la colección "stores" y almacenar los datos del formulario
 
   return null;
 };
