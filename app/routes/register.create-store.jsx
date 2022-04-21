@@ -19,7 +19,7 @@ import { Form } from "@remix-run/react";
 import theme from "../src/theme";
 
 // Importamos la interfaz para la base de datos
-import { db } from "../utils/db.server";
+import { createDocumentStore, db, userReturn } from "../utils/db.server";
 import { getAuth } from "firebase/auth";
 export let loader = async ({ request }) => {
   // Para que se pueda acceder a esta parte se tienen que cumplir las siguientes condiciones
@@ -41,7 +41,9 @@ export let action = async ({ request }) => {
   let categoria = formData.get("category");
 
   // Crear documento en la colección "stores" y almacenar los datos del formulario
-
+  const userObject = await userReturn(currentUser.email);
+  // devolver al perfil de la tienda
+  await createDocumentStore(userObject);
   return null;
 };
 

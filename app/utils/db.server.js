@@ -213,3 +213,32 @@ export async function createDocumentUser(objetoDatos) {
 }
 
 // Función para la creación de tienda
+
+export async function createDocumentStore(objetoDatos, formularioObjeto) {
+  // Destructuración de propiedades
+  // Usuario
+  const { uid, displayName, email, photoURL, vendedor } = objetoDatos;
+
+  // Formulario
+  const { store, description, categoria } = formularioObjeto;
+
+  // -- Condición
+  // Checar si ya existe un documento en la colección stores con el uid de usuario.
+
+  // Referencia del docuemento
+  // Se va usar el mismo id del usuario que se crea -- Esto puede cambiar
+  const docRef = db.doc(`stores/${uid}`);
+
+  // En dado caso de generar un documento con un id aleatorio, deberíamos de usar el siguiente referencia en vez de "docRef"
+  // const collectRef = db.collection(`stores`);
+
+  // Mandar los datos
+  docRef.set({
+    nameStoret: store,
+    description: description,
+    category: categoria,
+    // Estas dos aun faltarían por definir.
+    profilePicture: null,
+    backgroundPicture: null,
+  });
+}
