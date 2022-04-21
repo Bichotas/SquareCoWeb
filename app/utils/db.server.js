@@ -1,3 +1,5 @@
+import { AlertDialog, useToast } from "@chakra-ui/react";
+import { redirect } from "@remix-run/node";
 import admin from "firebase-admin";
 import {
   applicationDefault,
@@ -217,13 +219,10 @@ export async function createDocumentUser(objetoDatos) {
 export async function createDocumentStore(objetoDatos, formularioObjeto) {
   // Destructuración de propiedades
   // Usuario
-  const { uid, displayName, email, photoURL, vendedor } = objetoDatos;
+  const { uid, email } = objetoDatos;
 
   // Formulario
   const { store, description, categoria } = formularioObjeto;
-
-  // -- Condición
-  // Checar si ya existe un documento en la colección stores con el uid de usuario.
 
   // Referencia del docuemento
   // Se va usar el mismo id del usuario que se crea -- Esto puede cambiar
@@ -232,13 +231,33 @@ export async function createDocumentStore(objetoDatos, formularioObjeto) {
   // En dado caso de generar un documento con un id aleatorio, deberíamos de usar el siguiente referencia en vez de "docRef"
   // const collectRef = db.collection(`stores`);
 
-  // Mandar los datos
-  docRef.set({
-    nameStoret: store,
-    description: description,
-    category: categoria,
-    // Estas dos aun faltarían por definir.
-    profilePicture: null,
-    backgroundPicture: null,
-  });
+  // -- Condición
+  // Checar si ya existe un documento en la colección stores con el uid de usuario.
+  const docSnap = docRef.get();
+  if (!(await docSnap).exists) {
+    // Mandar los datos
+    docRef.set({
+      nameStore: store,
+      description: description,
+      category: categoria,
+
+      // Estas dos aun faltarían por definir.
+      profilePicture: null,
+      backgroundPicture: null,
+
+      // Email
+      email: email,
+    });
+    // Ruta dinámica
+    // Ya después de que se crea la tienda, este va a devolver al perfil de la tienda
+
+    // -- Se va a usar la opcion de remix de rutas dinmaicas y anticipación a lo que ya esta
+    return redirect(`/store/${store}`);
+  }
+
+  // Podemos devolver una excepcion y retornar a una página que sea de errores.
+  // Pero esto con un throwError
+
+  // Por momento vamos a devolver una alerta de que esta cuenta ya tiene una tienda
+  return alert("Esta cuenta ya tiene una tienda");
 }

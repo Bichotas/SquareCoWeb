@@ -12,8 +12,11 @@ import {
   useColorModeValue,
   VStack,
   Button,
+  Wrap,
+  WrapItem,
+  useToast,
 } from "@chakra-ui/react";
-import { Form } from "@remix-run/react";
+import { Form, useActionData } from "@remix-run/react";
 
 // Tema para el chakra provider
 import theme from "../src/theme";
@@ -40,14 +43,16 @@ export let action = async ({ request }) => {
   let description = formData.get("description");
   let categoria = formData.get("category");
 
+  const formularioObjeto = { store, description, categoria };
   // Crear documento en la colección "stores" y almacenar los datos del formulario
   const userObject = await userReturn(currentUser.email);
   // devolver al perfil de la tienda
-  await createDocumentStore(userObject);
-  return null;
+  await createDocumentStore(userObject, formularioObjeto);
+  return true;
 };
 
 function register_create_store(props) {
+  const toast = useToast();
   return (
     <ChakraProvider theme={theme}>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={2} px={6}>
