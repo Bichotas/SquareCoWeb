@@ -24,6 +24,7 @@ import theme from "../src/theme";
 // Importamos la interfaz para la base de datos
 import { createDocumentStore, db, userReturn } from "../utils/db.server";
 import { getAuth } from "firebase/auth";
+import { redirect } from "@remix-run/node";
 export let loader = async ({ request }) => {
   // Para que se pueda acceder a esta parte se tienen que cumplir las siguientes condiciones
 
@@ -48,7 +49,7 @@ export let action = async ({ request }) => {
   const userObject = await userReturn(currentUser.email);
   // devolver al perfil de la tienda
   await createDocumentStore(userObject, formularioObjeto);
-  return true;
+  return redirect("/");
 };
 
 function register_create_store(props) {

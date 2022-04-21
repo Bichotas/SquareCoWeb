@@ -252,12 +252,14 @@ export async function createDocumentStore(objetoDatos, formularioObjeto) {
     // Ya después de que se crea la tienda, este va a devolver al perfil de la tienda
 
     // -- Se va a usar la opcion de remix de rutas dinmaicas y anticipación a lo que ya esta
-    return redirect(`/store/${store}`);
+    // return redirect(`/store/${store}`);
+
+    // De momento se va a devolver a la ruta principal. Faltaría hacer la pantalla dinamica
   }
 
   // Podemos devolver una excepcion y retornar a una página que sea de errores.
   // Pero esto con un throwError
 
   // Por momento vamos a devolver una alerta de que esta cuenta ya tiene una tienda
-  return alert("Esta cuenta ya tiene una tienda");
+  return null;
 }
