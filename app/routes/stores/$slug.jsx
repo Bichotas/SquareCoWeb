@@ -1,20 +1,22 @@
-import { ChakraProvider, Text } from "@chakra-ui/react";
+import { ChakraProvider, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 
 // Remix things
 import { useLoaderData, useParams } from "@remix-run/react";
+import { getStore } from "../../utils/store";
 
+import invariant from "invariant";
 // Loader and Action
 export const loader = ({ params }) => {
-  const { slug } = params;
-  // GetPost
-  return { slug };
+  invariant(params.slug, "Expected params.slug");
+  return getStore(params.slug);
 };
 function $storeName(props) {
-  const { slug } = useLoaderData();
+  const valor = useLoaderData();
   return (
     <ChakraProvider>
-      <Text>{slug}</Text>
+      <Heading>WAifu</Heading>
+      <Text>{valor.nameStore}</Text>
     </ChakraProvider>
   );
 }
