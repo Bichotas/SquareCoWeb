@@ -48,8 +48,8 @@ export let action = async ({ request }) => {
   // Crear documento en la colección "stores" y almacenar los datos del formulario
   const userObject = await userReturn(currentUser.email);
   // devolver al perfil de la tienda
-  await createDocumentStore(userObject, formularioObjeto);
-  return redirect("/");
+
+  return await createDocumentStore(userObject, formularioObjeto);
 };
 
 function register_create_store(props) {
