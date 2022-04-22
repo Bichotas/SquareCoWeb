@@ -1,4 +1,4 @@
-import { ChakraProvider, Heading, Text } from "@chakra-ui/react";
+import { ChakraProvider, Heading, Text, Badge } from "@chakra-ui/react";
 import React from "react";
 
 // Remix things
@@ -15,7 +15,12 @@ function $storeName(props) {
   const valor = useLoaderData();
   return (
     <ChakraProvider>
-      <Heading>WAifu</Heading>
+      <Heading>
+        {valor.nameStore}
+        <Badge ml="1" fontSize="0.8em" colorScheme="green">
+          {valor.category}
+        </Badge>
+      </Heading>
       <Text>{valor.nameStore}</Text>
     </ChakraProvider>
   );
