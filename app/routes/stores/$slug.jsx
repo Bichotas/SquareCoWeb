@@ -12,12 +12,10 @@ import React, { useState } from "react";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { checkPropertyStore, getStore, trent } from "../../utils/store";
 
-import invariant from "invariant";
-import { getAuth } from "firebase/auth";
 // Loader and Action
 export const loader = async ({ params }) => {
   const store = await getStore(params.slug);
-  let nameStore = store.nameStore;
+  let nameStore = store.uidStore;
   await trent(nameStore);
   return store;
 };
@@ -37,7 +35,7 @@ function $storeName(props) {
           {store.category}
         </Badge>
       </Heading>
-      <Text>{store.nameStore}</Text>
+      <Text>{store.description}</Text>
       <Text color={"gray.500"}>{store.email}</Text>
     </ChakraProvider>
   );

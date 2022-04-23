@@ -238,7 +238,7 @@ export async function createDocumentStore(objetoDatos, formularioObjeto) {
     // Mandar los datos
     docRef.set({
       // Identificación
-      acountUid: uid,
+      uidStore: uid,
 
       // Propiedades comunes
       nameStore: store,
