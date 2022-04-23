@@ -18,3 +18,8 @@ export async function checkPropertyStore(storeProfile) {
     return "No es el mismo";
   }
 }
+
+export async function trent(cosa) {
+  console.log(typeof cosa);
+  console.log(cosa);
+}

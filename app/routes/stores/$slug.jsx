@@ -10,7 +10,7 @@ import React, { useState } from "react";
 
 // Remix things
 import { useLoaderData, useParams } from "@remix-run/react";
-import { checkPropertyStore, getStore } from "../../utils/store";
+import { checkPropertyStore, getStore, trent } from "../../utils/store";
 
 import invariant from "invariant";
 import { getAuth } from "firebase/auth";
@@ -18,7 +18,7 @@ import { getAuth } from "firebase/auth";
 export const loader = async ({ params }) => {
   const store = await getStore(params.slug);
   let nameStore = store.nameStore;
-  console.log(nameStore);
+  await trent(nameStore);
   return store;
 };
 function $storeName(props) {
