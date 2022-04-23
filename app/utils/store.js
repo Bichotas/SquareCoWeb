@@ -9,10 +9,8 @@ export async function getStore(id) {
   return store;
 }
 
-export async function checkPropertyStore(storeProfile) {
-  const currentUser = getAuth().currentUser;
-
-  if (currentUser.uid == storeProfileUid) {
+export async function checkPropertyStore(storeProfile, currentUserUid) {
+  if (currentUserUid == storeProfile) {
     return "Es el mismo";
   } else {
     return "No es el mismo";

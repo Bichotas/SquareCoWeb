@@ -11,12 +11,16 @@ import React, { useState } from "react";
 // Remix things
 import { useLoaderData, useParams } from "@remix-run/react";
 import { checkPropertyStore, getStore, trent } from "../../utils/store";
+import { getAuth } from "firebase/auth";
 
 // Loader and Action
 export const loader = async ({ params }) => {
   const store = await getStore(params.slug);
-  let nameStore = store.uidStore;
-  await trent(nameStore);
+  let uid = store.uidStore;
+  await trent(uid);
+  const currentUser = getAuth().currentUser.uid;
+  let sameAccount = currentUser == uid;
+  console.log("Is the same account: ", sameAccount);
   return store;
 };
 function $storeName(props) {
