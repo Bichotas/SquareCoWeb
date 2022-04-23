@@ -15,8 +15,10 @@ import { getStore } from "../../utils/store";
 import invariant from "invariant";
 import { getAuth } from "firebase/auth";
 // Loader and Action
-export const loader = ({ params }) => {
-  return getStore(params.slug);
+export const loader = async ({ params }) => {
+  const store = await getStore(params.slug);
+  console.log(store);
+  return store;
 };
 function $storeName(props) {
   const store = useLoaderData();
