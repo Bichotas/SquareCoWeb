@@ -1,11 +1,8 @@
 import { db } from "./db.server";
 
 export async function getStore(id) {
-  const docSnapshot = await db.collection("stores").doc(id).get();
-  if (!docSnapshot.exists) {
-    throw Error("No such a document exists");
-  } else {
-    const store = docSnapshot.data();
-    return store;
-  }
+  const docRef = db.doc(`stores/${id}`);
+  const docSnap = docRef.get();
+  const store = (await docSnap).data();
+  return store;
 }
