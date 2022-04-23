@@ -5,7 +5,7 @@ export async function getStore(id) {
   if (!docSnapshot.exists) {
     throw Error("No such a document exists");
   } else {
-    const post = docSnapshot.data();
-    return post;
+    const store = docSnapshot.data();
+    return store;
   }
 }

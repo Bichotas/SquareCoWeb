@@ -237,6 +237,10 @@ export async function createDocumentStore(objetoDatos, formularioObjeto) {
   if (!(await docSnap).exists) {
     // Mandar los datos
     docRef.set({
+      // Identificación
+      acountUid: uid,
+
+      // Propiedades comunes
       nameStore: store,
       description: description,
       category: categoria,
