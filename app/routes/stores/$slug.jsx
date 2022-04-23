@@ -10,14 +10,15 @@ import React, { useState } from "react";
 
 // Remix things
 import { useLoaderData, useParams } from "@remix-run/react";
-import { getStore } from "../../utils/store";
+import { checkPropertyStore, getStore } from "../../utils/store";
 
 import invariant from "invariant";
 import { getAuth } from "firebase/auth";
 // Loader and Action
 export const loader = async ({ params }) => {
   const store = await getStore(params.slug);
-  console.log(store);
+  let nameStore = store.nameStore;
+  console.log(nameStore);
   return store;
 };
 function $storeName(props) {
