@@ -33,12 +33,17 @@ export const loader = async ({ params }) => {
   const store = await getStore(params.slug);
   let uid = store.uidStore;
   await trent(uid);
-  const currentUser = getAuth().currentUser.uid;
-  let sameAccount = currentUser == uid;
-  if (sameAccount) {
-    return { store, property: true };
-  } else {
+  if (getAuth().currentUser == null) {
+    let currentUser = null;
     return { store, property: false };
+  } else {
+    let currentUser = getAuth().currentUser.uid;
+    let sameAccount = currentUser == uid;
+    if (sameAccount) {
+      return { store, property: true };
+    } else {
+      return { store, property: false };
+    }
   }
 };
 function $storeName(props) {
