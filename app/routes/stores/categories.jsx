@@ -4,7 +4,7 @@ import React from "react";
 function categories(props) {
   return (
     <ChakraProvider>
-      <Text>Categories</Text>
+      <Text>IRis</Text>
     </ChakraProvider>
   );
 }
