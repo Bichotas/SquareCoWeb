@@ -20,11 +20,14 @@ export const loader = async ({ params }) => {
   await trent(uid);
   const currentUser = getAuth().currentUser.uid;
   let sameAccount = currentUser == uid;
-  console.log("Is the same account: ", sameAccount);
-  return store;
+  if (sameAccount) {
+    return { store, property: true };
+  } else {
+    return { store, property: false };
+  }
 };
 function $storeName(props) {
-  const store = useLoaderData();
+  const { store, property } = useLoaderData();
   return (
     <ChakraProvider>
       <Heading>
@@ -41,6 +44,7 @@ function $storeName(props) {
       </Heading>
       <Text>{store.description}</Text>
       <Text color={"gray.500"}>{store.email}</Text>
+      {property && <Text>{store.uidStore}</Text>}
     </ChakraProvider>
   );
 }
