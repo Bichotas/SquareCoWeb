@@ -13,6 +13,9 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
+  FormControl,
+  FormLabel,
+  Input,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
@@ -20,6 +23,7 @@ import React, { useState } from "react";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { checkPropertyStore, getStore, trent } from "../../utils/store";
 import { getAuth } from "firebase/auth";
+import { Form } from "formik";
 
 // Loader and Action
 export const loader = async ({ params }) => {
@@ -83,9 +87,12 @@ function $storeName(props) {
               backdropBlur="2px"
             />
             <ModalContent>
-              <ModalHeader>El amor es una droga</ModalHeader>
+              <ModalHeader>Modificar tienda</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
+                <Form>
+                  <Input>adsf</Input>
+                </Form>
                 <Text>Pino con sol</Text>
               </ModalBody>
               <ModalFooter>
