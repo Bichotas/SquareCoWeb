@@ -5,11 +5,15 @@ import {
   Badge,
   Hide,
   Button,
+  VStack,
+  Textarea,
+  Select,
   useDisclosure,
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
+  HStack,
   ModalCloseButton,
   ModalBody,
   ModalFooter,
@@ -23,8 +27,7 @@ import React, { useState } from "react";
 import { useLoaderData, useParams } from "@remix-run/react";
 import { checkPropertyStore, getStore, trent } from "../../utils/store";
 import { getAuth } from "firebase/auth";
-import { Form } from "formik";
-
+import { Form } from "@remix-run/react";
 // Loader and Action
 export const loader = async ({ params }) => {
   const store = await getStore(params.slug);
@@ -90,13 +93,49 @@ function $storeName(props) {
               <ModalHeader>Modificar tienda</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                <Form>
-                  <Input>adsf</Input>
+                <Form method="post">
+                  <VStack gap={1}>
+                    <FormControl isRequired>
+                      <FormLabel>Nombre de la tienda</FormLabel>
+                      <Input
+                        as={Input}
+                        id={"store"}
+                        name={"store"}
+                        type={"text"}
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>Descripción de la tienda</FormLabel>
+                      <Textarea
+                        placeholder="Es recomendable poner una descripción a tu tienda"
+                        id="description"
+                        name="description"
+                      />
+                    </FormControl>
+                    <FormControl isRequired id={"category"}>
+                      <FormLabel>Categoría de la tienda</FormLabel>
+                      <Select id={"category"} name={"category"}>
+                        {/* En esta parte podemos hacer map a un array y así no tener varias cosas */}
+                        <option value={"cremeria"}>Cremeria</option>
+                        <option value={"ropa"}>Ropa</option>
+                      </Select>
+                    </FormControl>
+                  </VStack>
                 </Form>
-                <Text>Pino con sol</Text>
               </ModalBody>
               <ModalFooter>
-                <Button onClick={onClose}>Close</Button>
+                <HStack>
+                  <Button onClick={onClose}>Close</Button>
+                  <Button
+                    type="submit"
+                    color={"white"}
+                    bg={"orange.400"}
+                    loadingText="Submitting"
+                    _hover={{ bg: "orange.600" }}
+                  >
+                    Modificar
+                  </Button>
+                </HStack>
               </ModalFooter>
             </ModalContent>
           </Modal>
