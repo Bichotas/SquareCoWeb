@@ -63,29 +63,39 @@ function $storeName(props) {
       </Heading>
       <Text>{store.description}</Text>
       <Text color={"gray.500"}>{store.email}</Text>
-
+      {/* Ponerlo en un componente si es que se puede */}
       {/* Modal para el formulario */}
-      <Button
-        bg={"lightcoral"}
-        onClick={() => {
-          onOpen();
-        }}
-      >
-        Modificar
-      </Button>
-      <Modal isCentered isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>El amor es una droga</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>Pino con sol</Text>
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      {property && (
+        <>
+          <Button
+            bg={"lightcoral"}
+            onClick={() => {
+              onOpen();
+            }}
+          >
+            Modificar
+          </Button>
+          <Modal isCentered isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay
+              bg="none"
+              backdropFilter="auto"
+              backdropInvert="80%"
+              backdropBlur="2px"
+            />
+            <ModalContent>
+              <ModalHeader>El amor es una droga</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Text>Pino con sol</Text>
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={onClose}>Close</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </>
+      )}
+
       {property && <Text>{store.uidStore}</Text>}
     </ChakraProvider>
   );
