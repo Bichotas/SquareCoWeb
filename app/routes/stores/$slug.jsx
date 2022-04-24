@@ -28,6 +28,7 @@ import { useLoaderData, useParams } from "@remix-run/react";
 import { checkPropertyStore, getStore, trent } from "../../utils/store";
 import { getAuth } from "firebase/auth";
 import { Form } from "@remix-run/react";
+import theme from "../../src/theme";
 // Loader and Action
 export const loader = async ({ params }) => {
   const store = await getStore(params.slug);
@@ -50,16 +51,8 @@ function $storeName(props) {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // Overlay shit
-  const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropFilter="blur(10px) hue-rotate(90deg)"
-    />
-  );
-
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Heading>
         {store.nameStore}
         <Badge
@@ -145,8 +138,6 @@ function $storeName(props) {
           </Modal>
         </>
       )}
-
-      {property && <Text>{store.uidStore}</Text>}
     </ChakraProvider>
   );
 }
