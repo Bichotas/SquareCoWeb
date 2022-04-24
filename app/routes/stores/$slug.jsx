@@ -46,6 +46,15 @@ export const loader = async ({ params }) => {
     }
   }
 };
+
+export const action = async ({ request }) => {
+  let formData = await request.formData();
+  let store = formData.get("store");
+  let description = formData.get("description");
+  let categoria = formData.get("category");
+  console.log(store, description, categoria);
+  return null;
+};
 function $storeName(props) {
   const { store, property } = useLoaderData();
 
@@ -80,17 +89,17 @@ function $storeName(props) {
             Modificar
           </Button>
           <Modal isCentered isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay
-              bg="none"
-              backdropFilter="auto"
-              backdropInvert="80%"
-              backdropBlur="2px"
-            />
-            <ModalContent>
-              <ModalHeader>Modificar tienda</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <Form method="post">
+            <Form method="post">
+              <ModalOverlay
+                bg="none"
+                backdropFilter="auto"
+                backdropInvert="80%"
+                backdropBlur="2px"
+              />
+              <ModalContent>
+                <ModalHeader>Modificar tienda</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
                   <VStack gap={1}>
                     <FormControl isRequired>
                       <FormLabel>Nombre de la tienda</FormLabel>
@@ -115,26 +124,27 @@ function $storeName(props) {
                         {/* En esta parte podemos hacer map a un array y así no tener varias cosas */}
                         <option value={"cremeria"}>Cremeria</option>
                         <option value={"ropa"}>Ropa</option>
+                        <option value={"nuevo"}>Nuevo</option>
                       </Select>
                     </FormControl>
                   </VStack>
-                </Form>
-              </ModalBody>
-              <ModalFooter>
-                <HStack>
-                  <Button onClick={onClose}>Close</Button>
-                  <Button
-                    type="submit"
-                    color={"white"}
-                    bg={"orange.400"}
-                    loadingText="Submitting"
-                    _hover={{ bg: "orange.600" }}
-                  >
-                    Modificar
-                  </Button>
-                </HStack>
-              </ModalFooter>
-            </ModalContent>
+                </ModalBody>
+                <ModalFooter>
+                  <HStack>
+                    <Button onClick={onClose}>Close</Button>
+                    <Button
+                      type="submit"
+                      color={"white"}
+                      bg={"orange.400"}
+                      loadingText="Submitting"
+                      _hover={{ bg: "orange.600" }}
+                    >
+                      Modificar
+                    </Button>
+                  </HStack>
+                </ModalFooter>
+              </ModalContent>
+            </Form>
           </Modal>
         </>
       )}
