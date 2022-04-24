@@ -32,7 +32,6 @@ import { Form } from "@remix-run/react";
 export const loader = async ({ params }) => {
   const store = await getStore(params.slug);
   let uid = store.uidStore;
-  await trent(uid);
   if (getAuth().currentUser == null) {
     let currentUser = null;
     return { store, property: false };
