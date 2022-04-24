@@ -5,6 +5,14 @@ import {
   Badge,
   Hide,
   Button,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
@@ -28,6 +36,17 @@ export const loader = async ({ params }) => {
 };
 function $storeName(props) {
   const { store, property } = useLoaderData();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // Overlay shit
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px) hue-rotate(90deg)"
+    />
+  );
+
   return (
     <ChakraProvider>
       <Heading>
@@ -44,6 +63,29 @@ function $storeName(props) {
       </Heading>
       <Text>{store.description}</Text>
       <Text color={"gray.500"}>{store.email}</Text>
+
+      {/* Modal para el formulario */}
+      <Button
+        bg={"lightcoral"}
+        onClick={() => {
+          onOpen();
+        }}
+      >
+        Modificar
+      </Button>
+      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>El amor es una droga</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>Pino con sol</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       {property && <Text>{store.uidStore}</Text>}
     </ChakraProvider>
   );
