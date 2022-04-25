@@ -104,20 +104,18 @@ export const action = async ({ request }) => {
   return null;
 };
 
-
 // Componente de la tienda
 function $storeName() {
-
   // Destructuramos los valores de la funcion usuLoaderData()
   const { store, property } = useLoaderData();
-  
+
   // Destructuramos los metodos para usuarlos en el modal, este se destructuran
   // dessde la funcion useDisclosure()
   //
   // @todo -- Poner el link del moodle y useDisclosure()
   const { isOpen, onOpen, onClose } = useDisclosure();
-  
-  // Devolvemos un componente 
+
+  // Devolvemos un componente
   return (
     <ChakraProvider theme={theme}>
       <Heading>
@@ -136,8 +134,11 @@ function $storeName() {
       <Text color={"gray.500"}>{store.email}</Text>
       {/* Ponerlo en un componente si es que se puede */}
       {/* Modal para el formulario */}
+
+      {/* La propiedad destructurada se usa para mostrar lo siguiente */}
       {property && (
         <>
+          {/* Se tiene un boton que muestra que un modal */}
           <Button
             bg={"lightcoral"}
             onClick={() => {
@@ -147,6 +148,8 @@ function $storeName() {
             Modificar
           </Button>
           <Modal isCentered isOpen={isOpen} onClose={onClose}>
+            {/* Se envuelve en un componente form el contenido de modal */}
+
             <Form method="post">
               <ModalOverlay
                 bg="none"
@@ -159,6 +162,7 @@ function $storeName() {
                 <ModalCloseButton />
                 <ModalBody>
                   <VStack gap={1}>
+                    {/* Form input */}
                     <FormControl isRequired>
                       <FormLabel>Nombre de la tienda</FormLabel>
                       <Input
