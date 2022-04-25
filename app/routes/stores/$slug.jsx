@@ -25,7 +25,7 @@ import React from "react";
 
 // Remix things
 import { useLoaderData } from "@remix-run/react";
-import { getStore } from "../../utils/store";
+import { getStore, updateStore } from "../../utils/store";
 import { getAuth } from "firebase/auth";
 import { Form } from "@remix-run/react";
 import theme from "../../src/theme";
@@ -99,7 +99,19 @@ export const action = async ({ request }) => {
   // Descripcion del formularios
   let categoria = formData.get("category");
   // Action que se va a usuar con los valores
-  console.log(store, description, categoria);
+
+  // Funcion para actualizar los datos del documento store
+  //    -- Primero se va a iniciar con los datos tipo string y luego se va agregar la funcionalidad de las imagenes para
+  //        la foto de perfil y su foto de portada de la tienda.
+  const dataObject = {
+    nameStore: store,
+    description: description,
+    category: categoria,
+  };
+
+  const uidCurrentUser = getAuth().currentUser.uid;
+  const update = await updateStore(dataObject, uidCurrentUser);
+  console.log(update);
   // Retornamos un valor nulo ya que por el momento no se devuleve nada
   return null;
 };
@@ -166,7 +178,6 @@ function $storeName() {
                     <FormControl isRequired>
                       <FormLabel>Nombre de la tienda</FormLabel>
                       <Input
-                        value={store.nameStore}
                         as={Input}
                         id={"store"}
                         name={"store"}
