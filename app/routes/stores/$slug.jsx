@@ -206,6 +206,8 @@ function $storeName() {
                 <ModalFooter>
                   <HStack>
                     <Button onClick={onClose}>Close</Button>
+                    
+                    {/* Boton para mandar a que los datos se actualizen*/}
                     <Button
                       type="submit"
                       color={"white"}
