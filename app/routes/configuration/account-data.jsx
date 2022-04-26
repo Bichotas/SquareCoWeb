@@ -11,8 +11,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Badge,
-  Text,
 } from "@chakra-ui/react";
 import { Form, useLoaderData } from "@remix-run/react";
 import { getAuth } from "firebase/auth";
@@ -66,35 +64,14 @@ function account_data() {
                 <Form>
                   <FormControl my={2} px={4}>
                     <FormLabel fontSize={"2xl"} px={4}>
-                      Nombre de la cuenta
+                      Nombre de la cuenta: {displayName} 
                     </FormLabel>
                     <Input variant={"filled"} bg={"gray.500"} />
                   </FormControl>
                   <FormControl my={2} px={4}>
-                    <FormLabel fontSize={"2xl"}>Correo electronico</FormLabel>
+                    <FormLabel fontSize={"2xl"}>Correo electronico {email}</FormLabel>
                     <Input variant={"filled"} bg={"gray.500"} />
                   </FormControl>
-                  {/* <FormControl my={2} px={4}>
-                    <FormLabel fontSize={"2xl"}>Tipo de cuenta</FormLabel>
-                    <HStack>
-                      <Button
-                        onClick={() => {
-                          if (typeA == true) {
-                            setTypeAccount(false);
-                          } else if (typeA == false) {
-                            setTypeAccount(true);
-                          }
-                        }}
-                      >
-                        Cambiar
-                      </Button>
-                      <Badge
-                        colorScheme={typeA == true ? "red" : "green"}
-                      >
-                        {typeA}
-                      </Badge>
-                    </HStack>
-                  </FormControl> */}
                 </Form>
               </HStack>
             </HStack>
