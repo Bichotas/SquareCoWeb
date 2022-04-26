@@ -16,6 +16,7 @@ import { Form, useLoaderData } from "@remix-run/react";
 import { getAuth } from "firebase/auth";
 import React, { useState } from "react";
 import { adminAuth } from "../../utils/db.server";
+import { editUser } from "../../utils/user";
 
 export const loader = async ({ request }) => {
   const currentUser = getAuth().currentUser;
@@ -29,6 +30,13 @@ export const loader = async ({ request }) => {
 };
 
 export const action = async ({ request }) => {
+  let formData = await request.formData();
+
+  // Pedimos los datos -- Por el momento naada más vamos a modificar el nombre y el correo
+  let nameAccount = formData.get("name");
+  let email = formData.get("email");
+
+  editUser();
   return null;
 };
 
@@ -53,7 +61,7 @@ function account_data() {
                 <Box
                   w={"30vh"}
                   h={"30vh"}
-                  bg={"blackAlpha.600"}
+                  bgGradient="linear(to-l, #7928CA, #FF0080)"
                   borderRadius={"2vh"}
                 />
                 <Button bg={"darkblue"} color={"white"}>
@@ -61,16 +69,31 @@ function account_data() {
                 </Button>
               </VStack>
               <HStack>
-                <Form>
+                <Form method="post">
                   <FormControl my={2} px={4}>
                     <FormLabel fontSize={"2xl"} px={4}>
-                      Nombre de la cuenta: {displayName} 
+                      Nombre de la cuenta: {displayName}
                     </FormLabel>
-                    <Input variant={"filled"} bg={"gray.500"} />
+                    <Input
+                      variant={"filled"}
+                      bg={"gray.500"}
+                      as={Input}
+                      id={"name"}
+                      name={"name"}
+                      type={"text"}
+                    />
                   </FormControl>
                   <FormControl my={2} px={4}>
-                    <FormLabel fontSize={"2xl"}>Correo electronico {email}</FormLabel>
-                    <Input variant={"filled"} bg={"gray.500"} />
+                    <FormLabel fontSize={"2xl"}>
+                      Correo electronico {email}
+                    </FormLabel>
+                    <Input
+                      variant={"filled"}
+                      bg={"gray.500"}
+                      id={"email"}
+                      type={"email  "}
+                      name={"email"}
+                    />
                   </FormControl>
                 </Form>
               </HStack>
