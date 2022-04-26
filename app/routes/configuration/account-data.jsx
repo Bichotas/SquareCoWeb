@@ -30,10 +30,12 @@ export const loader = async ({ request }) => {
   return accountData;
 };
 
-export const action = async ({request}) =
+export const action = async ({ request }) => {
+  return null;
+};
 
 function account_data() {
-    const { uid, displayName, email, photoURL, vendedor } = useLoaderData();
+  const { uid, displayName, email, photoURL, vendedor } = useLoaderData();
   const [typeA, setTypeAccount] = useState(vendedor);
   return (
     <ChakraProvider>
@@ -72,7 +74,7 @@ function account_data() {
                     <FormLabel fontSize={"2xl"}>Correo electronico</FormLabel>
                     <Input variant={"filled"} bg={"gray.500"} />
                   </FormControl>
-                  <FormControl my={2} px={4}>
+                  {/* <FormControl my={2} px={4}>
                     <FormLabel fontSize={"2xl"}>Tipo de cuenta</FormLabel>
                     <HStack>
                       <Button
@@ -92,7 +94,7 @@ function account_data() {
                         {typeA}
                       </Badge>
                     </HStack>
-                  </FormControl>
+                  </FormControl> */}
                 </Form>
               </HStack>
             </HStack>
