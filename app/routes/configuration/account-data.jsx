@@ -11,11 +11,14 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Badge,
+  Text,
 } from "@chakra-ui/react";
 import { Form } from "@remix-run/react";
-import React from "react";
+import React, { useState } from "react";
 
 function account_data() {
+  const [typeA, setTypeAccount] = useState("vendedor");
   return (
     <ChakraProvider>
       <Stack gap={6} padding={"2"} align={"center"}>
@@ -55,7 +58,24 @@ function account_data() {
                   </FormControl>
                   <FormControl my={2} px={4}>
                     <FormLabel fontSize={"2xl"}>Tipo de cuenta</FormLabel>
-                    <Input />
+                    <HStack>
+                      <Button
+                        onClick={() => {
+                          if (typeA === "vendedor") {
+                            setTypeAccount("comprador");
+                          } else if (typeA === "comprador") {
+                            setTypeAccount("vendedor");
+                          }
+                        }}
+                      >
+                        Cambiar
+                      </Button>
+                      <Badge
+                        colorScheme={typeA === "vendedor" ? "red" : "green"}
+                      >
+                        {typeA}
+                      </Badge>
+                    </HStack>
                   </FormControl>
                 </Form>
               </HStack>
@@ -63,7 +83,7 @@ function account_data() {
           </Center>
         </VStack>
         <Box>
-          <Button>Guardar cambios</Button>
+          <Button bg={"orange.300"}>Guardar cambios</Button>
         </Box>
       </Stack>
     </ChakraProvider>
