@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heading, Container, Box, Image, Grid, GridItem, Text , extendTheme, Flex, Spacer, Center, Wrap, WrapItem  } from '@chakra-ui/react';
-
+import { Icon } from '@chakra-ui/react';
+import { GiClothes } from 'react-icons/fa';
 
 function index(props) {
     return (
@@ -8,9 +9,12 @@ function index(props) {
         <Box>
             <Box className='header'>
                 <Heading>
-                    Tiendas
+                    Tiendas 
                 </Heading>
             </Box>
+
+{/* Este es el icono que intente poner como prueba: */}
+            <GiClothes></GiClothes>
 
             <Box>
                 <Text>¿Qué categoría estás buscando?</Text>
