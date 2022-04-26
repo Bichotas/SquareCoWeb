@@ -24,14 +24,17 @@ export const loader = async ({ request }) => {
   // Destructuramos los valores
   const { uid, displayName, email, photoURL } = currentUser;
   const customClaim = (await adminAuth.getUser(uid)).customClaims;
-  const accountData = { uid, displayName, email, photoURL, customClaim };
+  const vendedor = customClaim.vendedor;
+  const accountData = { uid, displayName, email, photoURL, vendedor };
   console.log(accountData);
   return accountData;
 };
 
+export const action = async ({request}) =
+
 function account_data() {
-  const [typeA, setTypeAccount] = useState("vendedor");
-  const { uid, displayName, email, photoURL } = useLoaderData();
+    const { uid, displayName, email, photoURL, vendedor } = useLoaderData();
+  const [typeA, setTypeAccount] = useState(vendedor);
   return (
     <ChakraProvider>
       <Stack gap={6} padding={"2"} align={"center"}>
@@ -74,17 +77,17 @@ function account_data() {
                     <HStack>
                       <Button
                         onClick={() => {
-                          if (typeA === "vendedor") {
-                            setTypeAccount("comprador");
-                          } else if (typeA === "comprador") {
-                            setTypeAccount("vendedor");
+                          if (typeA == true) {
+                            setTypeAccount(false);
+                          } else if (typeA == false) {
+                            setTypeAccount(true);
                           }
                         }}
                       >
                         Cambiar
                       </Button>
                       <Badge
-                        colorScheme={typeA === "vendedor" ? "red" : "green"}
+                        colorScheme={typeA == true ? "red" : "green"}
                       >
                         {typeA}
                       </Badge>
