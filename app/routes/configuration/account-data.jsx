@@ -13,7 +13,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { json, redirect } from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { getAuth, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import { adminAuth } from "../../utils/db.server";
@@ -22,6 +22,19 @@ import { editUser, getProperty } from "../../utils/user";
 export let loader = async ({ params }) => {
   let { uid, displayName, email } = getAuth().currentUser;
   await getProperty(uid);
+  let objeto = { uid, displayName, email };
+  return json(objeto);
+};
+
+export let action = async ({ request }) => {
+  let formData = await request.formData();
+
+  let nameForm = formData.get("name");
+  let emailForm = formData.get("email");
+
+  await updateProfile(getAuth().currentUser, { displayName: nameForm });
+
+  const { uid, displayName, email } = getAuth().currentUser;
   let objeto = { uid, displayName, email };
   return json(objeto);
 };
