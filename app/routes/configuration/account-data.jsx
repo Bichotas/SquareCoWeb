@@ -18,7 +18,7 @@ import React, { useState } from "react";
 import { adminAuth } from "../../utils/db.server";
 import { editUser } from "../../utils/user";
 
-export const loader = async ({ request }) => {
+export const loader = async () => {
   const currentUser = getAuth().currentUser;
   // Destructuramos los valores
   const { uid, displayName, email, photoURL } = currentUser;
@@ -35,8 +35,8 @@ export const action = async ({ request }) => {
   // Pedimos los datos -- Por el momento naada más vamos a modificar el nombre y el correo
   let nameAccount = formData.get("name");
   let email = formData.get("email");
-
-  editUser();
+  console.log(nameAccount, email);
+  // editUser();
   return null;
 };
 
@@ -45,65 +45,86 @@ function account_data() {
   const [typeA, setTypeAccount] = useState(vendedor);
   return (
     <ChakraProvider>
-      <Stack gap={6} padding={"2"} align={"center"}>
-        <VStack>
-          <Center p={2}>
-            <Heading size={"2xl"} as={"i"} letterSpacing={"2px"}>
-              Datos de la cuenta
-            </Heading>
-          </Center>
+      <Form method="POST">
+        <Center>
+          <Heading size={"2xl"} as={"i"} letterSpacing={"2px"}>
+            Datos de la cuenta
+          </Heading>
+        </Center>
+        <Divider my={7} />
 
-          {/* Hacer un divider o simplemente hacer más grueso el divider*/}
-          <Divider size={"2xl"} p={2} variant={"solid"} />
-          <Center>
-            <HStack gap={5}>
-              <VStack gap={4}>
-                <Box
-                  w={"30vh"}
-                  h={"30vh"}
-                  bgGradient="linear(to-l, #7928CA, #FF0080)"
-                  borderRadius={"2vh"}
+        <Center>
+          {/* Definir aun el gap entre dos stacks y las cosas */}
+          <Stack
+            direction={{
+              base: "column",
+              md: "column",
+              lg: "row",
+              sm: "column",
+            }}
+            gap={"6vw"}
+          >
+            <Stack direction={"column"}>
+              <Box
+                w={"30vh"}
+                h={"30vh"}
+                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                alignSelf={"center"}
+                borderRadius={"2vh"}
+                marginBottom={"5"}
+              />
+              <Button
+                bg={"darkblue"}
+                color={"white"}
+                width={"60%"}
+                alignSelf={"center"}
+              >
+                Fotografia
+              </Button>
+            </Stack>
+            <Stack direction={"column"} gap={4}>
+              <FormControl id="name">
+                <FormLabel>Nombre de la cuenta: {displayName}</FormLabel>
+                <Input
+                  placeholder="Nuevo nombre de la cuenta"
+                  id="name"
+                  as={Input}
+                  name={"name"}
+                  type={"text"}
                 />
-                <Button bg={"darkblue"} color={"white"}>
-                  Fotografia
-                </Button>
-              </VStack>
-              <HStack>
-                <Form method="post">
-                  <FormControl my={2} px={4}>
-                    <FormLabel fontSize={"2xl"} px={4}>
-                      Nombre de la cuenta: {displayName}
-                    </FormLabel>
-                    <Input
-                      variant={"filled"}
-                      bg={"gray.500"}
-                      as={Input}
-                      id={"name"}
-                      name={"name"}
-                      type={"text"}
-                    />
-                  </FormControl>
-                  <FormControl my={2} px={4}>
-                    <FormLabel fontSize={"2xl"}>
-                      Correo electronico {email}
-                    </FormLabel>
-                    <Input
-                      variant={"filled"}
-                      bg={"gray.500"}
-                      id={"email"}
-                      type={"email  "}
-                      name={"email"}
-                    />
-                  </FormControl>
-                </Form>
-              </HStack>
-            </HStack>
-          </Center>
-        </VStack>
-        <Box>
-          <Button bg={"orange.300"}>Guardar cambios</Button>
-        </Box>
-      </Stack>
+              </FormControl>
+              <FormControl id="email">
+                <FormLabel>Correo electronico: {email}</FormLabel>
+                <Input
+                  placeholder="Nuevo correo de la cuenta"
+                  id="email"
+                  as={Input}
+                  name={"email"}
+                  type={"email"}
+                />
+              </FormControl>
+              {/* <FormControl>
+                <FormLabel>
+                  Tipo de cuenta:{" "}
+                  {vendedor == "true" ? "vendedor" : "comprador"}
+                </FormLabel>
+                <Button>Cambiar tipo de cuenta</Button>
+              </FormControl> */}
+              <Divider />
+              <Button
+                as={Button}
+                type={"submit"}
+                marginY={10}
+                bg={"orange.500"}
+                color="white"
+                _hover={{ bg: "orange.600" }}
+              >
+                Guardar cambios
+              </Button>
+            </Stack>
+          </Stack>
+        </Center>
+      </Form>
     </ChakraProvider>
   );
 }
