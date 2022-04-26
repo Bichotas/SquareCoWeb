@@ -14,11 +14,24 @@ import {
   Badge,
   Text,
 } from "@chakra-ui/react";
-import { Form } from "@remix-run/react";
+import { Form, useLoaderData } from "@remix-run/react";
+import { getAuth } from "firebase/auth";
 import React, { useState } from "react";
+import { adminAuth } from "../../utils/db.server";
+
+export const loader = async ({ request }) => {
+  const currentUser = getAuth().currentUser;
+  // Destructuramos los valores
+  const { uid, displayName, email, photoURL } = currentUser;
+  const customClaim = (await adminAuth.getUser(uid)).customClaims;
+  const accountData = { uid, displayName, email, photoURL, customClaim };
+  console.log(accountData);
+  return accountData;
+};
 
 function account_data() {
   const [typeA, setTypeAccount] = useState("vendedor");
+  const { uid, displayName, email, photoURL } = useLoaderData();
   return (
     <ChakraProvider>
       <Stack gap={6} padding={"2"} align={"center"}>
@@ -50,11 +63,11 @@ function account_data() {
                     <FormLabel fontSize={"2xl"} px={4}>
                       Nombre de la cuenta
                     </FormLabel>
-                    <Input />
+                    <Input variant={"filled"} bg={"gray.500"} />
                   </FormControl>
                   <FormControl my={2} px={4}>
                     <FormLabel fontSize={"2xl"}>Correo electronico</FormLabel>
-                    <Input />
+                    <Input variant={"filled"} bg={"gray.500"} />
                   </FormControl>
                   <FormControl my={2} px={4}>
                     <FormLabel fontSize={"2xl"}>Tipo de cuenta</FormLabel>
