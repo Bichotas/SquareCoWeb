@@ -29,6 +29,7 @@ import { getStore, updateStore } from "../../utils/store";
 import { getAuth } from "firebase/auth";
 import { Form } from "@remix-run/react";
 import theme from "../../src/theme";
+import { redirect } from "@remix-run/node";
 // Loader and Action
 //
 // Loader para los datos y condicion
@@ -206,7 +207,7 @@ function $storeName() {
                 <ModalFooter>
                   <HStack>
                     <Button onClick={onClose}>Close</Button>
-                    
+
                     {/* Boton para mandar a que los datos se actualizen*/}
                     <Button
                       type="submit"
