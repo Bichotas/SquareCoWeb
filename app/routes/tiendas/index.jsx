@@ -78,6 +78,7 @@ function index(props) {
                             </Center>
                         </Flex>
                     </GridItem>
+                
 
                     <GridItem  margin='2%' bg='rgba(106, 75, 216, 0.4)' borderRadius='20px'>
                         <Flex>
