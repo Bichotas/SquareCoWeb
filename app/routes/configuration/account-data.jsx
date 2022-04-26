@@ -12,37 +12,24 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
+import { json, redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
-import { getAuth } from "firebase/auth";
+import { getAuth, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import { adminAuth } from "../../utils/db.server";
-import { editUser } from "../../utils/user";
+import { editUser, getProperty } from "../../utils/user";
 
-export const loader = async () => {
-  const currentUser = getAuth().currentUser;
-  // Destructuramos los valores
-  const { uid, displayName, email, photoURL } = currentUser;
-  const customClaim = (await adminAuth.getUser(uid)).customClaims;
-  const vendedor = customClaim.vendedor;
-  const accountData = { uid, displayName, email, photoURL, vendedor };
-  console.log(accountData);
-  return accountData;
-};
-
-export const action = async ({ request }) => {
-  let formData = await request.formData();
-
-  // Pedimos los datos -- Por el momento naada más vamos a modificar el nombre y el correo
-  let nameAccount = formData.get("name");
-  let email = formData.get("email");
-  console.log(nameAccount, email);
-  // editUser();
-  return null;
+export let loader = async ({ params }) => {
+  let { uid, displayName, email } = getAuth().currentUser;
+  await getProperty(uid);
+  let objeto = { uid, displayName, email };
+  return json(objeto);
 };
 
 function account_data() {
-  const { uid, displayName, email, photoURL, vendedor } = useLoaderData();
-  const [typeA, setTypeAccount] = useState(vendedor);
+  const { displayName, email } = useLoaderData();
+
+  console.log(useLoaderData());
   return (
     <ChakraProvider>
       <Form method="POST">
