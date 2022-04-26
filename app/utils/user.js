@@ -24,6 +24,6 @@ export async function editUser(formData, currentUser) {
 export async function getProperty(uid) {
   const user = await adminAuth.getUser(uid);
   let property = user.customClaims;
-  console.log(property);
+  // console.log(property);
   return property;
 }

@@ -21,14 +21,14 @@ import { editUser, getProperty } from "../../utils/user";
 
 export let loader = async ({ params }) => {
   let { uid, displayName, email } = getAuth().currentUser;
-  await getProperty(uid);
+  const property = await getProperty(uid);
   let objeto = { uid, displayName, email };
   return json(objeto);
 };
 
 export let action = async ({ request }) => {
+  // Pedimos los datos del formulario
   let formData = await request.formData();
-
   let nameForm = formData.get("name");
   let emailForm = formData.get("email");
 
@@ -42,7 +42,6 @@ export let action = async ({ request }) => {
 function account_data() {
   const { displayName, email } = useLoaderData();
 
-  console.log(useLoaderData());
   return (
     <ChakraProvider>
       <Form method="POST">
