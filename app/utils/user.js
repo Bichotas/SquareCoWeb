@@ -27,3 +27,20 @@ export async function getProperty(uid) {
   // console.log(property);
   return property;
 }
+
+Object.filter = function (mainObject, filterFunction) {
+  return Object.keys(mainObject)
+    .filter(function (ObjectKey) {
+      return filterFunction(mainObject[ObjectKey]);
+    })
+    .reduce(function (result, ObjectKey) {
+      result[ObjectKey] = mainObject[ObjectKey];
+      return result;
+    }, {});
+};
+export async function checkPropertiesForm(objetoForm) {
+  let objetoFiltrado = Object.filter(objetoForm, function (propiedad) {
+    return propiedad[0] != undefined;
+  });
+  return objetoFiltrado;
+}
