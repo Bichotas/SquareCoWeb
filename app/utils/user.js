@@ -28,6 +28,9 @@ export async function getProperty(uid) {
   return property;
 }
 
+// Se uso el siguiente formulario para la referencia del filter y de esta funcion de abajo
+// https://www.delftstack.com/es/howto/javascript/javascript-filter-object/
+
 Object.filter = function (mainObject, filterFunction) {
   return Object.keys(mainObject)
     .filter(function (ObjectKey) {
