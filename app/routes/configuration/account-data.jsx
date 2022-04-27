@@ -31,9 +31,9 @@ export let action = async ({ request }) => {
   let formData = await request.formData();
   let nameForm = formData.get("name");
   let emailForm = formData.get("email");
-
   await updateProfile(getAuth().currentUser, { displayName: nameForm });
 
+  // Mejorar la condición de condición
   const { uid, displayName, email } = getAuth().currentUser;
   let objeto = { uid, displayName, email };
   return json(objeto);
