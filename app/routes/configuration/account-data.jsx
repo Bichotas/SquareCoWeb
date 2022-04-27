@@ -49,11 +49,10 @@ export let action = async ({ request }) => {
   console.log("====================================");
   // await updateProfile(getAuth().currentUser, { displayName: nameForm });
 
+  // Mandar a la función para actualizar el usuario con los datos que se agregaron
   // Mejorar la condición de usuario
-  const { uid, displayName, email } = getAuth().currentUser;
 
-  let objeto = { uid, displayName, email };
-  return json(objeto);
+  return null;
 };
 
 function account_data() {

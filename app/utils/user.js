@@ -49,3 +49,8 @@ export async function checkPropertiesForm(objetoForm) {
 }
 
 // Función para actualizar el usuario pero primero se va a tener quitar del objeto la propiedad vendedor
+
+export async function updateDataProfile(objectForm, dataUser) {
+  //
+  return null;
+}
