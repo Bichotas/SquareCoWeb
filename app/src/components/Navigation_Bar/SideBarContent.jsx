@@ -66,9 +66,11 @@ function SideBarContent(props) {
           <NavItem icon={GoPackage} color={"white"}>
             Pedidos
           </NavItem>
+          <a href="tiendas.jsx">
           <NavItem icon={BiStore} color={"white"}>
             Tiendas
           </NavItem>
+          </a>
           <NavItem icon={IoSettingsOutline} color={"white"}>
             Configuración
           </NavItem>
