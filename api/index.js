@@ -297,10 +297,12 @@ function SideBarContent(props) {
   }, "Carrito"), /* @__PURE__ */ import_react10.default.createElement(NavItem_default, {
     icon: import_go.GoPackage,
     color: "white"
-  }, "Pedidos"), /* @__PURE__ */ import_react10.default.createElement(NavItem_default, {
+  }, "Pedidos"), /* @__PURE__ */ import_react10.default.createElement("a", {
+    href: "tiendas.jsx"
+  }, /* @__PURE__ */ import_react10.default.createElement(NavItem_default, {
     icon: import_bi.BiStore,
     color: "white"
-  }, "Tiendas"), /* @__PURE__ */ import_react10.default.createElement(NavItem_default, {
+  }, "Tiendas")), /* @__PURE__ */ import_react10.default.createElement(NavItem_default, {
     icon: import_io5.IoSettingsOutline,
     color: "white"
   }, "Configuraci\xF3n"), /* @__PURE__ */ import_react10.default.createElement(import_react9.Button, {
@@ -1181,17 +1183,20 @@ var home_exports = {};
 __export(home_exports, {
   default: () => home_default
 });
+
 var import_react42 = __toESM(require("react"));
 function index(props) {
   return /* @__PURE__ */ import_react42.default.createElement("div", null, "Home");
+
 }
-var home_default = index;
+var home_default = index2;
 
 // route:/home/depresionatom/Escritorio/Github/SquareCoWeb/app/routes/profile.jsx
 var profile_exports = {};
 __export(profile_exports, {
   default: () => profile_default
 });
+
 var import_react43 = require("@chakra-ui/react");
 var import_react44 = __toESM(require("react"));
 function profile(props) {
@@ -1209,11 +1214,14 @@ var import_react46 = require("@remix-run/react");
 var import_react47 = __toESM(require("react"));
 function auth(props) {
   return /* @__PURE__ */ import_react47.default.createElement(import_react45.ChakraProvider, null, /* @__PURE__ */ import_react47.default.createElement(import_react45.Flex, {
+
     minH: "80vh",
     align: "center",
     justify: "center",
     mt: "-16"
+
   }, /* @__PURE__ */ import_react47.default.createElement(import_react46.Outlet, null)));
+
 }
 var auth_default = auth;
 
@@ -1236,6 +1244,7 @@ var action5 = async ({ request }) => {
 };
 function SignupCard() {
   return /* @__PURE__ */ React.createElement(import_react48.Stack, {
+
     spacing: 8,
     mx: "auto",
     maxW: "lg",
@@ -1277,6 +1286,7 @@ function SignupCard() {
     isRequired: true
   }, /* @__PURE__ */ React.createElement(import_react48.FormLabel, null, "Contrase\xF1a"), /* @__PURE__ */ React.createElement(import_react48.Input, {
     as: import_react48.Input,
+
     id: "password",
     name: "password",
     type: "password",
@@ -1305,6 +1315,7 @@ __export(signOut_exports, {
   default: () => Add,
   loader: () => loader5
 });
+
 var import_react51 = require("@chakra-ui/react");
 var import_node7 = require("@remix-run/node");
 var import_react52 = require("@remix-run/react");
@@ -1319,6 +1330,7 @@ var action6 = async ({ request }) => {
   return signOut2(request);
 };
 function Add() {
+
   const { isOpen, onOpen, onClose } = (0, import_react51.useDisclosure)();
   const navigate = (0, import_react52.useNavigate)();
   const actionData = (0, import_react52.useActionData)();
@@ -1329,6 +1341,7 @@ function Add() {
   }
   const disabled = transition.state === "submitting" || transition.state === "loading";
   return /* @__PURE__ */ React.createElement(import_react51.AlertDialog, {
+
     isOpen: true,
     onClose: onDismiss,
     leastDestructiveRef: cancelRef,
@@ -1377,6 +1390,7 @@ var action7 = async ({ request }) => {
 };
 function SimpleCard() {
   return /* @__PURE__ */ React.createElement(import_react53.Stack, {
+
     spacing: 8,
     mx: "auto",
     maxW: "lg",
@@ -1438,6 +1452,7 @@ function SimpleCard() {
     },
     loadingText: "Submitting",
     type: "submit"
+
   }, "Sign in"), /* @__PURE__ */ React.createElement(import_react53.Text, {
     textAlign: "right"
   }, "Eres nuevo?", " ", /* @__PURE__ */ React.createElement(import_react55.Link, {
@@ -1458,6 +1473,7 @@ var import_react56 = require("@chakra-ui/react");
 var import_react57 = require("@remix-run/react");
 var import_node9 = require("@remix-run/node");
 var action8 = ({ request }) => {
+
   return signOut2(request);
 };
 var loader7 = async ({ request }) => {
@@ -1468,7 +1484,9 @@ var loader7 = async ({ request }) => {
   return null;
 };
 function Index() {
+
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(import_react56.ChakraProvider, null));
+
 }
 
 // route:/home/depresionatom/Escritorio/Github/SquareCoWeb/app/routes/post.jsx
@@ -1476,10 +1494,12 @@ var post_exports = {};
 __export(post_exports, {
   default: () => PostLayout
 });
+
 var import_react58 = require("@chakra-ui/react");
 var import_react59 = require("@remix-run/react");
 function PostLayout() {
   return /* @__PURE__ */ React.createElement(import_react58.ChakraProvider, null, /* @__PURE__ */ React.createElement("main", null, /* @__PURE__ */ React.createElement("article", null, /* @__PURE__ */ React.createElement(import_react58.Flex, {
+
     minH: "100vh",
     align: "center",
     justify: "center",
@@ -1489,6 +1509,7 @@ function PostLayout() {
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
 var assets_manifest_default = { "version": "77013c7a", "entry": { "module": "/build/entry.client-VGGTAJ4L.js", "imports": ["/build/_shared/chunk-MSKNIEBT.js", "/build/_shared/chunk-5VAI7IZZ.js", "/build/_shared/chunk-R4JTAHJQ.js", "/build/_shared/chunk-5HASPQVD.js"] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "module": "/build/root-QI2ILZRZ.js", "imports": ["/build/_shared/chunk-3YA7QTYY.js", "/build/_shared/chunk-JZ6C6QTY.js"], "hasAction": false, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/__auth": { "id": "routes/__auth", "parentId": "root", "path": void 0, "index": void 0, "caseSensitive": void 0, "module": "/build/routes/__auth-QRWMMU3L.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/__auth/login": { "id": "routes/__auth/login", "parentId": "routes/__auth", "path": "login", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/__auth/login-6CCYQJRC.js", "imports": ["/build/_shared/chunk-PFC75OUQ.js", "/build/_shared/chunk-FQNCGNAO.js", "/build/_shared/chunk-JZ6C6QTY.js"], "hasAction": true, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/__auth/register": { "id": "routes/__auth/register", "parentId": "routes/__auth", "path": "register", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/__auth/register-PCHQTXAI.js", "imports": ["/build/_shared/chunk-PFC75OUQ.js", "/build/_shared/chunk-FQNCGNAO.js", "/build/_shared/chunk-JZ6C6QTY.js"], "hasAction": true, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/__auth/signOut": { "id": "routes/__auth/signOut", "parentId": "routes/__auth", "path": "signOut", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/__auth/signOut-POAUAQJL.js", "imports": ["/build/_shared/chunk-PFC75OUQ.js", "/build/_shared/chunk-JZ6C6QTY.js"], "hasAction": true, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/configuration/account-data": { "id": "routes/configuration/account-data", "parentId": "root", "path": "configuration/account-data", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/configuration/account-data-WPOA5EXL.js", "imports": ["/build/_shared/chunk-FQNCGNAO.js", "/build/_shared/chunk-3JG4XQO3.js"], "hasAction": true, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/home/index": { "id": "routes/home/index", "parentId": "root", "path": "home", "index": true, "caseSensitive": void 0, "module": "/build/routes/home/index-MTGLQDGU.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/index": { "id": "routes/index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "module": "/build/routes/index-J6EVPQVB.js", "imports": void 0, "hasAction": true, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/post": { "id": "routes/post", "parentId": "root", "path": "post", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/post-XMTBNXVD.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/profile": { "id": "routes/profile", "parentId": "root", "path": "profile", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/profile-F5RA4MN2.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/register.choose": { "id": "routes/register.choose", "parentId": "root", "path": "register/choose", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/register.choose-X6EPZTM2.js", "imports": ["/build/_shared/chunk-KHV4CSDX.js", "/build/_shared/chunk-3JG4XQO3.js"], "hasAction": true, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/register.create-store": { "id": "routes/register.create-store", "parentId": "root", "path": "register/create-store", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/register.create-store-J3Z3BQKB.js", "imports": ["/build/_shared/chunk-KHV4CSDX.js", "/build/_shared/chunk-3JG4XQO3.js"], "hasAction": true, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/stores/$slug": { "id": "routes/stores/$slug", "parentId": "root", "path": "stores/:slug", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/stores/$slug-UQPRIW7S.js", "imports": ["/build/_shared/chunk-3JG4XQO3.js"], "hasAction": true, "hasLoader": true, "hasCatchBoundary": false, "hasErrorBoundary": false }, "routes/stores/categories": { "id": "routes/stores/categories", "parentId": "root", "path": "stores/categories", "index": void 0, "caseSensitive": void 0, "module": "/build/routes/stores/categories-CJI7SQTW.js", "imports": void 0, "hasAction": false, "hasLoader": false, "hasCatchBoundary": false, "hasErrorBoundary": false } }, "url": "/build/manifest-77013C7A.js" };
+
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports };
@@ -1540,7 +1561,7 @@ var routes = {
     index: void 0,
     caseSensitive: void 0,
     module: slug_exports
-  },
+
   "routes/home/index": {
     id: "routes/home/index",
     parentId: "root",
