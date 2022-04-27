@@ -8,6 +8,7 @@ const theme = extendTheme({
       primary_dark: "#5B41B9",
       shadow: "#f4f4f4",
       secondary: "#33A9FF",
+      ascend: "#FA8C47",
       50: "#F5F3FE",
       100: "#ECEAFD",
       200: "#DCD7FC",
