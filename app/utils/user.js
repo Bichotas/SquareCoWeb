@@ -47,3 +47,5 @@ export async function checkPropertiesForm(objetoForm) {
   });
   return objetoFiltrado;
 }
+
+// Función para actualizar el usuario pero primero se va a tener quitar del objeto la propiedad vendedor

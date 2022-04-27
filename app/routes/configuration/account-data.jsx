@@ -11,6 +11,9 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Select,
+  FormHelperText,
+  Badge,
 } from "@chakra-ui/react";
 import { json, redirect } from "@remix-run/node";
 import { Form, useActionData, useLoaderData } from "@remix-run/react";
@@ -31,9 +34,16 @@ export let action = async ({ request }) => {
   let formData = await request.formData();
   let nameForm = formData.get("name");
   let emailForm = formData.get("email");
-  const objetoForm = { displayName: nameForm, email: emailForm };
+  let typeAccountForm = formData.get("typeAccount");
+  const objetoForm = {
+    displayName: nameForm,
+    email: emailForm,
+    vendedor: typeAccountForm,
+  };
   // Mandar a llamar una funcion la cual devuelva un objeto con los objetos que si haya
   const newObject = await checkPropertiesForm(objetoForm);
+
+  // Función para actualizar el usuario y subir todo
   console.log("====================================");
   console.log(newObject);
   console.log("====================================");
@@ -47,6 +57,7 @@ export let action = async ({ request }) => {
 };
 
 function account_data() {
+  let vendedor = false;
   const { displayName, email } = useLoaderData();
 
   return (
@@ -90,7 +101,14 @@ function account_data() {
             </Stack>
             <Stack direction={"column"} gap={4}>
               <FormControl id="name">
-                <FormLabel>Nombre de la cuenta: {displayName}</FormLabel>
+                <FormLabel>
+                  Nombre de la cuenta:{" "}
+                  {
+                    <Badge colorScheme={"cyan"} textTransform={"revert"}>
+                      {displayName}
+                    </Badge>
+                  }
+                </FormLabel>
                 <Input
                   placeholder="Nuevo nombre de la cuenta"
                   id="name"
@@ -98,9 +116,15 @@ function account_data() {
                   name={"name"}
                   type={"text"}
                 />
+                <FormHelperText>
+                  Ingrese el nuevo nombre de la cuenta
+                </FormHelperText>
               </FormControl>
               <FormControl id="email">
-                <FormLabel>Correo electronico: {email}</FormLabel>
+                <FormLabel>
+                  Correo electronico:{" "}
+                  {<Badge colorScheme={"telegram"}>{email}</Badge>}
+                </FormLabel>
                 <Input
                   placeholder="Nuevo correo de la cuenta"
                   id="email"
@@ -108,6 +132,27 @@ function account_data() {
                   name={"email"}
                   type={"email"}
                 />
+                <FormHelperText>
+                  Ingrese el nuevo correo de la cuenta
+                </FormHelperText>
+                <FormControl id={"typeAccount"} my={3}>
+                  <FormLabel>
+                    Tipo de cuenta:
+                    <Badge
+                      p={2}
+                      borderRadius={7}
+                      colorScheme={vendedor == true ? "green" : "red"}
+                      ml={2}
+                    >
+                      {vendedor == true ? "vendedor" : "comprador"}
+                    </Badge>
+                  </FormLabel>
+                  <Select id={"typeAccount"} name={"typeAccount"}>
+                    {/* En esta parte podemos hacer map a un array y así no tener varias cosas */}
+                    <option value={false}>Comprador</option>
+                    <option value={true}>Vendedor</option>
+                  </Select>
+                </FormControl>
               </FormControl>
               {/* <FormControl>
                 <FormLabel>
