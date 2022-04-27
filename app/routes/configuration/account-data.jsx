@@ -17,7 +17,7 @@ import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { getAuth, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import { adminAuth } from "../../utils/db.server";
-import { editUser, getProperty } from "../../utils/user";
+import { checkPropertiesForm, editUser, getProperty } from "../../utils/user";
 
 export let loader = async ({ params }) => {
   let { uid, displayName, email } = getAuth().currentUser;
@@ -31,10 +31,17 @@ export let action = async ({ request }) => {
   let formData = await request.formData();
   let nameForm = formData.get("name");
   let emailForm = formData.get("email");
-  await updateProfile(getAuth().currentUser, { displayName: nameForm });
+  const objetoForm = { displayName: nameForm, email: emailForm };
+  // Mandar a llamar una funcion la cual devuelva un objeto con los objetos que si haya
+  const newObject = await checkPropertiesForm(objetoForm);
+  console.log("====================================");
+  console.log(newObject);
+  console.log("====================================");
+  // await updateProfile(getAuth().currentUser, { displayName: nameForm });
 
-  // Mejorar la condición de condición
+  // Mejorar la condición de usuario
   const { uid, displayName, email } = getAuth().currentUser;
+
   let objeto = { uid, displayName, email };
   return json(objeto);
 };
