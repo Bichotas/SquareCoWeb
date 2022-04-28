@@ -55,9 +55,23 @@ export async function updateDataProfile(objetoForm, dataAccount) {
 
   // Podemos hacer ahí mismo en la configuración de filter, que si el valor de la llave en el ciclo es igual a la que se tiene en el dataAccount
   // Esto porque el dataAccount va a ser siempre el mismo, entonces lo vamos a tener de referencia para comparar
-  for (let i in objetoForm) {
+
+  // Articulo que se uso
+  // https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Working_with_Objects
+
+  // El objeto que se tiene comoo parametro se dsetructura en otro objeto para modificarlo
+  // -- Aunque también se puede modificar el parametro, se prefirio la solución de abajo para que sea más sencillo identificar las propiedades y en donde se guarda
+  let newFormObject = { ...objetoForm };
+
+  // En esta parte se debe de checar si existe la propiedad es la misma en la parte de dataAccount
+  // Se destructura la propiedad vendedor para guardarlo en uux
+  let { vendedor } = newFormObject;
+  let aux = { vendedor };
+  delete newFormObject.vendedor;
+
+  for (let i in newFormObject) {
     if (dataAccount.hasOwnProperty(i)) {
-      console.log("Data Account " + dataAccount[i], "FOrm " + objetoForm[i]);
+      console.log("Data Account " + dataAccount[i], "FOrm " + newFormObject[i]);
     }
   }
   return null;

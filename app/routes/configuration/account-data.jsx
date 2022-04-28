@@ -69,6 +69,7 @@ export let action = async ({ request }) => {
 };
 
 function account_data() {
+  // Por el momento nada más se define el vendedor como falso de forma local para los ejemplos
   let vendedor = false;
   const { displayName, email } = useLoaderData();
 
@@ -168,7 +169,13 @@ function account_data() {
                       {vendedor == true ? "vendedor" : "comprador"}
                     </Badge>
                   </FormLabel>
-                  <Select id={"typeAccount"} name={"typeAccount"}>
+
+                  {/* Con el placeholder no se tiene un valor antes como se tenia */}
+                  <Select
+                    id={"typeAccount"}
+                    name={"typeAccount"}
+                    placeholder="Select option"
+                  >
                     {/* En esta parte podemos hacer map a un array y así no tener varias cosas */}
                     <option value={false}>Comprador</option>
                     <option value={true}>Vendedor</option>
