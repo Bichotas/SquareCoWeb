@@ -1,6 +1,5 @@
 import { getAuth, updateProfile } from "firebase/auth";
 import { adminAuth } from "./db.server";
-import admin from "firebase-admin";
 
 export async function editUser(formData, currentUser) {
   // Para este método lo que vamos a hacer es recibir un numero de datos pero en un objeto
