@@ -103,12 +103,12 @@ export async function updateDataProfile(objetoForm, dataAccount) {
     aux != undefined &&
     cadenaABooleano(aux["vendedor"]) !== dataAccount["vendedor"]
   ) {
-    grantRoleVendedor(cadenaABooleano(aux["vendedor"]));
+    grantRoleVendedor(dataAccount.email, cadenaABooleano(aux["vendedor"]));
     console.log("ROle de tienda");
     //console.log(cadenaABooleano(aux["vendedor"]), dataAccount["vendedor"]);
   }
   // Si es que aux es diferente a undefined
   // Entonces vamos a actualizar el custom claim de este usuario y según lo que sea el aux y se tenga, vamos a
-  console.log(formulario, aux);
+  // console.log(formulario, aux);
   return null;
 }
