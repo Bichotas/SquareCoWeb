@@ -1,4 +1,4 @@
-import { updateProfile } from "firebase/auth";
+import { getAuth, updateProfile } from "firebase/auth";
 import { adminAuth } from "./db.server";
 
 export async function editUser(formData, currentUser) {
@@ -50,7 +50,12 @@ export async function checkPropertiesForm(objetoForm) {
 
 // Función para actualizar el usuario pero primero se va a tener quitar del objeto la propiedad vendedor
 
-export async function updateDataProfile(objectForm, dataUser) {
-  //
+export async function updateDataProfile(objetoForm, dataAccount) {
+  // Función de comparación de los datos de los objteos, porque si es el mismo entonces no vamos a actualizar los datos
+
+  // Podemos hacer ahí mismo en la configuración de filter, que si el valor de la llave en el ciclo es igual a la que se tiene en el dataAccount
+  // Esto porque el dataAccount va a ser siempre el mismo, entonces lo vamos a tener de referencia para comparar
+
+  console.log(objetoForm, dataAccount);
   return null;
 }

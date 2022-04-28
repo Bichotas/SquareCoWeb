@@ -20,7 +20,12 @@ import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { getAuth, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import { adminAuth } from "../../utils/db.server";
-import { checkPropertiesForm, editUser, getProperty } from "../../utils/user";
+import {
+  checkPropertiesForm,
+  editUser,
+  getProperty,
+  updateDataProfile,
+} from "../../utils/user";
 
 export let loader = async ({ params }) => {
   let { uid, displayName, email } = getAuth().currentUser;
@@ -50,6 +55,14 @@ export let action = async ({ request }) => {
   // await updateProfile(getAuth().currentUser, { displayName: nameForm });
 
   // Mandar a la función para actualizar el usuario con los datos que se agregaron
+  const { uid, displayName, email, photoURL } = getAuth().currentUser;
+  let dataAccount = {
+    uid,
+    displayName,
+    email,
+    photoURL,
+  };
+  await updateDataProfile(newObject, dataAccount);
   // Mejorar la condición de usuario
 
   return null;
@@ -103,7 +116,12 @@ function account_data() {
                 <FormLabel>
                   Nombre de la cuenta:{" "}
                   {
-                    <Badge colorScheme={"cyan"} textTransform={"revert"}>
+                    <Badge
+                      colorScheme={"cyan"}
+                      textTransform={"revert"}
+                      p={2}
+                      borderRadius={7}
+                    >
                       {displayName}
                     </Badge>
                   }
@@ -122,7 +140,11 @@ function account_data() {
               <FormControl id="email">
                 <FormLabel>
                   Correo electronico:{" "}
-                  {<Badge colorScheme={"telegram"}>{email}</Badge>}
+                  {
+                    <Badge colorScheme={"telegram"} p={2} borderRadius={7}>
+                      {email}
+                    </Badge>
+                  }
                 </FormLabel>
                 <Input
                   placeholder="Nuevo correo de la cuenta"
