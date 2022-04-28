@@ -95,7 +95,8 @@ export async function updateDataProfile(objetoForm, dataAccount) {
   // Actualizar el perfil de la cuenta
   const currentUser = getAuth().currentUser;
   await updateProfile(currentUser, formulario);
-  currentUser = getAuth().currentUser;
+
+  // Hasta aquí se va a modificar porque entraría lo del customclaim
   // Actualización de los roles
   // Funcion https://parzibyte.me/blog/2020/02/19/javascript-convertir-cadena-false-true-booleano/
   const cadenaABooleano = (cadena) => cadena === "true";

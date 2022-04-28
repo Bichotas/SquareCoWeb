@@ -48,13 +48,6 @@ export let action = async ({ request }) => {
   };
   // Mandar a llamar una funcion la cual devuelva un objeto con los objetos que si haya
   const newObject = await checkPropertiesForm(objetoForm);
-
-  // Función para actualizar el usuario y subir todo
-  console.log("====================================");
-  console.log(newObject);
-  console.log("====================================");
-  // await updateProfile(getAuth().currentUser, { displayName: nameForm });
-
   // Mandar a la función para actualizar el usuario con los datos que se agregaron
   const { uid, displayName, email, photoURL } = getAuth().currentUser;
   let vendedor = (await adminAuth.getUserByEmail(email)).customClaims;
@@ -66,9 +59,7 @@ export let action = async ({ request }) => {
     // Custom claim vendedor
     vendedor: vendedor["vendedor"],
   };
-  console.log(dataAccount);
   await updateDataProfile(newObject, dataAccount);
-  // Mejorar la condición de usuario
 
   return null;
 };
@@ -76,7 +67,7 @@ export let action = async ({ request }) => {
 function account_data() {
   // Por el momento nada más se define el vendedor como falso de forma local para los ejemplos
   let vendedor = false;
-  const { displayName, email } = useLoaderData();
+  const { displayName, email } = useLoaderData() || useActionData();
 
   return (
     <ChakraProvider>
