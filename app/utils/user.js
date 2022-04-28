@@ -77,16 +77,26 @@ export async function updateDataProfile(objetoForm, dataAccount) {
     if (dataAccount.hasOwnProperty(i)) {
       // Checar si los valores son iguales
       // @todo
-
-      let valor = newFormObject[i];
-      formulario[i] = valor;
+      if (newFormObject[i] !== dataAccount[i]) {
+        let valor = newFormObject[i];
+        formulario[i] = valor;
+      }
     }
   }
 
+  // Funcion https://parzibyte.me/blog/2020/02/19/javascript-convertir-cadena-false-true-booleano/
+  const cadenaABooleano = (cadena) => cadena === "true";
+  if (
+    aux != undefined &&
+    cadenaABooleano(aux["vendedor"]) !== dataAccount["vendedor"]
+  ) {
+    console.log(cadenaABooleano(aux["vendedor"]), dataAccount["vendedor"]);
+  }
   // Actualizar el perfil de la cuenta
-
+  const currentUser = getAuth().currentUser;
+  await updateProfile(currentUser, formulario);
   // Si es que aux es diferente a undefined
   // Entonces vamos a actualizar el custom claim de este usuario y según lo que sea el aux y se tenga, vamos a
-  console.log(formulario);
+  console.log(formulario, aux);
   return null;
 }

@@ -56,12 +56,16 @@ export let action = async ({ request }) => {
 
   // Mandar a la función para actualizar el usuario con los datos que se agregaron
   const { uid, displayName, email, photoURL } = getAuth().currentUser;
+  let vendedor = (await adminAuth.getUserByEmail(email)).customClaims;
   let dataAccount = {
     uid,
     displayName,
     email,
     photoURL,
+    // Custom claim vendedor
+    vendedor: vendedor["vendedor"],
   };
+  console.log(dataAccount);
   await updateDataProfile(newObject, dataAccount);
   // Mejorar la condición de usuario
 
