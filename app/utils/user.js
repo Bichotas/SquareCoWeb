@@ -65,14 +65,28 @@ export async function updateDataProfile(objetoForm, dataAccount) {
 
   // En esta parte se debe de checar si existe la propiedad es la misma en la parte de dataAccount
   // Se destructura la propiedad vendedor para guardarlo en uux
-  let { vendedor } = newFormObject;
-  let aux = { vendedor };
-  delete newFormObject.vendedor;
-
+  let aux = undefined;
+  if (newFormObject.hasOwnProperty("vendedor")) {
+    let { vendedor } = newFormObject;
+    aux = { vendedor };
+    delete newFormObject.vendedor;
+  }
+  let formulario = {};
+  // Condición
   for (let i in newFormObject) {
     if (dataAccount.hasOwnProperty(i)) {
-      console.log("Data Account " + dataAccount[i], "FOrm " + newFormObject[i]);
+      // Checar si los valores son iguales
+      // @todo
+
+      let valor = newFormObject[i];
+      formulario[i] = valor;
     }
   }
+
+  // Actualizar el perfil de la cuenta
+
+  // Si es que aux es diferente a undefined
+  // Entonces vamos a actualizar el custom claim de este usuario y según lo que sea el aux y se tenga, vamos a
+  console.log(formulario);
   return null;
 }
