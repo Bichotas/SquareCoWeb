@@ -9,7 +9,6 @@ import { GiClothes } from "react-icons/gi";
 function index(props) {
     return (
 
-// Este es el header de la tienda, solo tiene el texto de "Tienda" principal
         <Box>
             <Box className='header'>
                 <Heading textAlign={'center'} fontSize='6xl'>
@@ -101,6 +100,7 @@ function index(props) {
                                 <Center>
                                 <Image src='https://cdn-icons-png.flaticon.com/128/686/686317.png' w={'90%'}></Image>
                                 </Center>
+
                             </Box>
                             <Center>
                                 <Heading fontSize={'3xl'} color='white' fontFamily='monospace'>Servicios</Heading>
@@ -113,7 +113,7 @@ function index(props) {
                         <Flex>
                             <Box  w='100px' h='100px' p='2%' m='5%' borderRadius='10%' bg='#ef79c7'>
                                 <Center>
-                                    <Image src='https://cdn-icons-png.flaticon.com/128/3163/3163173.png' w={'90%'}></Image>
+                                <Image src='https://cdn-icons-png.flaticon.com/128/3163/3163173.png' w={'90%'}></Image>
                                 </Center>
                                 
                             </Box>
@@ -135,14 +135,18 @@ function index(props) {
                         <Flex>
                             <Box  w='100px' h='100px' p='2%' m='5%' borderRadius='10%' bg='#919191'>
                                 <Center>
-                                    <Image src='https://cdn-icons-png.flaticon.com/128/570/570223.png' w={'90%'}></Image>
+                                <Image src='https://cdn-icons-png.flaticon.com/128/570/570223.png' w={'90%'}></Image>
                                 </Center>
+                                
                             </Box>
                             <Center>
                                 <Heading fontSize={'3xl'} color='white' fontFamily='monospace'>Otros...</Heading>
                             </Center>
                         </Flex>
                     </GridItem>
+
+
+
 
                     </Grid>
             </Box>
