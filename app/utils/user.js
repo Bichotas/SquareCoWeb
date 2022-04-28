@@ -1,5 +1,6 @@
 import { getAuth, updateProfile } from "firebase/auth";
 import { adminAuth } from "./db.server";
+import admin from "firebase-admin";
 
 export async function editUser(formData, currentUser) {
   // Para este método lo que vamos a hacer es recibir un numero de datos pero en un objeto
@@ -46,6 +47,14 @@ export async function checkPropertiesForm(objetoForm) {
     return propiedad[0] != undefined;
   });
   return objetoFiltrado;
+}
+// Función para otorgar un role de vendedor al usuario
+//  -- Se va a otorgar el rol según el segundo parametro que se le pase
+//    .. Esta función va a estar en la función "updateDataProfile", exactamente en la condición de si aux es diferente a undefined y si tambíen
+//      los valores de vendedor son diferentes, tanto del formulario como la de los datos de la cuenta, este último hablando del custom claim.
+export async function grantRoleVendedor(email, role) {
+  const user = await adminAuth.getUserByEmail(email);
+  adminAuth.setCustomUserClaims(user.uid, { vendedor: role });
 }
 
 // Función para actualizar el usuario pero primero se va a tener quitar del objeto la propiedad vendedor
@@ -95,6 +104,7 @@ export async function updateDataProfile(objetoForm, dataAccount) {
     aux != undefined &&
     cadenaABooleano(aux["vendedor"]) !== dataAccount["vendedor"]
   ) {
+    grantRoleVendedor(cadenaABooleano(aux["vendedor"]));
     console.log("ROle de tienda");
     //console.log(cadenaABooleano(aux["vendedor"]), dataAccount["vendedor"]);
   }

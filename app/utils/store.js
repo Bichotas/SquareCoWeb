@@ -49,7 +49,3 @@ export async function updateStore(dataObject, uidCurrentUser) {
   });
   return "Actulizado";
 }
-
-export async function grantRole(email, role) {
-  return null;
-}
