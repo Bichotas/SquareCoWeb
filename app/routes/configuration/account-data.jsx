@@ -28,18 +28,9 @@ import {
 } from "../../utils/user";
 
 export let loader = async ({ params }) => {
-  const { uid, displayName, email, photoURL } = getAuth().currentUser;
-  let vendedor = (await adminAuth.getUserByEmail(email)).customClaims;
-  let dataAccount = {
-    uid,
-    displayName,
-    email,
-    photoURL,
-    // Custom claim vendedor
-    vendedor: vendedor["vendedor"],
-  };
-  console.log(dataAccount);
+  let { uid, displayName, email } = getAuth().currentUser;
   const property = await getProperty(uid);
+  console.log("propiedad", property);
   let objeto = { uid, displayName, email };
   return json(objeto);
 };
