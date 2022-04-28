@@ -100,18 +100,22 @@ export async function updateDataProfile(objetoForm, dataAccount) {
   // Actualización de los roles
   // Funcion https://parzibyte.me/blog/2020/02/19/javascript-convertir-cadena-false-true-booleano/
   const cadenaABooleano = (cadena) => cadena === "true";
-  if (
-    aux != undefined &&
-    cadenaABooleano(aux["vendedor"]) !== dataAccount["vendedor"]
-  ) {
-    let valorVenta = cadenaABooleano(aux["vendedor"]);
-    const user = await adminAuth.getUserByEmail(currentUser.email);
-    adminAuth.setCustomUserClaims(user.uid, { vendedor: valorVenta });
-    //console.log(cadenaABooleano(aux["vendedor"]), dataAccount["vendedor"]);
-  }
+  // if (
+  //   aux != undefined &&
+  //   cadenaABooleano(aux["vendedor"]) !== dataAccount["vendedor"]
+  // ) {
+  //   let valorVenta = cadenaABooleano(aux["vendedor"]);
+  //   const user = await adminAuth.getUserByEmail(currentUser.email);
+  //   adminAuth.setCustomUserClaims(user.uid, { vendedor: valorVenta });
+  //   //console.log(cadenaABooleano(aux["vendedor"]), dataAccount["vendedor"]);
+  // }
   // Si es que aux es diferente a undefined
   // Entonces vamos a actualizar el custom claim de este usuario y según lo que sea el aux y se tenga, vamos a
   // console.log(formulario, aux);
+
+  if (aux != undefined) {
+    console.log(aux["vendedor"]);
+  }
 
   return null;
 }

@@ -67,7 +67,7 @@ export let action = async ({ request }) => {
 function account_data() {
   // Por el momento nada más se define el vendedor como falso de forma local para los ejemplos
   let vendedor = false;
-  const { displayName, email } = useLoaderData() || useActionData();
+  const { displayName, email } = useLoaderData();
 
   return (
     <ChakraProvider>
