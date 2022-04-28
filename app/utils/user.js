@@ -55,7 +55,10 @@ export async function updateDataProfile(objetoForm, dataAccount) {
 
   // Podemos hacer ahí mismo en la configuración de filter, que si el valor de la llave en el ciclo es igual a la que se tiene en el dataAccount
   // Esto porque el dataAccount va a ser siempre el mismo, entonces lo vamos a tener de referencia para comparar
-
-  console.log(objetoForm, dataAccount);
+  for (let i in objetoForm) {
+    if (dataAccount.hasOwnProperty(i)) {
+      console.log("Data Account " + dataAccount[i], "FOrm " + objetoForm[i]);
+    }
+  }
   return null;
 }
