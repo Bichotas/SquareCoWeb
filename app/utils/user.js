@@ -51,8 +51,8 @@ export async function checkPropertiesForm(objetoForm) {
 //  -- Se va a otorgar el rol según el segundo parametro que se le pase
 //    .. Esta función va a estar en la función "updateDataProfile", exactamente en la condición de si aux es diferente a undefined y si tambíen
 //      los valores de vendedor son diferentes, tanto del formulario como la de los datos de la cuenta, este último hablando del custom claim.
-export async function grantRoleVendedor(email, role) {
-  const user = await adminAuth.getUserByEmail(email);
+export async function grantRoleVendedor(uid, role) {
+  const user = await adminAuth.getUser(uid);
   adminAuth.setCustomUserClaims(user.uid, { vendedor: role });
 }
 
@@ -113,9 +113,13 @@ export async function updateDataProfile(objetoForm, dataAccount) {
   // Entonces vamos a actualizar el custom claim de este usuario y según lo que sea el aux y se tenga, vamos a
   // console.log(formulario, aux);
 
+  // Si es que hay algo en el formulario entonces vamos a cambiar el custom claim, pero tenemos que checar que no sean iguales
   if (aux != undefined) {
-    console.log(aux["vendedor"]);
+    const vendedorForm = cadenaABooleano(aux["vendedor"]);
+    if (!vendedorForm == dataAccount["vendedor"]) {
+      console.log("No son iguales");
+      await grantRoleVendedor(dataAccount.uid, vendedorForm);
+    }
   }
-
   return null;
 }
