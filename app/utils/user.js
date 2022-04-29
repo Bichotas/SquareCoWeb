@@ -2,25 +2,7 @@ import { redirect } from "@remix-run/node";
 import { getAuth, updateProfile } from "firebase/auth";
 import { adminAuth } from "./db.server";
 
-export async function editUser(formData, currentUser) {
-  // Para este método lo que vamos a hacer es recibir un numero de datos pero en un objeto
-  // Debemos de que existan estos objetos, porque si no pone naada el usuario, este va a ser devuelto un nulo
-  // y podrá hacer que algunas cosas las ponga nulaas
-
-  const { nameAccount, emailForm } = formData;
-
-  const { uid, displayName, email, photoURL } = currentUser;
-  updateProfile(uid, { displayName: nameAccount });
-  // Luego llamar el metodo para cambiar el custom claim
-  // Puede ser un metodo reutilizable si es que no existe, el cual tome como parametro el uid y de ahi se mande otro paremtro el cual le ponga el valor al que se qiere poner
-
-  // Algo como granSellRole
-  // Una forma para checar si se agregaron datos en la parte de string por lo menos
-  // Es checar el objeto y con el index, checar si hay algo en el [0], si es que hay, entonce podremos modificar el objeto con esa propiedad que se modifico
-  console.log("LLAMADA DESDE METODO" + nameAccount, emailForm);
-
-  return null;
-}
+// Función para obtener el custoim claim del usuario
 
 export async function getProperty(uid) {
   const user = await adminAuth.getUser(uid);
@@ -53,11 +35,15 @@ export async function checkPropertiesForm(objetoForm) {
 //    .. Esta función va a estar en la función "updateDataProfile", exactamente en la condición de si aux es diferente a undefined y si tambíen
 //      los valores de vendedor son diferentes, tanto del formulario como la de los datos de la cuenta, este último hablando del custom claim.
 export async function grantRoleVendedor(uid, role) {
+  // Guardamos el valor del usuario actual con el admin auth
   const user = await adminAuth.getUser(uid);
+  // Pasamos y modificamos el customcalim con el valor del parametro
   adminAuth.setCustomUserClaims(user.uid, { vendedor: role });
 }
 
 // Funcioon para convetir el valor de string a booleano
+
+// Esta función prácticamente retornar el valor pero booleano
 export const cadenaABooleano = (cadena) => cadena === "true";
 
 // Función para actualizar el usuario pero primero se va a tener quitar del objeto la propiedad vendedor
@@ -80,7 +66,7 @@ export async function updateDataProfile(objetoForm, dataAccount) {
   let aux = undefined;
 
   // Checamos que el objeto que contiene los datos del formulario tenga la propiedad "vendedor"
-  // 
+  //
   // Esto para saber que esta y separarlo del objeto principal
   if (newFormObject.hasOwnProperty("vendedor")) {
     // Destructuramos la propiead vendedor para tenerla a lado
@@ -99,7 +85,6 @@ export async function updateDataProfile(objetoForm, dataAccount) {
   //
   // Iteramos en cada una de las llaves
   for (let i in newFormObject) {
-
     // Checamos que el objet dataAccount que sería los datos de la cuenta de ese
     // momento. Los cuales van a servir de comparació para la adición de
     // propiedades al objeto formulario
@@ -137,9 +122,15 @@ export async function updateDataProfile(objetoForm, dataAccount) {
 
   // Si es que hay algo en el formulario entonces vamos a cambiar el custom claim, pero tenemos que checar que no sean iguales
   if (aux != undefined) {
+    // Convertirmos el valor de string para booleano para usarlo luego en la comparación
     const vendedorForm = cadenaABooleano(aux["vendedor"]);
+
+    // Se recibe la condición, esto para que un true y un true sea igual a un true
+    // Prácticamente checamos que no sean iguales tanto el booleano del formulario como el de los datos de la cuenta
     if (!vendedorForm == dataAccount["vendedor"]) {
       console.log("No son iguales");
+      // Otorgamos el rol a la cuenta con el tipo de cuenta que se selecciono en el formulario
+      // Prácticamente vamos a hacer esto si es que los datos son diferentes
       await grantRoleVendedor(dataAccount.uid, vendedorForm);
 
       // Podremos retornar si vendedorForm es igual "true", entonces a una ruta para crear la cuenta o a la ruta de /register/create-store
