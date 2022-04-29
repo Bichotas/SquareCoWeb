@@ -59,8 +59,9 @@ export let action = async ({ request }) => {
     // Custom claim vendedor
     vendedor: vendedor["vendedor"],
   };
-  await updateDataProfile(newObject, dataAccount);
-  return null;
+
+  // Devolver un objet y checar si se cambio el typeAccount es diferente, si este es así, entonces vamoss a redireccionar a la creación de la tienda. si no entonces vamos a mostrar un mensaje
+  return await updateDataProfile(newObject, dataAccount);
 };
 
 function account_data() {

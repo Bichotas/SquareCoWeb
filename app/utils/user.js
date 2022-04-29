@@ -57,6 +57,8 @@ export async function grantRoleVendedor(uid, role) {
   adminAuth.setCustomUserClaims(user.uid, { vendedor: role });
 }
 
+export const cadenaABooleano = (cadena) => cadena === "true";
+
 // Función para actualizar el usuario pero primero se va a tener quitar del objeto la propiedad vendedor
 
 export async function updateDataProfile(objetoForm, dataAccount) {
@@ -100,7 +102,7 @@ export async function updateDataProfile(objetoForm, dataAccount) {
   // Hasta aquí se va a modificar porque entraría lo del customclaim
   // Actualización de los roles
   // Funcion https://parzibyte.me/blog/2020/02/19/javascript-convertir-cadena-false-true-booleano/
-  const cadenaABooleano = (cadena) => cadena === "true";
+
   // if (
   //   aux != undefined &&
   //   cadenaABooleano(aux["vendedor"]) !== dataAccount["vendedor"]
@@ -120,7 +122,8 @@ export async function updateDataProfile(objetoForm, dataAccount) {
     if (!vendedorForm == dataAccount["vendedor"]) {
       console.log("No son iguales");
       await grantRoleVendedor(dataAccount.uid, vendedorForm);
-      return null;
+      return redirect("/");
     }
   }
+  return null;
 }
