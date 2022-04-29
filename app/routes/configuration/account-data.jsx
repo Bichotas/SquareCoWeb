@@ -29,9 +29,9 @@ import {
 
 export let loader = async ({ params }) => {
   let { uid, displayName, email } = getAuth().currentUser;
-  const property = await getProperty(uid);
-  console.log("propiedad", property);
-  let objeto = { uid, displayName, email };
+  // const property = await getProperty(uid);
+  const vendedor = (await adminAuth.getUser(uid)).customClaims;
+  let objeto = { uid, displayName, email, vendedor: vendedor["vendedor"] };
   return json(objeto);
 };
 
@@ -60,15 +60,12 @@ export let action = async ({ request }) => {
     vendedor: vendedor["vendedor"],
   };
   await updateDataProfile(newObject, dataAccount);
-
   return null;
 };
 
 function account_data() {
   // Por el momento nada más se define el vendedor como falso de forma local para los ejemplos
-  let vendedor = false;
-  const { displayName, email } = useLoaderData();
-
+  const { displayName, email, vendedor } = useLoaderData();
   return (
     <ChakraProvider>
       <Form method="POST">

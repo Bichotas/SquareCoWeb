@@ -1,3 +1,4 @@
+import { redirect } from "@remix-run/node";
 import { getAuth, updateProfile } from "firebase/auth";
 import { adminAuth } from "./db.server";
 
@@ -93,7 +94,7 @@ export async function updateDataProfile(objetoForm, dataAccount) {
   }
 
   // Actualizar el perfil de la cuenta
-  const currentUser = getAuth().currentUser;
+  let currentUser = getAuth().currentUser;
   await updateProfile(currentUser, formulario);
 
   // Hasta aquí se va a modificar porque entraría lo del customclaim
@@ -119,7 +120,7 @@ export async function updateDataProfile(objetoForm, dataAccount) {
     if (!vendedorForm == dataAccount["vendedor"]) {
       console.log("No son iguales");
       await grantRoleVendedor(dataAccount.uid, vendedorForm);
+      return null;
     }
   }
-  return null;
 }
