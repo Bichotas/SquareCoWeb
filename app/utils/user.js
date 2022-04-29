@@ -57,6 +57,7 @@ export async function grantRoleVendedor(uid, role) {
   adminAuth.setCustomUserClaims(user.uid, { vendedor: role });
 }
 
+// Funcioon para convetir el valor de string a booleano
 export const cadenaABooleano = (cadena) => cadena === "true";
 
 // Función para actualizar el usuario pero primero se va a tener quitar del objeto la propiedad vendedor
@@ -77,14 +78,32 @@ export async function updateDataProfile(objetoForm, dataAccount) {
   // En esta parte se debe de checar si existe la propiedad es la misma en la parte de dataAccount
   // Se destructura la propiedad vendedor para guardarlo en uux
   let aux = undefined;
+
+  // Checamos que el objeto que contiene los datos del formulario tenga la propiedad "vendedor"
+  // 
+  // Esto para saber que esta y separarlo del objeto principal
   if (newFormObject.hasOwnProperty("vendedor")) {
+    // Destructuramos la propiead vendedor para tenerla a lado
     let { vendedor } = newFormObject;
+    // La ponemos en una variable auxiliar para luego utilizarla
     aux = { vendedor };
+    // Eliminamos la propiedad para mantener el objeto solo y se puede utilizar
+    // como objeto solo
     delete newFormObject.vendedor;
   }
+
+  // Creamos un objeto vacio para los objetos que estan en el objeto, esto es un
+  // filtrado sencillo comparando con el otro objeto
   let formulario = {};
   // Condición
+  //
+  // Iteramos en cada una de las llaves
   for (let i in newFormObject) {
+
+    // Checamos que el objet dataAccount que sería los datos de la cuenta de ese
+    // momento. Los cuales van a servir de comparació para la adición de
+    // propiedades al objeto formulario
+    //
     if (dataAccount.hasOwnProperty(i)) {
       // Checar si los valores son iguales
       // @todo
@@ -122,8 +141,14 @@ export async function updateDataProfile(objetoForm, dataAccount) {
     if (!vendedorForm == dataAccount["vendedor"]) {
       console.log("No son iguales");
       await grantRoleVendedor(dataAccount.uid, vendedorForm);
-      return redirect("/");
+
+      // Podremos retornar si vendedorForm es igual "true", entonces a una ruta para crear la cuenta o a la ruta de /register/create-store
+      // return redirect("register/create-store/")
+      // O podemos crear otra ruta pero que sea paraecida a la anterior
+      return null;
     }
   }
+
+  // Si no se cambia el tipo de cuenta, podemos quedarnos en la misma ruta
   return null;
 }
