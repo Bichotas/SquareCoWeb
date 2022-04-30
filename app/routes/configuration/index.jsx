@@ -1,6 +1,7 @@
 import React from "react";
 import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
 import { Box, ChakraProvider, Text, Heading, Stack } from "@chakra-ui/react";
+import { Link } from "@remix-run/react";
 function Configuration(props) {
   return (
     <ChakraProvider>
@@ -25,23 +26,25 @@ function Configuration(props) {
             borderColor={"gray.300"}
           >
             {/* Aqui iria los datos */}
-            <Stack direction={"row"}>
-              <Stack direction={"column"} margin={4}>
-                <AddIcon
-                  w={12}
-                  h={12}
-                  bg={"blue.300"}
-                  borderRadius={25}
-                  p={6}
-                />
-              </Stack>
-              <Stack direction={"column"}>
-                <Text visibility={"hidden"}>Datos de la cuenta</Text>
-                <Text>Datos de la cuenta</Text>
+            <Link to={"/configuration/account-data"}>
+              <Stack direction={"row"} _hover={"gray.500"}>
+                <Stack direction={"column"} margin={4}>
+                  <AddIcon
+                    w={12}
+                    h={12}
+                    bg={"blue.300"}
+                    borderRadius={25}
+                    p={6}
+                  />
+                </Stack>
+                <Stack direction={"column"}>
+                  <Text visibility={"hidden"}>Datos de la cuenta</Text>
+                  <Text fontWeight={"black"}>Datos de la cuenta</Text>
 
-                <Box>Descripcion</Box>
+                  <Box>Descripcion</Box>
+                </Stack>
               </Stack>
-            </Stack>
+            </Link>
           </Box>
         </Stack>
       </Stack>
