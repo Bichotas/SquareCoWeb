@@ -22,7 +22,6 @@ import React, { useState } from "react";
 import { adminAuth } from "../../utils/db.server";
 import {
   checkPropertiesForm,
-  editUser,
   getProperty,
   updateDataProfile,
 } from "../../utils/user";
