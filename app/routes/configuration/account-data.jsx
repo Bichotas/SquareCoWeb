@@ -12,6 +12,7 @@ import {
   FormLabel,
   Input,
   Select,
+  Text,
   FormHelperText,
   Badge,
 } from "@chakra-ui/react";
@@ -96,14 +97,9 @@ function account_data() {
                 borderRadius={"2vh"}
                 marginBottom={"5"}
               />
-              <Button
-                bg={"darkblue"}
-                color={"white"}
-                width={"60%"}
-                alignSelf={"center"}
-              >
-                Fotografia
-              </Button>
+              <FormControl>
+                <Input type={"file"} />
+              </FormControl>
             </Stack>
             <Stack direction={"column"} gap={4}>
               <FormControl id="name">
