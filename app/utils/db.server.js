@@ -32,11 +32,13 @@ if (!admin.apps.length) {
   initializeAdminApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "",
+    storageBucket: "jojigod-fb3ea.appspot.com",
   });
 }
 
 export const db = admin.firestore();
 export const adminAuth = admin.auth();
+export const storageAdmin = admin.storage();
 let Firebase;
 
 if (!Firebase?.apps?.length) {
