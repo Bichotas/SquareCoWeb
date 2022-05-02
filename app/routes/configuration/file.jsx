@@ -1,23 +1,22 @@
 import { Button } from "@chakra-ui/react";
 import { Form } from "@remix-run/react";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import {
-  unstable_parseMultipartFormData,
-  unstable_createFileUploadHandler,
-} from "@remix-run/node";
+import { unstable_parseMultipartFormData } from "@remix-run/node";
 export const action = async ({ request }) => {
+  const storage = getStorage();
+  const refStorage = ref(storage, "users");
   const uploadHandler = async ({ name, stream, filename }) => {
     const chunks = [];
     for await (const chunk of stream) {
       chunks.push(chunk);
     }
-    const buffer = Buffer.concat(chunks);
-    console.log(typeof buffer);
-    console.log(buffer);
-    console.log("Llaves", Object.keys(buffer));
-    console.log("Valores, ", Object.values(buffer));
 
-    return buffer;
+    const buffer = Buffer.concat(chunks);
+    let bytes = new Uint8Array(buffer);
+    console.log(bytes);
+    let valor = await uploadBytes(refStorage, bytes);
+
+    return valor;
   };
   const formData = await unstable_parseMultipartFormData(
     request,
@@ -28,7 +27,7 @@ export const action = async ({ request }) => {
   // Let's imagine we're uploading the avatar to s3,
   // so our uploadHandler returns the URL.
   const avatarUrl = formData.get("avatar");
-
+  console.log(avatarUrl);
   // success! Redirect to account page
   return null;
 };
