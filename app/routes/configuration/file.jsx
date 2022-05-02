@@ -12,6 +12,7 @@ export const action = async ({ request }) => {
     }
 
     const buffer = Buffer.concat(chunks);
+    const instance = file;
     let bytes = new Uint8Array(buffer);
     console.log(bytes);
     let valor = await uploadBytes(refStorage, bytes);
