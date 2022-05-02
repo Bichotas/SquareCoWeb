@@ -34,6 +34,11 @@ export let loader = async ({ params }) => {
   let objeto = { uid, displayName, email, vendedor: vendedor["vendedor"] };
   return json(objeto);
 };
+/**
+ *
+ * @param {*} param0
+ * @returns
+ */
 
 export let action = async ({ request }) => {
   // Pedimos los datos del formulario
