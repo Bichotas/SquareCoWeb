@@ -7,16 +7,19 @@ export const action = async ({ request }) => {
   const storage = getStorage();
   const refStorage = ref(storage, "users");
 
+  // Upload handle de la imagen
   const uploadHandler = async ({ encoding, stream, mimetype, filename }) => {
     if (filename.length > 0) {
       let chunks = [];
       for await (const chunk of stream) {
         chunks.push(chunk);
       }
-      const rand = Math.random().toString().substring(2, 8);
 
       const buffer = Buffer.concat(chunks);
-      const instance = bucket.file(`users/${rand}`);
+      const rand = Math.random().toString().substring(2, 8);
+      const extension = filename.split(".").pop();
+      const fName = `${rand}.${extension}`;
+      const instance = bucket.file(`users/${fName}`);
       await instance.save(buffer);
 
       await instance.setMetadata({
