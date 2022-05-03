@@ -1,6 +1,6 @@
 // Se importan todas las cosas que se necesitaran en el codigo
 import React from 'react';
-import { Heading, Container, Box, Image, Grid, GridItem, Text , extendTheme, Flex, Spacer, Center, Wrap, WrapItem  } from '@chakra-ui/react';
+import { Heading, Container, Box, Image, Grid, GridItem,SimpleGrid, Text , extendTheme, Flex, Spacer, Center, Wrap, WrapItem  } from '@chakra-ui/react';
 import { Icon } from '@chakra-ui/react';
 import { GiClothes } from "react-icons/gi";
 
@@ -18,14 +18,15 @@ function index(props) {
 
 {/* La pequeña seccion que dice "¿Que categoria estas buscando?" */}
             <Center>
-            <Box bg='#44b' width={'50%'} borderRadius='10px' margin={'1%'}>
+            <Box bg='#44b' width={['40% 90%']} borderRadius='10px' margin={'1%'} p='1%'>
                 <Text color={'#fff'} fontSize={'2xl'} textAlign='center'>¿Qué categoría estás buscando?</Text>
             </Box>
             </Center>
 
 {/* Aqui empiezan todas las secciones y categorias , hice todo con grid por que se me hacia mas facil asi*/}
             <Box display='grid'>
-                <Grid templateColumns='repeat(3,1fr)'  templateRows='repeat(3,1fr)'>
+                {/* Esto hace que sea grid */}
+                <SimpleGrid columns={[null,1,2,3]}  rows={[1,2]}>
 
                     {/*Ropa*/}
                     {/*Aqui pude exportar el icono gracias a la ayuda de cesar, hice una box para la imagen y un heading para el texto*/}
@@ -51,7 +52,7 @@ function index(props) {
                             </GridItem>
 
                             <GridItem>
-                                <Text fontSize='300%' color='white' fontFamily='monospace' paddingTop={'15%'}>Comida</Text>
+                                <Heading fontSize={'3xl'} color='white' fontFamily='monospace' padding={'25% 0%'}>Comida</Heading>
                             </GridItem>
                             
                             <GridItem gridArea={1} w='100px' h='100px' p='2%' m='7%' borderRadius='10%' bg='#8eee6d'>
@@ -61,7 +62,7 @@ function index(props) {
                             </GridItem>
 
                             <GridItem>
-                                <Text fontSize='300%' color='white' fontFamily='monospace' paddingTop={'15%'}>Postres</Text>
+                                <Heading fontSize={'3xl'} color='white' fontFamily='monospace' padding={'25% 0%'}>Postres</Heading>
                             </GridItem>
                             
                         </Grid>
@@ -126,7 +127,7 @@ function index(props) {
                     {/*Todo*/}
                     <GridItem  margin='2%' bg='#fa8c47' borderRadius='20px'>
                             <Center>
-                                <Heading fontSize={'3xl'} color='white' fontFamily='monospace' paddingTop={'15%'}>Todo</Heading>
+                                <Heading fontSize={'3xl'} color='white' fontFamily='monospace' padding={'15% 0%'}>Todo</Heading>
                             </Center>
                     </GridItem>
 
@@ -148,7 +149,7 @@ function index(props) {
 
 
 
-                    </Grid>
+                    </SimpleGrid>
             </Box>
             
         </Box>
