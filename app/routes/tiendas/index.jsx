@@ -1,6 +1,6 @@
 // Se importan todas las cosas que se necesitaran en el codigo
 import React from 'react';
-import { Heading, Container, Box, Image, Grid, GridItem,SimpleGrid, Text , extendTheme, Flex, Spacer, Center, Wrap, WrapItem  } from '@chakra-ui/react';
+import { Heading, Box, Image, Grid, GridItem,SimpleGrid, Text , Flex, Center } from '@chakra-ui/react';
 import { Icon } from '@chakra-ui/react';
 import { GiClothes } from "react-icons/gi";
 
@@ -26,7 +26,7 @@ function index(props) {
 {/* Aqui empiezan todas las secciones y categorias , hice todo con grid por que se me hacia mas facil asi*/}
             <Box display='grid'>
                 {/* Esto hace que sea grid */}
-                <SimpleGrid columns={[null,1,2,3]}  rows={[1,2]}>
+                <SimpleGrid columns={[null,1,2,3,]}  rows={[1,2]}>
 
                     {/*Ropa*/}
                     {/*Aqui pude exportar el icono gracias a la ayuda de cesar, hice una box para la imagen y un heading para el texto*/}

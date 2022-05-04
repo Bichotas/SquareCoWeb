@@ -1,7 +1,7 @@
 // Página hecha por Iris A.P.R 03/05/22
 // Importar lo que se necesita del codigo
 import React from 'react';
-import { Heading,SimpleGrid, Container, Box, Image, Grid, GridItem, Text , extendTheme, Flex, Spacer, Center, Wrap, WrapItem, Button  } from '@chakra-ui/react';
+import { Heading,SimpleGrid, Box , GridItem, Text, Button  } from '@chakra-ui/react';
 
 function index(props){
     return(
