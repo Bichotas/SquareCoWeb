@@ -16,7 +16,11 @@ import {
   FormHelperText,
   Badge,
 } from "@chakra-ui/react";
-import { json, redirect } from "@remix-run/node";
+import {
+  json,
+  redirect,
+  unstable_parseMultipartFormData,
+} from "@remix-run/node";
 import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { getAuth, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
@@ -26,8 +30,10 @@ import {
   getProperty,
   updateDataProfile,
 } from "../../utils/user";
+import { bucket } from "../../utils/db.server";
 
 export let loader = async ({ params }) => {
+  // Datos del usuario actual
   let { uid, displayName, email } = getAuth().currentUser;
   // const property = await getProperty(uid);
   const vendedor = (await adminAuth.getUser(uid)).customClaims;
@@ -41,11 +47,51 @@ export let loader = async ({ params }) => {
  */
 
 export let action = async ({ request }) => {
+  let uidPhoto = getAuth().currentUser.uid;
+  let uploadHandler = async ({ encoding, stream, mimetype, filename }) => {
+    // Array de chunks
+    if (filename.length > 0) {
+      let chunks = [];
+      for await (const chunk of stream) {
+        chunks.push(chunk);
+      }
+      const buffer = Buffer.concat(chunks);
+      const extension = filename.split(".").pop();
+      const fName = `${uidPhoto}.${extension}`;
+      const instance = bucket.file(`users/${fName}`);
+      // Guardamos el buffer de chunks en la instancia del buckets
+      await instance.save(buffer);
+
+      // Ponemos metadata a la instancia con el metodo
+      // Lo que tiene corresponde a "A MIME type is a label used to identify a type of data. It is used so software can know how to handle the data. It serves the same purpose on the Internet that file extensions do on Microsoft Windows."
+      // O sea el tipo de archivo
+      await instance.setMetadata({
+        "Content-Type": mimetype,
+        "Content-Encoding": encoding,
+      });
+
+      // Hacemos publica
+      await instance.makePublic();
+
+      // Devolvemos la URL pública
+      return instance.publicUrl();
+    }
+  };
+
   // Pedimos los datos del formulario
-  let formData = await request.formData();
+  // -- Nuevo form data
+  // Este se pasa como parametro la funcion uploadHanlder para la súbida del archivo
+  const formData = await unstable_parseMultipartFormData(
+    request,
+    uploadHandler
+  );
+  // Antiguo formData
+  // let formData = await request.formData();
   let nameForm = formData.get("name");
   let emailForm = formData.get("email");
   let typeAccountForm = formData.get("typeAccount");
+  let photoForm = formData.get("photo");
+  console.log(photoForm);
   const objetoForm = {
     displayName: nameForm,
     email: emailForm,
@@ -74,7 +120,7 @@ function account_data() {
   const { displayName, email, vendedor } = useLoaderData();
   return (
     <ChakraProvider>
-      <Form method="POST">
+      <Form method="POST" encType="multipart/form-data">
         <Center>
           <Heading size={"2xl"} as={"i"} letterSpacing={"2px"}>
             Datos de la cuenta
@@ -103,7 +149,8 @@ function account_data() {
                 marginBottom={"5"}
               />
               <FormControl>
-                <Input type={"file"} />
+                <label htmlFor="photo-input"></label>
+                <Input type={"file"} name={"photo"} id={"photo-input"} />
               </FormControl>
             </Stack>
             <Stack direction={"column"} gap={4}>
