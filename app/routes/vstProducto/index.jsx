@@ -6,26 +6,37 @@ function index(props){
     return(
         <Box>
 
-            <Box className='container' display={'flex'}>
+            <Box className='container' display={'flex'} >
+
+                <Box display={'grid'}>
+
+                    <SimpleGrid columns={[null,1, 2]}>
+
+                        <GridItem>
+                            <Heading size={'1x1'} p='2%' m={'2%'} bg={'rgba(214, 214, 214, 0.582)'} borderRadius='10px'>
+                                Nombre del Producto: Ejemplo Gomitas de sapito vegetarianas 100% libres de gluten, grasas trans, calorias, azucar</Heading>
+
+                            <Text p={'2%'} m='2%' bg={'rgba(214, 214, 214, 0.582)' } borderRadius='10px'>
+                                Hola , somos una fabrica de gomitas , damos felicidad garantizada a todos nuestros clientes, las gomitas tienen ingrediantes especiales que te haran sentirte como en las nubes, 100% exportados de colombia</Text>
+
+                            <Center>
+                                <Button bg={'#33aaff;'} m='1% 3% 3%' p={'5%'} w='35%' borderRadius={'10px'}>Boton</Button>
+                                <Button bg={'#33aaff;'} m='1% 3% 3%' p={'5%'} w='35%' borderRadius={'10px'}>Boton2</Button>
+                            </Center>
+
+                            
+                        </GridItem>
+
+                        <GridItem bg={'rgba(214, 214, 214, 0.582)'} borderRadius='70px' m={'1% 5%'}>
+                            <Center>
+                                <Image src='https://i.pinimg.com/236x/90/bf/d7/90bfd76d28caae8c9029a3be80c6d7d3.jpg' p={'8%'} borderRadius='80px'></Image>
+                            </Center>
+                        </GridItem>
+
+                    </SimpleGrid>
+
+                </Box>
                 
-                <Box className='texto' w='50%'>
-                    <Box className='Nombre del producto' bg={'#999'}  m={'1%'}>
-                        <Heading size={'1x1'}>Nombre del Producto</Heading>
-                    </Box>
-
-                    <Box className='Descripcion del producto' bg={'#999'} m='1%'>
-                        <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio maiores qui omnis officia itaque, quo quas eos eligendi odio officiis magni fugiat? Expedita provident dolor doloribus praesentium quibusdam, placeat nam magni distinctio possimus excepturi est, maxime repudiandae velit totam aperiam nemo accusamus illo cupiditate animi illum alias ad suscipit ut.</Text>
-                    </Box>
-
-                    <Box className='Botones'>
-                        <Button bg={'#33aaff;'} m='1%'>Boton</Button>
-                        <Button bg={'#33aaff;'} m='1%'>Boton2</Button>
-                    </Box>
-                </Box>
-
-                <Box className='Foto' w={'50%'}>
-                    <Image src='https://i.pinimg.com/236x/90/bf/d7/90bfd76d28caae8c9029a3be80c6d7d3.jpg'  ></Image>
-                </Box>
             </Box>
 
         </Box>
