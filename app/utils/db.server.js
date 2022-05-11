@@ -5,7 +5,6 @@ import {
   applicationDefault,
   initializeApp as initializeAdminApp,
 } from "firebase-admin/app";
-import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -18,12 +17,12 @@ require("dotenv").config();
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCXdDz9w-w7U8if76N5siMDGcbiOk2ePZk",
-  authDomain: "jojigod-fb3ea.firebaseapp.com",
-  projectId: "jojigod-fb3ea",
-  storageBucket: "jojigod-fb3ea.appspot.com",
-  messagingSenderId: "125013908426",
-  appId: "1:125013908426:web:0bf6b22b61e5e203ab4d33",
+  apiKey: "AIzaSyBaDEf0OPmBueLPBB32ybpdQOxiNEn4J68",
+  authDomain: "squareco-c2597.firebaseapp.com",
+  projectId: "squareco-c2597",
+  storageBucket: "squareco-c2597.appspot.com",
+  messagingSenderId: "1086510223912",
+  appId: "1:1086510223912:web:c38694244bed15e61e1b1d",
 };
 
 const serviceAccount = require("../../keyService.json");
@@ -31,19 +30,18 @@ const serviceAccount = require("../../keyService.json");
 if (!admin.apps.length) {
   initializeAdminApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "",
-    storageBucket: "jojigod-fb3ea.appspot.com",
+    databaseURL: "https://squareco-c2597.firebaseio.com", //     storageBucket: "squareco-c2597.appspot.com",
   });
 }
 
 export const db = admin.firestore();
 export const adminAuth = admin.auth();
 export const bucket = admin.storage().bucket();
-let Firebase;
+// let Firebase;
 
-if (!Firebase?.apps?.length) {
-  Firebase = initializeApp(firebaseConfig);
-}
+// if (!Firebase?.apps?.length) {
+//   Firebase = initializeApp(firebaseConfig);
+// }
 
 export async function signIn(email, password) {
   const auth = getAuth();
