@@ -1,4 +1,3 @@
-import { AlertDialog, useToast } from "@chakra-ui/react";
 import { redirect } from "@remix-run/node";
 import admin from "firebase-admin";
 import {
@@ -12,9 +11,8 @@ import {
   signOut,
 } from "firebase/auth";
 import { destroySession } from "./session.server";
-
 require("dotenv").config();
-
+import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBaDEf0OPmBueLPBB32ybpdQOxiNEn4J68",
@@ -30,18 +28,21 @@ const serviceAccount = require("../../keyService.json");
 if (!admin.apps.length) {
   initializeAdminApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://squareco-c2597.firebaseio.com", //     storageBucket: "squareco-c2597.appspot.com",
+    databaseURL: "https://squareco-c2597.firebaseio.com", //
+
+    storageBucket: "squareco-c2597.appspot.com",
   });
 }
 
 export const db = admin.firestore();
 export const adminAuth = admin.auth();
 export const bucket = admin.storage().bucket();
-// let Firebase;
 
-// if (!Firebase?.apps?.length) {
-//   Firebase = initializeApp(firebaseConfig);
-// }
+let Firebase;
+
+if (!Firebase?.apps?.length) {
+  Firebase = initializeApp(firebaseConfig);
+}
 
 export async function signIn(email, password) {
   const auth = getAuth();
