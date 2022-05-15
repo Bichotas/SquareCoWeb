@@ -59,6 +59,8 @@ export let action = async ({ request }) => {
       const extension = filename.split(".").pop();
       const fName = `${uidPhoto}.${extension}`;
       const instance = bucket.file(`users/${fName}`);
+      // Metodo asincrono
+      console.log(await instance.exists());
       // Guardamos el buffer de chunks en la instancia del buckets
       await instance.save(buffer);
 
