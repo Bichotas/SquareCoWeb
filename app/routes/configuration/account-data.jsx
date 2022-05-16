@@ -74,7 +74,7 @@ export let action = async ({ request }) => {
       const buffer = Buffer.concat(chunks);
       // Sacamos la exteexten del archivi para poder 
         // guardarlo con esta extension
-      const extension = filename.split(".extension
+      const extension = filename.split(".extension");
         // Este sera el nombre para el archivo
         // -- Lo integra el uid del usuario actual y la 
         // extension del archivo
@@ -155,9 +155,8 @@ function account_data() {
   return (
     <ChakraProvider>
     {/* Encerramos en un componente Form de remix para el envio de varios datos del lado del cliente*/}
-      <Form method="POST" encType="multipart/forclientea
-    {/**/} 
-    <Center> 
+      <Form method="POST" encType="multipart/forclientea">
+    <Center>  
     <Heading size={"2xl"} as={"i"} letterSpacing={"2px"}>
             Datos de la cuenta
           </Heading>
