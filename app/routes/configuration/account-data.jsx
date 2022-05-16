@@ -47,13 +47,13 @@ export let loader = async ({ params }) => {
  */
 
 export let action = async ({ request }) => {
-  // Se obtiene el uid del usuario para luego usarlo en 
-  // la imagen del usuario 
+  // Se obtiene el uid del usuario para luego usarlo en
+  // la imagen del usuario
   let uidPhoto = getAuth().currentUser.uid;
 
   // Funcion para obtener y subir los datos a la hora qje se pida el campo de la fotografia
   //
-  //    -- Los parametros que se toman son los que van 
+  //    -- Los parametros que se toman son los que van
   //    ser usados por las cosas de nuestra funciin
   //    -- Esta funcion es asincrona
   let uploadHandler = async ({ encoding, stream, mimetype, filename }) => {
@@ -61,37 +61,30 @@ export let action = async ({ request }) => {
     //
     // Checamos que haya un archivo, en este caso se checa que exista con lo largo del nombre de usuario. Practicamente con esto se checa que exista una imagen
 
-
     if (filename.length > 0) {
-      // Inicializamos un array para guardar los chunks de la imagen  
-      let chunks = []
+      // Inicializamos un array para guardar los chunks de la imagen
+      let chunks = [];
       // Iteramos en el objecto stream de la imagen y ua
       // guardamos en el Array
       for await (const chunk of stream) {
         chunks.push(chunk);
+      }
       // En un buffer concatenamos los chunks que tiequ
-        // la imagen. 
+      // la imagen.
       const buffer = Buffer.concat(chunks);
-      // Sacamos la exteexten del archivi para poder 
-        // guardarlo con esta extension
+      // Sacamos la exteexten del archivi para poder
+      // guardarlo con esta extension
       const extension = filename.split(".extension");
-        // Este sera el nombre para el archivo
-        // -- Lo integra el uid del usuario actual y la 
-        // extension del archivo
+      // Este sera el nombre para el archivo
+      // -- Lo integra el uid del usuario actual y la
+      // extension del archivo
       const fName = `${uidPhoto}.${extension}`;
       // Inicializamos una instancia del nombre
-        // --Esto seria como una refencia a la imagen
+      // --Esto seria como una refencia a la imagen
+      bucket.upload(buffer);
       const instance = bucket.file(`users/${fName}`);
       // Metodo asincrono
-        // Este metodo nos podra ayudar a checar si ya existe una instancia con estestembre. Si es que existe, eentonces debemos de actualizae con la nueva instancia. ,
-      console.log(await instance.exists());
-      // Guardamos el buffer de chunks en la instancia del buckets
-      if(await instance.exists()){
-        coconse.log('Existe')
-
-      } else {
-        console.log("No existe")
-      }
+      // Este metodo nos podra ayudar a checar si ya existe una instancia con estestembre. Si es que existe, eentonces debemos de actualizae con la nueva instancia
       await instance.save(buffer);
 
       // Ponemos metadata a la instancia con el metodo
@@ -119,7 +112,7 @@ export let action = async ({ request }) => {
   );
   // Antiguo formData
   // let formData = await request.formData();
-    //
+  //
   // Datos del formulario
   let nameForm = formData.get("name");
   let emailForm = formData.get("email");
@@ -154,10 +147,10 @@ function account_data() {
   const { displayName, email, vendedor } = useLoaderData();
   return (
     <ChakraProvider>
-    {/* Encerramos en un componente Form de remix para el envio de varios datos del lado del cliente*/}
+      {/* Encerramos en un componente Form de remix para el envio de varios datos del lado del cliente*/}
       <Form method="POST" encType="multipart/forclientea">
-    <Center>  
-    <Heading size={"2xl"} as={"i"} letterSpacing={"2px"}>
+        <Center>
+          <Heading size={"2xl"} as={"i"} letterSpacing={"2px"}>
             Datos de la cuenta
           </Heading>
         </Center>
