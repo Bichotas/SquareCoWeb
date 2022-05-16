@@ -47,7 +47,11 @@ export let loader = async ({ params }) => {
  */
 
 export let action = async ({ request }) => {
+  // Se obtiene el uid del usuario para luego usarlo en 
+  // la imagen del usuario 
   let uidPhoto = getAuth().currentUser.uid;
+
+  // Funcion para obtener y subir los datos a la hora qje se pida el campo de la fotografia
   let uploadHandler = async ({ encoding, stream, mimetype, filename }) => {
     // Array de chunks
     if (filename.length > 0) {
